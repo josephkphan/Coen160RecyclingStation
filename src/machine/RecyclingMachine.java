@@ -20,6 +20,7 @@ public class RecyclingMachine {
     // Storage Info
     private int numTransactions;
     private int numPlasticItems, numPaperItems, numGlassItems;
+    private int lastEmptyTime; // TODO ADD IMPLEMENT THIS
 
     // Temporary Variables for Transactions
     private double tempPlasticLoad, tempPaperLoad, tempGlassLoad;
@@ -170,7 +171,7 @@ public class RecyclingMachine {
         currentPlasticLoad = currentPlasticLoad;
     }
 
-    /* Other Getters */
+    /* Machine Information Getters and Setters */
     public int getId() {
         return id;
     }
@@ -197,5 +198,60 @@ public class RecyclingMachine {
 
     public void setMaxMoney(double maxMoney) {
         this.maxMoney = maxMoney;
+    }
+
+    public int getLastEmptyTime() {
+        return lastEmptyTime;
+    }
+
+    public void setLastEmptyTime(int lastEmptyTime) {
+        this.lastEmptyTime = lastEmptyTime;
+    }
+
+    /* Statistical Data */
+    public int getNumTransactions() {
+        return numTransactions;
+    }
+
+    public int getNumPlasticItems() {
+        return numPlasticItems;
+    }
+
+    public int getNumPaperItems() {
+        return numPaperItems;
+    }
+
+    public int getNumGlassItems() {
+        return numGlassItems;
+    }
+
+    /* Transaction Getters */
+
+    public double getTempPlasticLoad() {
+        return tempPlasticLoad;
+    }
+
+    public double getTempPaperLoad() {
+        return tempPaperLoad;
+    }
+
+    public double getTempGlassLoad() {
+        return tempGlassLoad;
+    }
+
+    public double getTransactionTotal() {
+        return transactionTotal;
+    }
+
+    public int getTempNumPlasticItems() {
+        return tempNumPlasticItems;
+    }
+
+    public int getTempNumPaperItems() {
+        return tempNumPaperItems;
+    }
+
+    public int getTempNumGlassItems() {
+        return tempNumGlassItems;
     }
 }
