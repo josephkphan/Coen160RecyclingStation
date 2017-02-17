@@ -1,6 +1,6 @@
 package main;
 
-import machine.RecyclingMonitoringStation;
+import guithings.HomeGUI;
 import javax.swing.*;
 
 public class Main {
@@ -9,7 +9,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new RecyclingMonitoringStation();
+                new HomeGUI();
             }
         });
     }
