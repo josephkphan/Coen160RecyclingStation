@@ -106,36 +106,6 @@ public class RecyclingMachine {
         return true;
     }
 
-//    /* Actions to do on Machine */
-//    public boolean addRecyclableItem(RecyclableItem r) {
-//        if (r instanceof Paper) {
-//            if (r.getWeight() + getCurrentPaperLoad() > getMaxPaperLoad()) {
-//                //todo implement me -- Case CANNOT ADD ANYMORE PAPER
-//                return false;
-//            }
-//            tempNumPaperItems++;
-//            tempPaperLoad += r.getWeight();
-//        } else if (r instanceof Plastic) {
-//            if (r.getWeight() + getCurrentPlasticLoad() > getMaxPlasticLoad()) {
-//                //todo implement me -- Case CANNOT ADD ANYMORE Plastic
-//                return false;
-//            }
-//            tempNumPlasticItems++;
-//            tempPlasticLoad += r.getWeight();
-//        } else if (r instanceof Glass) {
-//            if (r.getWeight() + getCurrentGlassLoad() > getMaxPlasticLoad()) {
-//                //todo implement me -- Case CANNOT ADD ANYMORE Plastic
-//                return false;
-//            }
-//            tempNumGlassItems++;
-//            tempGlassLoad += r.getWeight();
-//        } else {
-//            return false;
-//            //todo !!!!! THEY PUT IN SHIT. SLAP THEIR ASS
-//        }
-//        return true;
-//    }
-
     // Log Transaction
 
     // Return Money
