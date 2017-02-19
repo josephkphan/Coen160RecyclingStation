@@ -61,6 +61,34 @@ public class MachineStatistics {
 
     public double getTotalWeightOfGlassItems(){
         double sum = 0;
+        for(Transaction t : transactionHistory){
+            sum += t.getGlassLoad();
+        }
         return sum;
     }
+
+    public double getTotalWeightOfMetalItems(){
+        double sum = 0;
+        for(Transaction t : transactionHistory){
+            sum += t.getMetalLoad();
+        }
+        return sum;
+    }
+
+    public double getTotalWeightOfPaperItems(){
+        double sum = 0;
+        for(Transaction t : transactionHistory){
+            sum += t.getPaperLoad();
+        }
+        return sum;
+    }
+
+    public double getTotalWeightOfPlasticItems(){
+        double sum = 0;
+        for(Transaction t : transactionHistory){
+            sum += t.getPlasticLoad();
+        }
+        return sum;
+    }
+
 }

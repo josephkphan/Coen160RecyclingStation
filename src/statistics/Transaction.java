@@ -18,18 +18,6 @@ public class Transaction {
         payoutInCash = true;
     }
 
-    public void addPlasticItem(Plastic item, int cents){
-        numPlasticItems++;
-        plasticLoad += item.getWeight();
-        transactionTotal += cents;
-    }
-
-    public void addPaperItem(Paper item, int cents){
-        numPaperItems++;
-        paperLoad += item.getWeight();
-        transactionTotal += cents;
-    }
-
     public void addGlassItem(Glass item, int cents){
         numGlassItems++;
         glassLoad += item.getWeight();
@@ -39,6 +27,18 @@ public class Transaction {
     public void addMetalItem(Metal item, int cents){
         numMetalItems++;
         metalLoad += item.getWeight();
+        transactionTotal += cents;
+    }
+
+    public void addPaperItem(Paper item, int cents){
+        numPaperItems++;
+        paperLoad += item.getWeight();
+        transactionTotal += cents;
+    }
+
+    public void addPlasticItem(Plastic item, int cents){
+        numPlasticItems++;
+        plasticLoad += item.getWeight();
         transactionTotal += cents;
     }
 

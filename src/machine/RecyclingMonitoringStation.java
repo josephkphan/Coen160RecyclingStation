@@ -7,6 +7,7 @@ import recyclable.Plastic;
 import recyclable.RecyclableItem;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RecyclingMonitoringStation {
     private ArrayList<RecyclingMachine> recyclingMachines;
@@ -33,20 +34,48 @@ public class RecyclingMonitoringStation {
         return false;
     }
 
-    public static double checkItemPrice(RecyclableItem r){
-        if(r instanceof Plastic){
-            return r.getWeight() * Constants.PLASTIC_PRICE;
-        }else if (r instanceof Paper){
-            return r.getWeight() * Constants.PAPER_PRICE;
-        }else if (r instanceof Glass){
-            return r.getWeight() * Constants.GLASS_PRICE;
-        }else{
-            //todo TRASH ??
-            return -1;
-        }
+    public void changeGlassPraice(int cents){
+        Constants.GLASS_PRICE = cents;
     }
 
-    public void seeOverallStats(){
-        // accumulate all the data from the different machines?
+    public void changeMetalPrice(int cents){
+        Constants.METAL_PRICE = cents;
     }
+
+    public void changePaperPrice(int cents){
+        Constants.PAPER_PRICE = cents;
+    }
+
+    public void changePlasticPrice(int cents){
+        Constants.PLASTIC_PRICE = cents;
+    }
+
+    public void addMachine(int x, int y){
+        recyclingMachines.add(new RecyclingMachine(x,y,generateMachineID()));
+    }
+
+    public void removeMachine(int id){
+
+    }
+
+    private int generateMachineID(){
+        Random random = new Random();
+        int id;
+        boolean newID;
+        while (true) {
+            id = random.nextInt(10000) + 1;
+            newID = true;
+            for(RecyclingMachine rm : recyclingMachines){
+                if(id == rm.getId()) {
+                    newID = false;
+                    break;
+                }
+            }
+            if(newID){
+                break;
+            }
+        }
+        return id;
+    }
+
 }

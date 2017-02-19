@@ -1,10 +1,14 @@
 package guithings.resources;
 
 public class Constants {
-    public final static int PAPER_PRICE = 100;
-    public final static int PLASTIC_PRICE = 200;
-    public final static int GLASS_PRICE = 300;
-    public final static int METAL_PRICE = 400;
+    public static int GLASS_PRICE = 300;
+    public static int METAL_PRICE = 400;
+    public static int PAPER_PRICE = 100;
+    public static int PLASTIC_PRICE = 200;
 
+    public static double MAX_GLASS_LOAD = 100;
+    public static double MAX_METAL_LOAD = 100;
+    public static double MAX_PAPER_LOAD = 100;
+    public static double MAX_PLASTIC_LOAD = 100;
 
 }
