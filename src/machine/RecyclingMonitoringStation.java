@@ -1,5 +1,6 @@
 package machine;
 
+import guithings.resources.Constants;
 import recyclable.Glass;
 import recyclable.Paper;
 import recyclable.Plastic;
@@ -9,9 +10,6 @@ import java.util.ArrayList;
 
 public class RecyclingMonitoringStation {
     private ArrayList<RecyclingMachine> recyclingMachines;
-    private static final double PAPER_PRICE = 1.00;
-    private static final double PLASTIC_PRICE = 2.00;
-    private static final double GLASS_PRICE = 3.00;
 
     //TODO ADD IN DAILTY, MONTHlY DATA
 
@@ -37,11 +35,11 @@ public class RecyclingMonitoringStation {
 
     public static double checkItemPrice(RecyclableItem r){
         if(r instanceof Plastic){
-            return r.getWeight() * PLASTIC_PRICE;
+            return r.getWeight() * Constants.PLASTIC_PRICE;
         }else if (r instanceof Paper){
-            return r.getWeight() * PAPER_PRICE;
+            return r.getWeight() * Constants.PAPER_PRICE;
         }else if (r instanceof Glass){
-            return r.getWeight() * GLASS_PRICE;
+            return r.getWeight() * Constants.GLASS_PRICE;
         }else{
             //todo TRASH ??
             return -1;
