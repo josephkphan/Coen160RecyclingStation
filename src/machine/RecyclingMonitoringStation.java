@@ -78,4 +78,74 @@ public class RecyclingMonitoringStation {
         return id;
     }
 
+    //todo enabling other recycable items
+
+    public ArrayList<RecyclingMachine> getAllMachineStatistics(){
+        return recyclingMachines;
+    }
+
+//    public int getTotalNumberOfGlassItems(){
+//        int sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getMachineStatistics();
+//        }
+//        return sum;
+//    }
+//
+//    public int getTotalNumberOfPlasticItems(){
+//        int sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+//
+//    public int getTotalNumberOfPaperItems(){
+//        int sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+//
+//    public int getTotalNumberOfMetalItems(){
+//        int sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+//
+//    public double getTotalWeightOfGlassItems(){
+//        double sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+//
+//    public double getTotalWeightOfMetalItems(){
+//        double sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+//
+//    public double getTotalWeightOfPaperItems(){
+//        double sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+//
+//    public double getTotalWeightOfPlasticItems(){
+//        double sum = 0;
+//        for(RecyclingMachine rm: recyclingMachines){
+//            sum += rm.getNumGlassItems();
+//        }
+//        return sum;
+//    }
+
 }

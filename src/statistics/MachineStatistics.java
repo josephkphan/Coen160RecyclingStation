@@ -19,6 +19,10 @@ public class MachineStatistics {
         this.emptiedHistory.add(System.currentTimeMillis()*1000);  // adds current time in seconds
     }
 
+    public ArrayList<Long> getEmptiedHistory() {
+        return emptiedHistory;
+    }
+
     public int getNumberOfTransactions(){
         return transactionHistory.size();
     }
@@ -53,10 +57,6 @@ public class MachineStatistics {
             sum += t.getNumMetalItems();
         }
         return sum;
-    }
-
-    public ArrayList<Long> getEmptiedHistory() {
-        return emptiedHistory;
     }
 
     public double getTotalWeightOfGlassItems(){

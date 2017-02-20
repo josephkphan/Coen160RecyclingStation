@@ -1,5 +1,6 @@
 package machine;
 
+import guithings.resources.Constants;
 import recyclable.RecyclableItem;
 import recyclable.Glass;
 import recyclable.Metal;
@@ -11,14 +12,14 @@ import statistics.MachineStatistics;
 
 public class RecyclingMachine {
     // Containment of the MachineStatistics Class
-    MachineStatistics ms = new MachineStatistics();
+    private MachineStatistics machineStatistics = new MachineStatistics();
 
     // Machine Information
     private int id;
     private int xCoord, yCoord;
 
     // Transaction Related Data Members
-    Transaction t;
+    private Transaction t;
     private boolean inTransaction;
     private int transactionTotal;
     private int numPlasticItems, numPaperItems, numGlassItems, numMetalItems;
@@ -29,6 +30,26 @@ public class RecyclingMachine {
     private double maxMetalLoad, currentMetalLoad;
     private double maxPaperLoad, currentPaperLoad;
     private double maxPlasticLoad, currentPlasticLoad;
+
+    // Constructor
+    public RecyclingMachine(int xCoord, int yCoord, int id) {
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
+        this.id = id;
+
+        this.inTransaction = false;
+        this.transactionTotal = 0;
+        this.numGlassItems = this.numMetalItems = this.numPaperItems = this.numPlasticItems = 0;
+
+        this.availableMoney = 100; // TODO: Set these values to the constant file
+
+        this.maxGlassLoad = Constants.MAX_GLASS_LOAD;
+        this.maxMetalLoad = Constants.MAX_METAL_LOAD;
+        this.maxPaperLoad = Constants.MAX_PAPER_LOAD;
+        this.maxPlasticLoad =Constants.MAX_PLASTIC_LOAD;
+
+        this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0;
+    }
 
     // Setters and Getters
     public double getMaxGlassLoad() {
@@ -111,30 +132,8 @@ public class RecyclingMachine {
         this.availableMoney = availableMoney;
     }
 
-    // Constructor
-    public RecyclingMachine(int xCoord, int yCoord, int id) {
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
-        this.id = id;
-
-        this.inTransaction = false;
-        this.transactionTotal = 0;
-        this.numGlassItems = 0;
-        this.numMetalItems = 0;
-        this.numPaperItems = 0;
-        this.numPlasticItems = 0;
-
-        this.availableMoney = 100; // TODO: Set these values to the constant file
-
-        this.maxGlassLoad = 100; // TODO: Set these values to the constant file
-        this.maxMetalLoad = 100;
-        this.maxPaperLoad = 100;
-        this.maxPlasticLoad = 100;
-
-        this.currentGlassLoad = 0;
-        this.currentMetalLoad = 0;
-        this.currentPaperLoad = 0;
-        this.currentPlasticLoad = 0;
+    public MachineStatistics getMachineStatistics() {
+        return machineStatistics;
     }
 
     // Start Transaction
@@ -202,6 +201,8 @@ public class RecyclingMachine {
 
         return true;
     }
+
+
 
 
     // Return Money
