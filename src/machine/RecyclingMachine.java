@@ -46,9 +46,96 @@ public class RecyclingMachine {
         this.maxGlassLoad = Constants.MAX_GLASS_LOAD;
         this.maxMetalLoad = Constants.MAX_METAL_LOAD;
         this.maxPaperLoad = Constants.MAX_PAPER_LOAD;
-        this.maxPlasticLoad =Constants.MAX_PLASTIC_LOAD;
+        this.maxPlasticLoad = Constants.MAX_PLASTIC_LOAD;
 
         this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0;
+    }
+
+    // Start Transaction
+    public void startTransaction() {
+       t = new Transaction();
+       setInTransaction(true);
+    }
+
+    // End Transaction
+    public void endTransaction() {
+        setTransactionTotal(t.getTransactionTotal());
+
+        setNumGlassItems(t.getNumGlassItems());
+        setNumMetalItems(t.getNumMetalItems());
+        setNumPaperItems(t.getNumPaperItems());
+        setNumPlasticItems(t.getNumPlasticItems());
+
+        setCurrentGlassLoad(t.getGlassLoad());
+        setCurrentMetalLoad(t.getMetalLoad());
+        setCurrentPaperLoad(t.getPaperLoad());
+        setCurrentPlasticLoad(t.getPlasticLoad());
+
+        // TODO: Still need to fulfill the payout to the customer
+        if (availableMoney < t.getTransactionTotal()) {
+            t.setPayoutToCoupon();
+        } else {
+            t.isPayoutInCash();
+        }
+
+        setInTransaction(false);
+    }
+
+    // Cancel Transaction
+    public void cancelTransaction() {
+        // Removes reference to the current Transaction
+        startTransaction();
+
+        // We are not currently actually in transaction
+        setInTransaction(false);
+    }
+
+    // Insert Recyclable Item
+    public boolean addRecyclableItem(RecyclableItem r) throws Exception {
+        if (inTransaction == false) {
+            System.out.println("The machine is currently not in transaction mode.");
+            return false;
+        }
+
+        // Check whether the item will fit inside the load
+        if (r instanceof Glass) {
+            if (r.getWeight() + getCurrentGlassLoad() > getMaxGlassLoad()) {
+                return false;
+            }
+
+            int priceInCents = (int) (r.getWeight() * Constants.GLASS_PRICE);
+            t.addGlassItem((Glass) r, priceInCents);
+
+        } else if (r instanceof Metal) {
+            if (r.getWeight() + getCurrentMetalLoad() > getMaxMetalLoad()) {
+                return false;
+            }
+
+            int priceInCents = (int) (r.getWeight() * Constants.METAL_PRICE);
+            t.addMetalItem((Metal) r, priceInCents);
+
+        } else if (r instanceof Paper) {
+            if (r.getWeight() + getCurrentPaperLoad() > getMaxPaperLoad()) {
+                return false;
+            }
+
+            int priceInCents = (int) (r.getWeight() * Constants.PAPER_PRICE);
+            t.addPaperItem((Paper) r, priceInCents);
+
+        } else if (r instanceof Plastic) {
+            if (r.getWeight() + getCurrentPlasticLoad() > getMaxPlasticLoad()) {
+                return false;
+            }
+
+            int priceInCents = (int) (r.getWeight() * Constants.PLASTIC_PRICE);
+            t.addPlasticItem((Plastic) r, priceInCents);
+
+        } else {
+            System.out.println("You didn't insert a recyclable item. You are a terrible person.");
+            throw new Exception();
+        }
+
+        return true;
     }
 
     // Setters and Getters
@@ -124,6 +211,54 @@ public class RecyclingMachine {
         this.yCoord = yCoord;
     }
 
+    public boolean isInTransaction() {
+        return inTransaction;
+    }
+
+    public void setInTransaction(boolean inTransaction) {
+        this.inTransaction = inTransaction;
+    }
+
+    public int getTransactionTotal() {
+        return transactionTotal;
+    }
+
+    public void setTransactionTotal(int transactionTotal) {
+        this.transactionTotal = transactionTotal;
+    }
+
+    public int getNumPlasticItems() {
+        return numPlasticItems;
+    }
+
+    public void setNumPlasticItems(int numPlasticItems) {
+        this.numPlasticItems = numPlasticItems;
+    }
+
+    public int getNumPaperItems() {
+        return numPaperItems;
+    }
+
+    public void setNumPaperItems(int numPaperItems) {
+        this.numPaperItems = numPaperItems;
+    }
+
+    public int getNumGlassItems() {
+        return numGlassItems;
+    }
+
+    public void setNumGlassItems(int numGlassItems) {
+        this.numGlassItems = numGlassItems;
+    }
+
+    public int getNumMetalItems() {
+        return numMetalItems;
+    }
+
+    public void setNumMetalItems(int numMetalItems) {
+        this.numMetalItems = numMetalItems;
+    }
+
     public double getAvailableMoney() {
         return availableMoney;
     }
@@ -135,87 +270,4 @@ public class RecyclingMachine {
     public MachineStatistics getMachineStatistics() {
         return machineStatistics;
     }
-
-    // Start Transaction
-    public void startTransaction() {
-       t = new Transaction();
-       inTransaction = true;
-    }
-
-    // End Transaction
-    public void endTransaction() {
-        setCurrentGlassLoad(t.getGlassLoad());
-        setCurrentMetalLoad(t.getMetalLoad());
-        setCurrentPaperLoad(t.getPaperLoad());
-        setCurrentPlasticLoad(t.getPlasticLoad());
-
-
-        // TODO: Pay the Customer
-        inTransaction = false;
-    }
-
-    // Insert Recyclable Item
-    public boolean addRecyclableItem(RecyclableItem r) {
-        if (inTransaction == true) {
-            System.out.println("The machine is currently in transaction. Please wait.");
-            return false;
-        }
-
-        // Check whether the item will fit inside the load
-        if (r instanceof Glass) {
-            if (r.getWeight() + getCurrentGlassLoad() > getMaxGlassLoad()) {
-                return false;
-            }
-//            setCurrentGlassLoad(getCurrentGlassLoad() + r.getWeight());
-            t.addGlassItem((Glass) r, 100); // TODO: Figure out how many cents to include
-
-
-        } else if (r instanceof Metal) {
-            if (r.getWeight() + getCurrentMetalLoad() > getMaxMetalLoad()) {
-                return false;
-            }
-            setCurrentMetalLoad(getCurrentMetalLoad() + r.getWeight());
-
-        } else if (r instanceof Paper) {
-            if (r.getWeight() + getCurrentPaperLoad() > getMaxPaperLoad()) {
-                return false;
-            }
-            setCurrentPaperLoad(getCurrentPaperLoad() + r.getWeight());
-
-        } else if (r instanceof Plastic) {
-            if (r.getWeight() + getCurrentPlasticLoad() > getMaxPlasticLoad()) {
-                return false;
-            }
-            setCurrentPlasticLoad(getCurrentPlasticLoad() + r.getWeight());
-
-        } else {
-            System.out.println("You didn't insert a recyclable item. You are a terrible person.");
-            return false;
-        }
-
-        // TODO: For each case, you still need to log the transaction and return money
-
-        // Log Transaction Function
-
-        // Return Money Function
-
-        return true;
-    }
-
-
-
-
-    // Return Money
-
-    // Price Calculator
-
-    // Cancel Transaction
-
-    // Continuously Display Items
-
-    // Money Available (Private)
-
-    // Get Price
-
-
 }
