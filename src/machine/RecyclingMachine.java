@@ -1,6 +1,6 @@
 package machine;
 
-import guithings.resources.Constants;
+import resources.Constants;
 import recyclable.RecyclableItem;
 import recyclable.Glass;
 import recyclable.Metal;

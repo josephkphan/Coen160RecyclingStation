@@ -1,79 +1,148 @@
 package guithings;
 
+import machine.RecyclingMachine;
+import machine.RecyclingMonitoringStation;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class HomeGUI extends JFrame implements ActionListener {
-    private JTextField feetHeightField, inchHeightField, poundsField;
-    protected JLabel feetHeightLabel, inchHeightLabel, poundsLabel, BMILabel;
-    private JButton calculateButton;
-    private JPanel topPanel, bottomPanel;
+public class HomeGUI extends JFrame {
+
+    private static final int WINDOW_WIDTH = 1500;
+    private static final int WINDOW_HEIGHT = 750;
+    private static final int IMAGE_WIDTH = 128;
+    private static final int IMAGE_HEIGHT = 128;
+    private static Container pane;
+    private static Insets paneInsets;
+
+    private static ArrayList<JButton> recyclingMachineButton;
+    private static ArrayList<JLabel> recyclingMachineImage;
+    private static ArrayList<Integer> recyclingMachineID;
+
+    private static RecyclingMonitoringStation recyclingMonitoringStation;
+    private static JLabel background;
 
     public HomeGUI() {
-        super("RecyclingMonitoringStation");
-        setSize(500, 100);
+        // Embedded Stuff
+        recyclingMonitoringStation = new RecyclingMonitoringStation();
+        recyclingMachineButton = new ArrayList<JButton>();
+        recyclingMachineImage = new ArrayList<JLabel>();
+        recyclingMachineID = new ArrayList<Integer>();
 
-        Container container = getContentPane();
-        container.setLayout(new FlowLayout());
 
-        topPanel = new JPanel();
-        bottomPanel = new JPanel();
+        //Gui Stuff
+        JFrame frame = new JFrame("Home Window");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        feetHeightLabel = new JLabel("ft: ", JLabel.CENTER);
-        topPanel.add(feetHeightLabel);
-        feetHeightField = new JTextField(10);
-        topPanel.add(feetHeightField);
+        pane = frame.getContentPane();
 
-        inchHeightLabel = new JLabel("in: ", JLabel.CENTER);
-        topPanel.add(inchHeightLabel);
-        inchHeightField = new JTextField(10);
-        topPanel.add(inchHeightField);
+        //Size and display the window.
+        Insets frameInsets = frame.getInsets();
+        frame.setSize(WINDOW_WIDTH + frameInsets.left + frameInsets.right,
+                WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
+        frame.setVisible(true);
+        pane.setLayout(null);
+        paneInsets = pane.getInsets();
+        createTitle();
+        createStation();
+        createBackground();
 
-        poundsLabel = new JLabel("lbs: ", JLabel.CENTER);
-        topPanel.add(poundsLabel);
-        poundsField = new JTextField(10);
-        topPanel.add(poundsField);
+        RecyclingMachine tester = new RecyclingMachine(40,40,50);
+        addRecyclingMachine(tester);
 
-        calculateButton = new JButton("Calculate BMI");
-        calculateButton.addActionListener(this);
-        bottomPanel.add(calculateButton);
+        RecyclingMachine tester2 = new RecyclingMachine(1100,500,50);
+        addRecyclingMachine(tester2);
 
-        BMILabel = new JLabel("");
-        bottomPanel.add(BMILabel);
+        RecyclingMachine tester3 = new RecyclingMachine(800,200,50);
+        addRecyclingMachine(tester3);
 
-        container.add(topPanel, BorderLayout.NORTH);
-        container.add(bottomPanel, BorderLayout.SOUTH);
-
-        // show the frame in the center of the screen
-        setLocationRelativeTo(null);
-        setVisible(true);
     }
 
-    /**
-     * Handles actions when calculate button is pressed. It will take input from the fields and calculate the BMI
-     * it will a pop up if any of the inputs are invalid
-     */
-    public void actionPerformed(ActionEvent e) {
-        String inch = inchHeightField.getText();
-        String feet = feetHeightField.getText();
-        String pounds = poundsField.getText();
 
-        try {
-            int heightInInches = Integer.parseInt(inch) + 12 * Integer.parseInt(feet);
+    //////////////////////////////// Embedded Part ///////////////////////////////////
 
-            int weightInPounds = Integer.parseInt(pounds);
-            float BMI = weightInPounds * 703 / heightInInches / heightInInches;
-            BMILabel.setText("Your BMI: " + BMI);
-            if(BMI < 18.5 || BMI > 24.9){
-                BMILabel.setForeground(Color.RED);
-            }else{
-                BMILabel.setForeground(Color.BLACK);
+    public static RecyclingMonitoringStation getRecyclingMonitoringStation() {
+        return recyclingMonitoringStation;
+    }
+
+
+    //////////////////////////////// Creating Gui ////////////////////////////////////
+
+    private void createTitle() {
+        JLabel homeLabel = new JLabel("Home", JLabel.CENTER);
+        homeLabel.setBounds(WINDOW_WIDTH / 2 - homeLabel.getPreferredSize().width / 2,
+                paneInsets.top + 10, homeLabel.getPreferredSize().width, homeLabel.getPreferredSize().height);
+        pane.add(homeLabel);
+
+    }
+
+    public static void removeBackground(){
+        background.setVisible(false);
+    }
+
+    public static void createBackground(){
+        background = new JLabel("Hello");
+        background.setBounds(paneInsets.left, paneInsets.top, WINDOW_WIDTH, WINDOW_HEIGHT);
+        background.setIcon(new ImageIcon("src/assets/background.png"));
+        background.setAlignmentY(SwingConstants.BOTTOM);
+        pane.add(background);
+    }
+    private void createStation() {
+        JLabel text = new JLabel("Hello");
+        text.setBounds(WINDOW_WIDTH / 2 - IMAGE_WIDTH / 2, WINDOW_HEIGHT / 2 - IMAGE_HEIGHT / 2, IMAGE_WIDTH, IMAGE_HEIGHT);
+        text.setIcon(new ImageIcon("src/assets/tower.png"));
+        pane.add(text);
+
+        JButton button = new JButton("Admin Login");
+        button.setBounds(WINDOW_WIDTH / 2 - IMAGE_WIDTH / 2, WINDOW_HEIGHT / 2 + IMAGE_HEIGHT / 2, IMAGE_WIDTH, IMAGE_HEIGHT / 4);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginGUI();
             }
+        });
+        pane.add(button);
+    }
 
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Please type in a valid integer");
+    //todo Test THIS
+    public static void addRecyclingMachine(RecyclingMachine rm) {
+        JLabel text = new JLabel("Hello");
+        text.setBounds(rm.getxCoord(), rm.getyCoord(), IMAGE_WIDTH, IMAGE_HEIGHT);
+        text.setIcon(new ImageIcon("src/assets/machine.png"));
+        recyclingMachineImage.add(text);
+        pane.add(recyclingMachineImage.get(recyclingMachineImage.size() - 1));
+
+        JButton button = new JButton("Recycle");
+        recyclingMachineButton.add(button);
+        recyclingMachineButton.get(recyclingMachineButton.size() - 1).setBounds(rm.getxCoord(),
+                rm.getyCoord() + IMAGE_HEIGHT + 2, IMAGE_WIDTH, IMAGE_HEIGHT / 4);
+        recyclingMachineButton.get(recyclingMachineButton.size() - 1).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RecyclingMachineGUI(rm);
+            }
+        });
+        pane.add(recyclingMachineButton.get(recyclingMachineButton.size() - 1));
+
+        removeBackground();
+        createBackground();
+
+    }
+
+    //todo TEST THIS
+    public static void removeRecyclingMachine(int ID) {
+        for (int i = 0; i < recyclingMachineID.size(); i++) {
+            if (recyclingMachineID.get(i) == ID) {
+                recyclingMachineID.remove(i);
+                recyclingMachineButton.get(i).setVisible(false);
+                recyclingMachineButton.remove(i);
+                recyclingMachineImage.get(i).setVisible(false);
+                recyclingMachineImage.remove(i);
+            }
         }
     }
+
 }

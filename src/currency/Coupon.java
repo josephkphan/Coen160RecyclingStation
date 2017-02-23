@@ -1,4 +1,4 @@
-package guithings.currency;
+package currency;
 
 public class Coupon extends USMoney {
 

@@ -1,4 +1,4 @@
-package guithings.currency;
+package currency;
 
 public abstract class USMoney {
     private int dollars;

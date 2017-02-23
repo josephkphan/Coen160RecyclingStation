@@ -1,4 +1,4 @@
-package guithings.currency;
+package currency;
 
 public class Cash extends USMoney{
     public Cash() {

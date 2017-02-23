@@ -1,4 +1,4 @@
-package guithings.resources;
+package resources;
 
 public class Constants {
     public static int GLASS_PRICE = 300;
