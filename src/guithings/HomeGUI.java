@@ -2,6 +2,7 @@ package guithings;
 
 import machine.RecyclingMachine;
 import machine.RecyclingMonitoringStation;
+import sun.rmi.runtime.Log;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,18 +47,20 @@ public class HomeGUI extends JFrame {
         frame.setVisible(true);
         pane.setLayout(null);
         paneInsets = pane.getInsets();
-        createTitle();
+//        createTitle();
+        GeneralJStuff.createJTextLabelCentered(pane,"Home",WINDOW_WIDTH);
         createStation();
         createBackground();
 
         RecyclingMachine tester = new RecyclingMachine(40,40,50);
         addRecyclingMachine(tester);
 
-        RecyclingMachine tester2 = new RecyclingMachine(1100,500,50);
+        RecyclingMachine tester2 = new RecyclingMachine(1100,500,51);
         addRecyclingMachine(tester2);
 
-        RecyclingMachine tester3 = new RecyclingMachine(800,200,50);
+        RecyclingMachine tester3 = new RecyclingMachine(800,200,52);
         addRecyclingMachine(tester3);
+
 
     }
 
@@ -71,13 +74,6 @@ public class HomeGUI extends JFrame {
 
     //////////////////////////////// Creating Gui ////////////////////////////////////
 
-    private void createTitle() {
-        JLabel homeLabel = new JLabel("Home", JLabel.CENTER);
-        homeLabel.setBounds(WINDOW_WIDTH / 2 - homeLabel.getPreferredSize().width / 2,
-                paneInsets.top + 10, homeLabel.getPreferredSize().width, homeLabel.getPreferredSize().height);
-        pane.add(homeLabel);
-
-    }
 
     public static void removeBackground(){
         background.setVisible(false);
@@ -96,15 +92,21 @@ public class HomeGUI extends JFrame {
         text.setIcon(new ImageIcon("src/assets/tower.png"));
         pane.add(text);
 
-        JButton button = new JButton("Admin Login");
-        button.setBounds(WINDOW_WIDTH / 2 - IMAGE_WIDTH / 2, WINDOW_HEIGHT / 2 + IMAGE_HEIGHT / 2, IMAGE_WIDTH, IMAGE_HEIGHT / 4);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new LoginGUI();
-            }
-        });
-        pane.add(button);
+
+        Runnable r = () -> new LoginGUI();
+
+        GeneralJStuff.createJTextButtonCentered(pane,"Admin Login",WINDOW_WIDTH,
+                WINDOW_HEIGHT / 2 + IMAGE_HEIGHT / 2,IMAGE_WIDTH,IMAGE_HEIGHT/4,r);
+
+//        JButton button = new JButton("Admin Login");
+//        button.setBounds(WINDOW_WIDTH / 2 - IMAGE_WIDTH / 2, WINDOW_HEIGHT / 2 + IMAGE_HEIGHT / 2, IMAGE_WIDTH, IMAGE_HEIGHT / 4);
+//        button.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                new LoginGUI();
+//            }
+//        });
+//        pane.add(button);
     }
 
     //todo Test THIS
@@ -114,6 +116,13 @@ public class HomeGUI extends JFrame {
         text.setIcon(new ImageIcon("src/assets/machine.png"));
         recyclingMachineImage.add(text);
         pane.add(recyclingMachineImage.get(recyclingMachineImage.size() - 1));
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                new RecyclingMachineGUI(rm);
+            }
+        };
 
         JButton button = new JButton("Recycle");
         recyclingMachineButton.add(button);
@@ -129,6 +138,7 @@ public class HomeGUI extends JFrame {
 
         removeBackground();
         createBackground();
+
 
     }
 

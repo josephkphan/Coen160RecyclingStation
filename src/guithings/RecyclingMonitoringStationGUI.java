@@ -1,6 +1,10 @@
 package guithings;
 
+import machine.RecyclingMachine;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
@@ -46,4 +50,46 @@ public class RecyclingMonitoringStationGUI extends JFrame {
     }
 
 
+}
+
+class MachineInfoBar{
+    private Container pane;
+    private int x, y;
+    private RecyclingMachine recyclingMachine;
+    public MachineInfoBar(RecyclingMachine recyclingMachine, Container pane, int x, int y){
+        this.pane = pane;
+        this.x = x;
+        this.y = y;
+        this.recyclingMachine = recyclingMachine;
+        createHeader();
+    }
+
+    private void createHeader(){
+//        JLabel homeLabel = new JLabel("Recycling Monitoring Station", JLabel.CENTER);
+//        homeLabel.setBounds(x,y, homeLabel.getPreferredSize().width, homeLabel.getPreferredSize().height);
+//        pane.add(homeLabel);
+        GeneralJStuff.createJTextLabel(pane,"Machines Info:", x,y);
+    }
+
+    private void createEmptyButton(){
+        JButton button = new JButton("Empty");
+        button.setBounds(x+50,y+50, 128,32);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                recyclingMachine.empty();
+            }
+        });
+        pane.add(button);
+    }
+
+}
+
+class StationBar{
+    public StationBar(int x, int y){
+
+    }
+    private void createHeader(){
+
+    }
 }

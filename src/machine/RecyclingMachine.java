@@ -138,6 +138,12 @@ public class RecyclingMachine {
         return true;
     }
 
+    //todo CHECK THIS???
+    public void empty(){
+        currentGlassLoad = currentMetalLoad = currentPaperLoad = currentPlasticLoad = 0;
+    }
+
+
     // Setters and Getters
     public double getMaxGlassLoad() {
         return maxGlassLoad;
