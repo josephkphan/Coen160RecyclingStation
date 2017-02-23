@@ -12,9 +12,9 @@ public class LoginGUI extends JFrame{
     private Container pane;
     private Insets paneInsets;
     private JFrame frame;
-    private JTextField usernameField, passwordField;
+    private static JTextField usernameField, passwordField;
     private JLabel checkLogin;
-    private final boolean bypass = true; //todo FOR TESTING PURPOSES. TAKE OFF FOR DEMO
+    private final boolean bypass = false; //todo FOR TESTING PURPOSES. TAKE OFF FOR DEMO
 
     public LoginGUI() {
         frame = new JFrame("Login Window");
@@ -27,6 +27,7 @@ public class LoginGUI extends JFrame{
         frame.setVisible(true);
         pane.setLayout(null);
         paneInsets = pane.getInsets();
+
         createTitle();
         createUsername();
         createPassword();
@@ -35,35 +36,20 @@ public class LoginGUI extends JFrame{
     }
 
     private void createTitle() {
-        JLabel homeLabel = new JLabel("Admin Login");
-        homeLabel.setBounds(WINDOW_WIDTH / 2 - homeLabel.getPreferredSize().width / 2,
-                paneInsets.top + 10, homeLabel.getPreferredSize().width, homeLabel.getPreferredSize().height);
-        pane.add(homeLabel);
+        GeneralJStuff.createJTextLabelCentered(pane,"Admin Login", WINDOW_WIDTH);
     }
 
     private void createUsername(){
-        JLabel username = new JLabel("Username: ");
-        username.setBounds(paneInsets.left+50, paneInsets.top + 50,
-                username.getPreferredSize().width, username.getPreferredSize().height);
-        pane.add(username);
-
         usernameField = new JTextField(10);
-        usernameField.setBounds(paneInsets.left+150, paneInsets.top + 50,
-                usernameField.getPreferredSize().width, usernameField.getPreferredSize().height);
-        pane.add(usernameField);
-
+        GeneralJStuff.createJTextLabel(pane,"Username: ",paneInsets.left+50, paneInsets.top + 50);
+        GeneralJStuff.createJTextField(pane,usernameField,paneInsets.left+150, paneInsets.top + 50);
     }
 
     private void createPassword(){
-        JLabel password = new JLabel("Username: ");
-        password.setBounds(paneInsets.left+50, paneInsets.top + 75,
-                password.getPreferredSize().width, password.getPreferredSize().height);
-        pane.add(password);
-
+        GeneralJStuff.createJTextLabel(pane,"Password: ",paneInsets.left+50, paneInsets.top + 75);
         passwordField = new JTextField(10);
-        passwordField.setBounds(paneInsets.left+150, paneInsets.top + 75,
-                passwordField.getPreferredSize().width, passwordField.getPreferredSize().height);
-        pane.add(passwordField);
+        GeneralJStuff.createJTextField(pane,passwordField,paneInsets.left+150, paneInsets.top + 75);
+
     }
 
     private void checkText(){
@@ -72,26 +58,21 @@ public class LoginGUI extends JFrame{
         pane.add(checkLogin);
     }
 
-
     private void createButton() {
-
-        JButton button = new JButton("Submit");
-        button.setBounds(paneInsets.left+100, paneInsets.top+125, 100, 50);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String user = usernameField.getText();
-                String pass = passwordField.getText();
-                if(bypass || (user.equals("user") && pass.equals("pass"))){
-                    new RecyclingMonitoringStationGUI();
-                    close();
-                }else{
-                    checkLogin.setForeground(Color.red);
-                    checkLogin.setText("Wrong!");
-                }
+        Runnable r = () -> {
+            String user = usernameField.getText();
+            String pass = passwordField.getText();
+            if(bypass || (user.equals("user") && pass.equals("pass"))){
+                new RecyclingMonitoringStationGUI();
+                close();
+            }else{
+                checkLogin.setForeground(Color.red);
+                checkLogin.setText("Wrong!");
             }
-        });
-        pane.add(button);
+        };
+
+        GeneralJStuff.createJTextButton(pane,"Submit",paneInsets.left+100, paneInsets.top+125,
+                100,50,r);
     }
 
     private void close() {
