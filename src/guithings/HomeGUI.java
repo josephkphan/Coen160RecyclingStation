@@ -49,15 +49,14 @@ public class HomeGUI extends JFrame {
         createStation();
         createBackground();
 
-        RecyclingMachine tester = new RecyclingMachine(40, 40, 50);
-        addRecyclingMachine(tester);
+        recyclingMonitoringStation.addMachine(40,40);
+        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(0));
 
-        RecyclingMachine tester2 = new RecyclingMachine(1100, 500, 51);
-        addRecyclingMachine(tester2);
+        recyclingMonitoringStation.addMachine(1100,500);
+        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(1));
 
-        RecyclingMachine tester3 = new RecyclingMachine(800, 200, 52);
-        addRecyclingMachine(tester3);
-
+        recyclingMonitoringStation.addMachine(800,40);
+        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(2));
 
     }
 
@@ -65,6 +64,14 @@ public class HomeGUI extends JFrame {
 
     public static RecyclingMonitoringStation getRecyclingMonitoringStation() {
         return recyclingMonitoringStation;
+    }
+    public static RecyclingMachine getLastRecyclingMachine(){
+        return recyclingMonitoringStation.getRecyclingMachine(recyclingMonitoringStation.getNumberOfRecyclingMachines()-1);
+    }
+
+    public static void makeNewRecyclingMachine(){
+        System.out.println("HEREEEEEEEEEEEEEEEEEEEE");
+        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(recyclingMonitoringStation.getNumberOfRecyclingMachines()-1));
     }
 
     //////////////////////////////// Creating Gui ////////////////////////////////////
@@ -94,7 +101,7 @@ public class HomeGUI extends JFrame {
     }
 
     public static void addRecyclingMachine(RecyclingMachine rm) {
-        JLabel text = new JLabel("Hello");
+        JLabel text = new JLabel("");
         recyclingMachineImage.add(text);
         GeneralJStuff.createJImage(pane, recyclingMachineImage.get(recyclingMachineImage.size() - 1),
                 rm.getxCoord(), rm.getyCoord(), IMAGE_WIDTH, IMAGE_HEIGHT, "src/assets/machine.png");

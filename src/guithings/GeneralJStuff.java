@@ -10,8 +10,15 @@ public class GeneralJStuff {
         JLabel label = new JLabel(string);
         label.setBounds(x, y, label.getPreferredSize().width, label.getPreferredSize().height);
         pane.add(label);
-
     }
+
+    static void createJTextLabel(Container pane, String string, int x, int y, Color color) {
+        JLabel label = new JLabel(string);
+        label.setBounds(x, y, label.getPreferredSize().width, label.getPreferredSize().height);
+        label.setForeground(color);
+        pane.add(label);
+    }
+
 
     static void createJTextLabelCentered(Container pane, String string, int WINDOW_WIDTH) {
         JLabel label = new JLabel(string);

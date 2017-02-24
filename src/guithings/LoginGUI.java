@@ -14,9 +14,10 @@ public class LoginGUI extends JFrame{
     private JFrame frame;
     private static JTextField usernameField, passwordField;
     private JLabel checkLogin;
-    private final boolean bypass = false; //todo FOR TESTING PURPOSES. TAKE OFF FOR DEMO
+    private final boolean bypass = true; //todo FOR TESTING PURPOSES. TAKE OFF FOR DEMO
 
     public LoginGUI() {
+
         frame = new JFrame("Login Window");
 
         pane = frame.getContentPane();

@@ -18,9 +18,9 @@ public class RecyclingMonitoringStation {
         return recyclingMachines.size();
     }
 
-    public RecyclingMachine getRecyclingMachine(int i) throws Exception {
-        if (i >= getNumberOfRecyclingMachines())
-            throw new Exception("Out of Index");
+    public RecyclingMachine getRecyclingMachine(int i) {
+//        if (i >= getNumberOfRecyclingMachines())
+//            throw new Exception("Out of Index");
         return recyclingMachines.get(i);
     }
 
