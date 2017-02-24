@@ -27,6 +27,14 @@ public class MachineStatistics {
         return transactionHistory.size();
     }
 
+    public double getTotalMoneyObtained(){
+        double sum = 0;
+        for ( Transaction t : transactionHistory){
+            sum += t.getTransactionTotal();
+        }
+        return sum;
+    }
+
     public int getTotalNumberOfGlassItems(){
         int sum = 0;
         for(Transaction t : transactionHistory){

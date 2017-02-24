@@ -15,9 +15,10 @@ public class LoginGUI extends JFrame{
     private static JTextField usernameField, passwordField;
     private JLabel checkLogin;
     private final boolean bypass = true; //todo FOR TESTING PURPOSES. TAKE OFF FOR DEMO
+    private HomeGUI homeGUI;
 
-    public LoginGUI() {
-
+    public LoginGUI(HomeGUI homeGUI) {
+        this.homeGUI = homeGUI;
         frame = new JFrame("Login Window");
 
         pane = frame.getContentPane();
@@ -64,7 +65,7 @@ public class LoginGUI extends JFrame{
             String user = usernameField.getText();
             String pass = passwordField.getText();
             if(bypass || (user.equals("user") && pass.equals("pass"))){
-                new RecyclingMonitoringStationGUI();
+                new RecyclingMonitoringStationGUI(homeGUI);
                 close();
             }else{
                 checkLogin.setForeground(Color.red);
@@ -73,7 +74,7 @@ public class LoginGUI extends JFrame{
         };
 
         GeneralJStuff.createJTextButton(pane,"Submit",paneInsets.left+100, paneInsets.top+125,
-                100,50,r);
+                100,32,r);
     }
 
     private void close() {

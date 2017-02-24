@@ -19,7 +19,6 @@ public class HomeGUI extends JFrame {
     private static ArrayList<JButton> recyclingMachineButton;
     private static ArrayList<JLabel> recyclingMachineImage;
     private static ArrayList<Integer> recyclingMachineID;
-
     private static RecyclingMonitoringStation recyclingMonitoringStation;
     private static JLabel background;
 
@@ -94,7 +93,7 @@ public class HomeGUI extends JFrame {
         GeneralJStuff.createJImageCenteredXY(pane, WINDOW_WIDTH,
                 WINDOW_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT, "src/assets/tower.png");
 
-        Runnable r = () -> new LoginGUI();
+        Runnable r = () -> new LoginGUI(this);
         GeneralJStuff.createJTextButtonCentered(pane, "Admin Login", WINDOW_WIDTH,
                 WINDOW_HEIGHT / 2 + IMAGE_HEIGHT / 2, IMAGE_WIDTH, IMAGE_HEIGHT / 4, r);
 
@@ -115,6 +114,8 @@ public class HomeGUI extends JFrame {
 
         removeBackground();
         createBackground();
+        pane.validate();
+        pane.revalidate();
     }
 
     //todo TEST THIS

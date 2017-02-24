@@ -3,8 +3,6 @@ package guithings;
 import machine.RecyclingMachine;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
@@ -18,8 +16,10 @@ public class RecyclingMonitoringStationGUI extends JFrame {
     private Container pane;
     private Insets paneInsets;
     private JFrame frame;
+    private HomeGUI homeGUI;
 
-    public RecyclingMonitoringStationGUI() {
+    public RecyclingMonitoringStationGUI(HomeGUI homeGUI) {
+        this.homeGUI = homeGUI;
         frame = new JFrame("Recycling Monitoring Station Window");
 
         pane = frame.getContentPane();
@@ -35,6 +35,7 @@ public class RecyclingMonitoringStationGUI extends JFrame {
         createMachines();
         createAddMachineButton();
         createRemoveMachineButton();
+        createEditMachineButton();
 //        System.out.println(HomeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines());
 
     }
@@ -51,21 +52,25 @@ public class RecyclingMonitoringStationGUI extends JFrame {
     private void createMachines() {
         for(int i = 0; i < HomeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines(); i++){
             new MachineInfoBar(HomeGUI.getRecyclingMonitoringStation().getRecyclingMachine(i),
-                    pane, 50 , 50 + 150 * i);
+                    pane, 50 , 100 + 150 * i);
 
         }
     }
 
     private void createAddMachineButton(){
-        Runnable r = () -> new AddMachineGUI();
-        GeneralJStuff.createJTextButton(pane, "Add",  700, 10, 128, 32, r);
+        Runnable r = () -> new AddMachineGUI(homeGUI);
+        GeneralJStuff.createJTextButton(pane, "Add",  50, 50, 128, 32, r);
 
     }
 
     private void createRemoveMachineButton(){
-        Runnable r = () -> new RemoveMachineGUI();
-        GeneralJStuff.createJTextButton(pane, "Empty",900 , 10, 128, 32, r);
+        Runnable r = () -> new AddMachineGUI(homeGUI);  //todo CHANGE THIS LATER
+        GeneralJStuff.createJTextButton(pane, "Remove",200 , 50, 128, 32, r);
+    }
 
+    private void createEditMachineButton(){
+        Runnable r = () -> new AddMachineGUI(homeGUI);  //todo CHANGE THIS LATER
+        GeneralJStuff.createJTextButton(pane, "Edit",350 , 50, 128, 32, r);
     }
 
 }
@@ -82,25 +87,39 @@ class MachineInfoBar {
         this.recyclingMachine = recyclingMachine;
         createHeader();
         createEmptyButton();
+        createReloadMoneyButton();
+        createViewStatsButton();
         createMachineLabels();
     }
 
     private void createHeader() {
-        GeneralJStuff.createJTextLabel(pane, "Machines Info:", x, y);
+        GeneralJStuff.createJTextLabel(pane, "Machines # " + Integer.toString(recyclingMachine.getId()), x, y);
     }
 
     private void createEmptyButton() {
         Runnable r = () -> recyclingMachine.empty();
-        GeneralJStuff.createJTextButton(pane, "Empty", x + 500, y + 20, 128, 32, r);
+        GeneralJStuff.createJTextButton(pane, "Empty", x + 800, y + 20, 128, 32, r);
+    }
+
+    private void createReloadMoneyButton(){
+        Runnable r = () -> recyclingMachine.empty(); //todo change this
+        GeneralJStuff.createJTextButton(pane, "Reload $", x + 800, y + 60, 128, 32, r);
+    }
+
+    private void createViewStatsButton(){
+        Runnable r = () -> recyclingMachine.empty(); //todo change this
+        GeneralJStuff.createJTextButton(pane, "View Stats", x + 800, y + 100, 128, 32, r);
     }
 
     private void createMachineLabels() {
         // Image
         GeneralJStuff.createJImage(pane, x + 5, y+ 20, 128, 128, "src/assets/machine.png");
 
-        // ID
-        GeneralJStuff.createJTextLabel(pane, "ID: " +
-                Integer.toString(recyclingMachine.getId()), x + 150, y + 20);
+        // Coordinates
+        GeneralJStuff.createJTextLabel(pane, "X: " +
+                Integer.toString(recyclingMachine.getxCoord()), x + 150, y + 20);
+        GeneralJStuff.createJTextLabel(pane, "Y: " +
+                Integer.toString(1500 - recyclingMachine.getyCoord()), x + 250, y + 20);
         // Loads
         GeneralJStuff.createJTextLabel(pane, "Glass Load:    " +
                 Integer.toString((int)recyclingMachine.getCurrentGlassLoad()), x+ 150, y + 40);
@@ -119,6 +138,27 @@ class MachineInfoBar {
         GeneralJStuff.createJTextLabel(pane, "/ " +
                 Integer.toString((int)recyclingMachine.getMaxPlasticLoad()), x+300, y + 100);
 
+        // Num Items
+        GeneralJStuff.createJTextLabel(pane, "Total # Metal Items: " +
+                Integer.toString(recyclingMachine.getMachineStatistics().getTotalNumberOfMetalItems()), x + 350, y + 40);
+
+        GeneralJStuff.createJTextLabel(pane, "Total # Glass Items: " +
+                Integer.toString(recyclingMachine.getMachineStatistics().getTotalNumberOfGlassItems()), x + 350, y + 60);
+        GeneralJStuff.createJTextLabel(pane, "Total # Plastic Items: " +
+                Integer.toString(recyclingMachine.getMachineStatistics().getTotalNumberOfPlasticItems()), x + 350, y + 80);
+        GeneralJStuff.createJTextLabel(pane, "Total # Plastic Items: " +
+                Integer.toString(recyclingMachine.getMachineStatistics().getTotalNumberOfPaperItems()), x + 350, y + 100);
+
+        //Other Stuff
+        GeneralJStuff.createJTextLabel(pane, "Total # Transactions: " +
+                Integer.toString(recyclingMachine.getMachineStatistics().getNumberOfTransactions()), x + 550, y + 40);
+        GeneralJStuff.createJTextLabel(pane, "Money Left: " +
+                Integer.toString((int)recyclingMachine.getAvailableMoney()), x + 550, y + 60);
+        GeneralJStuff.createJTextLabel(pane, "Total Money Obtained: " +
+                Integer.toString((int)recyclingMachine.getMachineStatistics().getTotalMoneyObtained()), x + 550, y + 80);
+
+            //todo CHANGE MONEY TO CENTS HERE???
+
         JLabel label = new JLabel();
         if(recyclingMachine.getCurrentGlassLoad() >= 75 ||
                 recyclingMachine.getCurrentPlasticLoad() >= 75 ||
@@ -134,14 +174,4 @@ class MachineInfoBar {
         pane.add(label);
     }
 
-}
-
-class StationBar {
-    public StationBar(int x, int y) {
-
-    }
-
-    private void createHeader() {
-
-    }
 }

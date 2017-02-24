@@ -12,8 +12,9 @@ public class AddMachineGUI extends JFrame{
     private JFrame frame;
     private static JTextField xField, yField;
     private JLabel checkLogin;
-
-    public AddMachineGUI() {
+    private HomeGUI homeGUI;
+    public AddMachineGUI(HomeGUI homeGUI) {
+        this.homeGUI = homeGUI;
         frame = new JFrame("Add Recycling Machine Window");
 
         pane = frame.getContentPane();
@@ -52,7 +53,7 @@ public class AddMachineGUI extends JFrame{
 
     private void checkText(){
         checkLogin = new JLabel("");
-        checkLogin.setBounds(paneInsets.left+150, paneInsets.top + 100,200, 25);
+        checkLogin.setBounds(paneInsets.left+125, paneInsets.top + 100,200, 25);
         pane.add(checkLogin);
     }
 
@@ -66,8 +67,8 @@ public class AddMachineGUI extends JFrame{
                 if(x < 0 || x > 1500 || y < 0 || y > 1000){
                     throw new Exception();
                 }
-                HomeGUI.getRecyclingMonitoringStation().addMachine(x,1500-y);
-                HomeGUI.makeNewRecyclingMachine(); //todo fix doesnt work
+                homeGUI.getRecyclingMonitoringStation().addMachine(x,1500-y);
+                homeGUI.makeNewRecyclingMachine(); //todo fix doesnt work
                 close();
             }catch(Exception e){
                 checkLogin.setForeground(Color.red);
@@ -77,7 +78,7 @@ public class AddMachineGUI extends JFrame{
         };
 
         GeneralJStuff.createJTextButton(pane,"Add",paneInsets.left+150, paneInsets.top+125,
-                100,50,r);
+                100,32,r);
     }
     private void createCancelButton() {
         Runnable r = new Runnable() {
@@ -87,7 +88,7 @@ public class AddMachineGUI extends JFrame{
             }
         };
         GeneralJStuff.createJTextButton(pane,"Cancel",paneInsets.left+25, paneInsets.top+125,
-                100,50,r);
+                100,32,r);
     }
 
 
