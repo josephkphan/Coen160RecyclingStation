@@ -65,9 +65,6 @@ class MachineInfoBar{
     }
 
     private void createHeader(){
-//        JLabel homeLabel = new JLabel("Recycling Monitoring Station", JLabel.CENTER);
-//        homeLabel.setBounds(x,y, homeLabel.getPreferredSize().width, homeLabel.getPreferredSize().height);
-//        pane.add(homeLabel);
         GeneralJStuff.createJTextLabel(pane,"Machines Info:", x,y);
     }
 
