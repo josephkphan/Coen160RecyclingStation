@@ -19,6 +19,12 @@ public class GeneralJStuff {
         pane.add(label);
     }
 
+    static void createJTextLabel(Container pane, JLabel label, String string, int x, int y) {
+        label.setText(string);
+        label.setBounds(x, y, label.getPreferredSize().width, label.getPreferredSize().height);
+        pane.add(label);
+    }
+
 
     static void createJTextLabelCentered(Container pane, String string, int WINDOW_WIDTH) {
         JLabel label = new JLabel(string);

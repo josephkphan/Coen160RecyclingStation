@@ -5,15 +5,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class AddMachineGUI extends JFrame{
+public class RemoveMachineGUI extends JFrame{
     private static final int WINDOW_WIDTH = 300;
     private static final int WINDOW_HEIGHT = 200;
     private Container pane;
     private JFrame frame;
-    private static JTextField xField, yField;
+    private static JTextField xField;
     private JLabel checkLogin;
     private HomeGUI homeGUI;
-    public AddMachineGUI(HomeGUI homeGUI) {
+    public RemoveMachineGUI(HomeGUI homeGUI) {
         this.homeGUI = homeGUI;
         frame = new JFrame("Add Recycling Machine Window");
 
@@ -27,7 +27,6 @@ public class AddMachineGUI extends JFrame{
 
         createTitle();
         createXLabel();
-        createYLabel();
         createAddButton();
         createCancelButton();
         checkText();
@@ -39,15 +38,8 @@ public class AddMachineGUI extends JFrame{
 
     private void createXLabel(){
         xField = new JTextField(10);
-        GeneralJStuff.createJTextLabel(pane,"X Coord: ",50,  + 50);
+        GeneralJStuff.createJTextLabel(pane,"ID: ",50,  + 50);
         GeneralJStuff.createJTextField(pane, xField,150,  50);
-    }
-
-    private void createYLabel(){
-        GeneralJStuff.createJTextLabel(pane,"Y Coord: ",+50, 75);
-        yField = new JTextField(10);
-        GeneralJStuff.createJTextField(pane, yField,150, 75);
-
     }
 
     private void checkText(){
@@ -59,14 +51,12 @@ public class AddMachineGUI extends JFrame{
     private void createAddButton() {
         Runnable r = () -> {
             String xString = xField.getText();
-            String yString = yField.getText();
             try{
                 int x = Integer.parseInt(xString);
-                int y = Integer.parseInt(yString);
-                if(x < 0 || x > 1500 || y < 0 || y > 1000){
+                if(x < 0){
                     throw new Exception();
                 }
-                homeGUI.addMachineToChange(x,750-y-160);
+                homeGUI.addMachineToRemove(x);
                 homeGUI.actionPerformed(new ActionEvent(pane,0,""));
                 close();
             }catch(Exception e){
@@ -76,7 +66,7 @@ public class AddMachineGUI extends JFrame{
 
         };
 
-        GeneralJStuff.createJTextButton(pane,"Add",150, 125,
+        GeneralJStuff.createJTextButton(pane,"Remove",150, 125,
                 100,32,r);
     }
     private void createCancelButton() {

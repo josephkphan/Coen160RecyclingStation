@@ -13,10 +13,12 @@ public class RecyclingMachineGUI extends JFrame {
         private static final int WINDOW_HEIGHT = 500;
         private Container pane;
         private JFrame frame;
+        private HomeGUI homeGUI;
 
         private RecyclingMachine recyclingMachine;
 
-        public RecyclingMachineGUI(RecyclingMachine recyclingMachine) {
+        public RecyclingMachineGUI(HomeGUI homeGUI, RecyclingMachine recyclingMachine) {
+            this.homeGUI = homeGUI;
             this.recyclingMachine = recyclingMachine;
 
             frame = new JFrame("Recycling Machine Window");
@@ -31,7 +33,7 @@ public class RecyclingMachineGUI extends JFrame {
 
             createTitle();
 
-            System.out.println(HomeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines());
+            System.out.println(homeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines());
 
         }
 

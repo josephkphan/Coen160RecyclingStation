@@ -1,13 +1,16 @@
 package guithings;
 
+import javafx.util.Pair;
 import machine.RecyclingMachine;
 import machine.RecyclingMonitoringStation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class HomeGUI extends JFrame {
+public class HomeGUI extends JFrame implements ActionListener{
 
     private static final int WINDOW_WIDTH = 1500;
     private static final int WINDOW_HEIGHT = 750;
@@ -15,19 +18,20 @@ public class HomeGUI extends JFrame {
     private static final int IMAGE_HEIGHT = 128;
     private static Container pane;
 
-    private static ArrayList<JButton> recyclingMachineButton;
-    private static ArrayList<JLabel> recyclingMachineImage;
-    private static ArrayList<Integer> recyclingMachineID;
-    private static RecyclingMonitoringStation recyclingMonitoringStation;
-    private static JLabel background;
+    private  ArrayList<JButton> recyclingMachineButton;
+    private  ArrayList<JLabel> recyclingMachineImage;
+    private  RecyclingMonitoringStation recyclingMonitoringStation;
+    private  JLabel background;
+    private  ArrayList<Pair<Integer,Integer>> addMachine;
+    private  ArrayList<Integer> removeMachine;
 
     public HomeGUI() {
         // Embedded Stuff
         recyclingMonitoringStation = new RecyclingMonitoringStation();
         recyclingMachineButton = new ArrayList<JButton>();
         recyclingMachineImage = new ArrayList<JLabel>();
-        recyclingMachineID = new ArrayList<Integer>();
-
+        addMachine = new ArrayList<Pair<Integer,Integer>>();
+        removeMachine = new ArrayList<Integer>();
 
         //Gui Stuff
         JFrame frame = new JFrame("Home Window");
@@ -57,27 +61,44 @@ public class HomeGUI extends JFrame {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        while(addMachine.size() > 0) {
+            Pair temp = addMachine.get(0);
+            recyclingMonitoringStation.addMachine((Integer) temp.getKey(), (Integer) temp.getValue());
+            addRecyclingMachine(getLastRecyclingMachine());
+            addMachine.remove(0);
+        }
+        while (removeMachine.size() > 0){
+            System.out.println("HEREEEEEE");
+            removeRecyclingMachine(removeMachine.get(0));
+            removeMachine.remove(0);
+        }
+    }
     //////////////////////////////// Embedded Part ///////////////////////////////////
 
-    public static RecyclingMonitoringStation getRecyclingMonitoringStation() {
+    public RecyclingMonitoringStation getRecyclingMonitoringStation() {
         return recyclingMonitoringStation;
     }
-    public static RecyclingMachine getLastRecyclingMachine(){
+    public RecyclingMachine getLastRecyclingMachine(){
         return recyclingMonitoringStation.getRecyclingMachine(recyclingMonitoringStation.getNumberOfRecyclingMachines()-1);
     }
-
-    public static void makeNewRecyclingMachine(){
-        System.out.println("HEREEEEEEEEEEEEEEEEEEEE");
-        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(recyclingMonitoringStation.getNumberOfRecyclingMachines()-1));
+    public void addMachineToChange(int x, int y){
+        addMachine.add(new Pair<>(x,y));
     }
+
+    public void addMachineToRemove(int id){
+        removeMachine.add(id);
+    }
+
 
     //////////////////////////////// Creating Gui ////////////////////////////////////
 
-    public static void removeBackground() {
+    public void removeBackground() {
         background.setVisible(false);
     }
 
-    public static void createBackground() {
+    public void createBackground() {
         background = new JLabel("");
         GeneralJStuff.createJImage(pane, background, 0,0,
                 WINDOW_WIDTH, WINDOW_HEIGHT, "src/assets/background.png");
@@ -97,13 +118,13 @@ public class HomeGUI extends JFrame {
 
     }
 
-    public static void addRecyclingMachine(RecyclingMachine rm) {
+    public void addRecyclingMachine(RecyclingMachine rm) {
         JLabel text = new JLabel("");
         recyclingMachineImage.add(text);
         GeneralJStuff.createJImage(pane, recyclingMachineImage.get(recyclingMachineImage.size() - 1),
                 rm.getxCoord(), rm.getyCoord(), IMAGE_WIDTH, IMAGE_HEIGHT, "src/assets/machine.png");
 
-        Runnable r = () -> new RecyclingMachineGUI(rm);
+        Runnable r = () -> new RecyclingMachineGUI(this, rm);
 
         JButton button = new JButton();
         recyclingMachineButton.add(button);
@@ -112,21 +133,25 @@ public class HomeGUI extends JFrame {
 
         removeBackground();
         createBackground();
-        pane.validate();
         pane.revalidate();
     }
 
     //todo TEST THIS
-    public static void removeRecyclingMachine(int ID) {
-        for (int i = 0; i < recyclingMachineID.size(); i++) {
-            if (recyclingMachineID.get(i) == ID) {
-                recyclingMachineID.remove(i);
+    public void removeRecyclingMachine(int ID) {
+        System.out.println("11111111111111111");
+        System.out.println("recyclingMonitoringStation.getNumberOfRecyclingMachines() = " + recyclingMonitoringStation.getNumberOfRecyclingMachines());
+        for (int i = 0; i < recyclingMonitoringStation.getNumberOfRecyclingMachines(); i++) {
+            if (recyclingMonitoringStation.getRecyclingMachine(i).getId() == ID) {
+                System.out.println("Found");
                 recyclingMachineButton.get(i).setVisible(false);
+                pane.remove(recyclingMachineButton.get(i));
                 recyclingMachineButton.remove(i);
                 recyclingMachineImage.get(i).setVisible(false);
+                pane.remove(recyclingMachineImage.get(i));
                 recyclingMachineImage.remove(i);
             }
         }
+        pane.revalidate();
     }
 
 }
