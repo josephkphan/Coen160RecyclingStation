@@ -8,7 +8,6 @@ public class AddMachineGUI extends JFrame{
     private static final int WINDOW_WIDTH = 300;
     private static final int WINDOW_HEIGHT = 200;
     private Container pane;
-    private Insets paneInsets;
     private JFrame frame;
     private static JTextField xField, yField;
     private JLabel checkLogin;
@@ -24,7 +23,6 @@ public class AddMachineGUI extends JFrame{
                 WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
         frame.setVisible(true);
         pane.setLayout(null);
-        paneInsets = pane.getInsets();
 
         createTitle();
         createXLabel();
@@ -40,20 +38,20 @@ public class AddMachineGUI extends JFrame{
 
     private void createXLabel(){
         xField = new JTextField(10);
-        GeneralJStuff.createJTextLabel(pane,"X Coord: ",paneInsets.left+50, paneInsets.top + 50);
-        GeneralJStuff.createJTextField(pane, xField,paneInsets.left+150, paneInsets.top + 50);
+        GeneralJStuff.createJTextLabel(pane,"X Coord: ",50,  + 50);
+        GeneralJStuff.createJTextField(pane, xField,150,  50);
     }
 
     private void createYLabel(){
-        GeneralJStuff.createJTextLabel(pane,"Y Coord: ",paneInsets.left+50, paneInsets.top + 75);
+        GeneralJStuff.createJTextLabel(pane,"Y Coord: ",+50, 75);
         yField = new JTextField(10);
-        GeneralJStuff.createJTextField(pane, yField,paneInsets.left+150, paneInsets.top + 75);
+        GeneralJStuff.createJTextField(pane, yField,150, 75);
 
     }
 
     private void checkText(){
         checkLogin = new JLabel("");
-        checkLogin.setBounds(paneInsets.left+125, paneInsets.top + 100,200, 25);
+        checkLogin.setBounds(125, 100,200, 25);
         pane.add(checkLogin);
     }
 
@@ -77,7 +75,7 @@ public class AddMachineGUI extends JFrame{
 
         };
 
-        GeneralJStuff.createJTextButton(pane,"Add",paneInsets.left+150, paneInsets.top+125,
+        GeneralJStuff.createJTextButton(pane,"Add",150, 125,
                 100,32,r);
     }
     private void createCancelButton() {
@@ -87,7 +85,7 @@ public class AddMachineGUI extends JFrame{
                 close();
             }
         };
-        GeneralJStuff.createJTextButton(pane,"Cancel",paneInsets.left+25, paneInsets.top+125,
+        GeneralJStuff.createJTextButton(pane,"Cancel",25, 125,
                 100,32,r);
     }
 

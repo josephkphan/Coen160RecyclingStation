@@ -10,10 +10,7 @@ public class MachineStatisticGUI extends  JFrame {
 
     private static final int WINDOW_WIDTH = 750;
     private static final int WINDOW_HEIGHT = 400;
-    private static final int IMAGE_WIDTH = 128;
-    private static final int IMAGE_HEIGHT = 128;
     private Container pane;
-    private Insets paneInsets;
     private JFrame frame;
 
     public MachineStatisticGUI(RecyclingMachine rm) {
@@ -26,7 +23,6 @@ public class MachineStatisticGUI extends  JFrame {
                 WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
         frame.setVisible(true);
         pane.setLayout(null);
-        paneInsets = pane.getInsets();
 
         createTitle();
 

@@ -3,14 +3,11 @@ package guithings;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginGUI extends JFrame{
     private static final int WINDOW_WIDTH = 300;
     private static final int WINDOW_HEIGHT = 200;
     private Container pane;
-    private Insets paneInsets;
     private JFrame frame;
     private static JTextField usernameField, passwordField;
     private JLabel checkLogin;
@@ -28,7 +25,6 @@ public class LoginGUI extends JFrame{
                 WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
         frame.setVisible(true);
         pane.setLayout(null);
-        paneInsets = pane.getInsets();
 
         createTitle();
         createUsername();
@@ -43,20 +39,20 @@ public class LoginGUI extends JFrame{
 
     private void createUsername(){
         usernameField = new JTextField(10);
-        GeneralJStuff.createJTextLabel(pane,"Username: ",paneInsets.left+50, paneInsets.top + 50);
-        GeneralJStuff.createJTextField(pane,usernameField,paneInsets.left+150, paneInsets.top + 50);
+        GeneralJStuff.createJTextLabel(pane,"Username: ",50, 50);
+        GeneralJStuff.createJTextField(pane,usernameField,150, 50);
     }
 
     private void createPassword(){
-        GeneralJStuff.createJTextLabel(pane,"Password: ",paneInsets.left+50, paneInsets.top + 75);
+        GeneralJStuff.createJTextLabel(pane,"Password: ",50, 75);
         passwordField = new JTextField(10);
-        GeneralJStuff.createJTextField(pane,passwordField,paneInsets.left+150, paneInsets.top + 75);
+        GeneralJStuff.createJTextField(pane,passwordField,150, 75);
 
     }
 
     private void checkText(){
         checkLogin = new JLabel("");
-        checkLogin.setBounds(paneInsets.left+150, paneInsets.top + 100,200, 25);
+        checkLogin.setBounds(150, 100,200, 25);
         pane.add(checkLogin);
     }
 
@@ -73,7 +69,7 @@ public class LoginGUI extends JFrame{
             }
         };
 
-        GeneralJStuff.createJTextButton(pane,"Submit",paneInsets.left+100, paneInsets.top+125,
+        GeneralJStuff.createJTextButton(pane,"Submit",100, 125,
                 100,32,r);
     }
 

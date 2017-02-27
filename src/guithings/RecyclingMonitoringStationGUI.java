@@ -14,7 +14,6 @@ public class RecyclingMonitoringStationGUI extends JFrame {
     private static final int IMAGE_WIDTH = 128;
     private static final int IMAGE_HEIGHT = 128;
     private Container pane;
-    private Insets paneInsets;
     private JFrame frame;
     private HomeGUI homeGUI;
 
@@ -29,7 +28,6 @@ public class RecyclingMonitoringStationGUI extends JFrame {
                 WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
         frame.setVisible(true);
         pane.setLayout(null);
-        paneInsets = pane.getInsets();
 
         createTitle();
         createMachines();
@@ -107,7 +105,7 @@ class MachineInfoBar {
     }
 
     private void createViewStatsButton(){
-        Runnable r = () -> recyclingMachine.empty(); //todo change this
+        Runnable r = () -> new MachineStatisticGUI(recyclingMachine); //todo change this
         GeneralJStuff.createJTextButton(pane, "View Stats", x + 800, y + 100, 128, 32, r);
     }
 

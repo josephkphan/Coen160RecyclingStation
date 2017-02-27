@@ -14,7 +14,6 @@ public class HomeGUI extends JFrame {
     private static final int IMAGE_WIDTH = 128;
     private static final int IMAGE_HEIGHT = 128;
     private static Container pane;
-    private static Insets paneInsets;
 
     private static ArrayList<JButton> recyclingMachineButton;
     private static ArrayList<JLabel> recyclingMachineImage;
@@ -42,7 +41,6 @@ public class HomeGUI extends JFrame {
                 WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
         frame.setVisible(true);
         pane.setLayout(null);
-        paneInsets = pane.getInsets();
 
         createTitle();
         createStation();
@@ -74,14 +72,14 @@ public class HomeGUI extends JFrame {
     }
 
     //////////////////////////////// Creating Gui ////////////////////////////////////
-    
+
     public static void removeBackground() {
         background.setVisible(false);
     }
 
     public static void createBackground() {
         background = new JLabel("");
-        GeneralJStuff.createJImage(pane, background, paneInsets.left, paneInsets.top,
+        GeneralJStuff.createJImage(pane, background, 0,0,
                 WINDOW_WIDTH, WINDOW_HEIGHT, "src/assets/background.png");
     }
 
