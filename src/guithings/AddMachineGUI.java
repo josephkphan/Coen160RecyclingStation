@@ -13,8 +13,10 @@ public class AddMachineGUI extends JFrame{
     private static JTextField xField, yField;
     private JLabel checkLogin;
     private HomeGUI homeGUI;
-    public AddMachineGUI(HomeGUI homeGUI) {
+    private RecyclingMonitoringStationGUI recyclingMonitoringStationGUI;
+    public AddMachineGUI(HomeGUI homeGUI, RecyclingMonitoringStationGUI recyclingMonitoringStationGUI) {
         this.homeGUI = homeGUI;
+        this.recyclingMonitoringStationGUI = recyclingMonitoringStationGUI;
         frame = new JFrame("Add Recycling Machine Window");
 
         pane = frame.getContentPane();
@@ -66,8 +68,10 @@ public class AddMachineGUI extends JFrame{
                 if(x < 0 || x > 1500 || y < 0 || y > 1000){
                     throw new Exception();
                 }
-                homeGUI.addMachineToChange(x,750-y-160);
+                homeGUI.addMachineToChange(x,800-y-160);
                 homeGUI.actionPerformed(new ActionEvent(pane,0,""));
+                recyclingMonitoringStationGUI.actionPerformed(new ActionEvent(pane,0,""));
+
                 close();
             }catch(Exception e){
                 checkLogin.setForeground(Color.red);

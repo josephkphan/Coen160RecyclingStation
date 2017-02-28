@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 
@@ -13,7 +14,7 @@ import javax.swing.*;
 public class RecyclingMonitoringStationGUI extends JFrame implements ActionListener {
 
     private static final int WINDOW_WIDTH = 1000;
-    private static final int WINDOW_HEIGHT = 700;
+    private static final int WINDOW_HEIGHT = 800;
     private Container pane;
     private JFrame frame;
     private HomeGUI homeGUI;
@@ -38,6 +39,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
         createAddMachineButton();
         createRemoveMachineButton();
         createEditMachineButton();
+        createRefreshButton();
 //        System.out.println(HomeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines());
 
     }
@@ -57,36 +59,46 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
     }
 
     private void createMachines() {
+        System.out.println("# = " + homeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines());
         for (int i = 0; i < homeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines(); i++) {
             machineInfoBars.add(new MachineInfoBar(homeGUI.getRecyclingMonitoringStation().getRecyclingMachine(i),
                     pane, 50, 100 + 150 * i));
 
         }
+        pane.revalidate();
     }
 
     private void refresh(){
+        System.out.println("here!!");
         for (MachineInfoBar mib : machineInfoBars) {
             mib.remove();
         }
         machineInfoBars.clear();
         createMachines();
+        pane.revalidate();
     }
 
     private void createAddMachineButton() {
-        Runnable r = () -> new AddMachineGUI(homeGUI);
+        Runnable r = () -> new AddMachineGUI(homeGUI, this);
         GeneralJStuff.createJTextButton(pane, "Add", 50, 50, 128, 32, r);
 
     }
 
     private void createRemoveMachineButton() {
-        Runnable r = () -> new RemoveMachineGUI(homeGUI);
+        Runnable r = () -> new RemoveMachineGUI(homeGUI, this);
         GeneralJStuff.createJTextButton(pane, "Remove", 200, 50, 128, 32, r);
     }
 
     private void createEditMachineButton() {
-        Runnable r = () -> new AddMachineGUI(homeGUI);  //todo CHANGE THIS LATER
+        Runnable r = () -> new AddMachineGUI(homeGUI,this);  //todo CHANGE THIS LATER
         GeneralJStuff.createJTextButton(pane, "Edit", 350, 50, 128, 32, r);
     }
+
+    private void createRefreshButton() {
+        Runnable r = () -> pane.revalidate();  //todo CHANGE THIS LATER
+        GeneralJStuff.createJTextButton(pane, "Refresh", 1000-150, 50, 128, 32, r);
+    }
+
 
 }
 
@@ -112,6 +124,7 @@ class MachineInfoBar implements ActionListener {
         createReloadMoneyButton();
         createViewStatsButton();
         createMachineLabels();
+        pane.revalidate();
 
     }
 
@@ -187,7 +200,7 @@ class MachineInfoBar implements ActionListener {
 
         // Coordinates
         GeneralJStuff.createJTextLabel(pane, xCoord, "X: " + Integer.toString(recyclingMachine.getxCoord()), x + 150, y + 20);
-        GeneralJStuff.createJTextLabel(pane, yCoord, "Y: " + Integer.toString(750 - recyclingMachine.getyCoord()), x + 250, y + 20);
+        GeneralJStuff.createJTextLabel(pane, yCoord, "Y: " + Integer.toString(800 - recyclingMachine.getyCoord() - 160), x + 250, y + 20);
 
         // Loads
         GeneralJStuff.createJTextLabel(pane, glassLoad, "Glass Load:    " + Integer.toString((int) recyclingMachine.getCurrentGlassLoad()), x + 150, y + 40);
@@ -239,6 +252,7 @@ class MachineInfoBar implements ActionListener {
         }
         label.setBounds(x + 200, y + 120, label.getPreferredSize().width, label.getPreferredSize().height);
         pane.add(label);
+        pane.revalidate();
     }
 
     public void remove(){

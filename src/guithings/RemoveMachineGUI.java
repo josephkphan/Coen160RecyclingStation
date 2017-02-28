@@ -1,6 +1,8 @@
 package guithings;
 
 
+import machine.RecyclingMonitoringStation;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +15,10 @@ public class RemoveMachineGUI extends JFrame{
     private static JTextField xField;
     private JLabel checkLogin;
     private HomeGUI homeGUI;
-    public RemoveMachineGUI(HomeGUI homeGUI) {
+    private RecyclingMonitoringStationGUI recyclingMonitoringStationGUI;
+    public RemoveMachineGUI(HomeGUI homeGUI, RecyclingMonitoringStationGUI recyclingMonitoringStationGUI) {
         this.homeGUI = homeGUI;
+        this.recyclingMonitoringStationGUI = recyclingMonitoringStationGUI;
         frame = new JFrame("Add Recycling Machine Window");
 
         pane = frame.getContentPane();
@@ -58,6 +62,7 @@ public class RemoveMachineGUI extends JFrame{
                 }
                 homeGUI.addMachineToRemove(x);
                 homeGUI.actionPerformed(new ActionEvent(pane,0,""));
+                recyclingMonitoringStationGUI.actionPerformed(new ActionEvent(pane,0,""));
                 close();
             }catch(Exception e){
                 checkLogin.setForeground(Color.red);

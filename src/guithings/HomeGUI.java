@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class HomeGUI extends JFrame implements ActionListener{
 
-    private static final int WINDOW_WIDTH = 1500;
+    private static final int WINDOW_WIDTH = 750;
     private static final int WINDOW_HEIGHT = 750;
     private static final int IMAGE_WIDTH = 128;
     private static final int IMAGE_HEIGHT = 128;
@@ -53,11 +53,9 @@ public class HomeGUI extends JFrame implements ActionListener{
         recyclingMonitoringStation.addMachine(40,40);
         addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(0));
 
-        recyclingMonitoringStation.addMachine(1100,500);
-        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(1));
 
-        recyclingMonitoringStation.addMachine(800,40);
-        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(2));
+        recyclingMonitoringStation.addMachine(550,400);
+        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(1));
 
     }
 
@@ -149,6 +147,8 @@ public class HomeGUI extends JFrame implements ActionListener{
                 recyclingMachineImage.get(i).setVisible(false);
                 pane.remove(recyclingMachineImage.get(i));
                 recyclingMachineImage.remove(i);
+
+                recyclingMonitoringStation.removeMachine(i);
             }
         }
         pane.revalidate();

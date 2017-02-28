@@ -50,8 +50,8 @@ public class RecyclingMonitoringStation {
         recyclingMachines.add(new RecyclingMachine(x, y, generateMachineID()));
     }
 
-    public void removeMachine(int id) {
-
+    public void removeMachine(int index) {
+        recyclingMachines.remove(index);
     }
 
     private int generateMachineID() {
