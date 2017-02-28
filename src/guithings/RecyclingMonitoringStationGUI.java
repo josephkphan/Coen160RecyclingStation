@@ -63,6 +63,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
         for (int i = 0; i < homeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines(); i++) {
             machineInfoBars.add(new MachineInfoBar(homeGUI.getRecyclingMonitoringStation().getRecyclingMachine(i),
                     pane, 50, 100 + 150 * i));
+            machineInfoBars.get(i).actionPerformed(new ActionEvent(pane,0,""));
 
         }
         pane.revalidate();
@@ -76,6 +77,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
         machineInfoBars.clear();
         createMachines();
         pane.revalidate();
+        frame.setVisible(true);
     }
 
     private void createAddMachineButton() {
@@ -95,7 +97,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
     }
 
     private void createRefreshButton() {
-        Runnable r = () -> pane.revalidate();  //todo CHANGE THIS LATER
+        Runnable r = () -> refresh();
         GeneralJStuff.createJTextButton(pane, "Refresh", 1000-150, 50, 128, 32, r);
     }
 
@@ -130,7 +132,7 @@ class MachineInfoBar implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        pane.revalidate();
     }
 
     private void createEmptyButton() {
@@ -200,7 +202,7 @@ class MachineInfoBar implements ActionListener {
 
         // Coordinates
         GeneralJStuff.createJTextLabel(pane, xCoord, "X: " + Integer.toString(recyclingMachine.getxCoord()), x + 150, y + 20);
-        GeneralJStuff.createJTextLabel(pane, yCoord, "Y: " + Integer.toString(800 - recyclingMachine.getyCoord() - 160), x + 250, y + 20);
+        GeneralJStuff.createJTextLabel(pane, yCoord, "Y: " + Integer.toString(800 - recyclingMachine.getyCoord() - 210), x + 250, y + 20);
 
         // Loads
         GeneralJStuff.createJTextLabel(pane, glassLoad, "Glass Load:    " + Integer.toString((int) recyclingMachine.getCurrentGlassLoad()), x + 150, y + 40);
@@ -269,73 +271,7 @@ class MachineInfoBar implements ActionListener {
             label.setVisible(false);
             pane.remove(label);
         }
-//        id.setVisible(false);
-//        pane.remove(id);
-//
-//        xCoord.setVisible(false);
-//        pane.remove(xCoord);
-//
-//        yCoord.setVisible(false);
-//        pane.remove(yCoord);
-//
-//        glassLoad.setVisible(false);
-//        pane.remove(glassLoad);
-//
-//        maxGlassLoad.setVisible(false);
-//        pane.remove(maxGlassLoad);
-//
-//        metalLoad.setVisible(false);
-//        pane.remove(metalLoad);
-//
-//        maxMetalLoad.setVisible(false);
-//        pane.remove(maxMetalLoad);
-//
-//        paperLoad.setVisible(false);
-//        pane.remove(paperLoad);
-//
-//        maxPaperLoad.setVisible(false);
-//        pane.remove(id);
-//
-//        id.setVisible(false);
-//        pane.remove(maxPaperLoad);
-//
-//        plasticLoad.setVisible(false);
-//        pane.remove(plasticLoad);
-//
-//        maxPlasticLoad.setVisible(false);
-//        pane.remove(maxPlasticLoad);
-//
-//        numGlass.setVisible(false);
-//        pane.remove(numGlass);
-//
-//        numMetal.setVisible(false);
-//        pane.remove(numMetal);
-//
-//        numPaper.setVisible(false);
-//        pane.remove(numPaper);
-//
-//        numPlastic.setVisible(false);
-//        pane.remove(numPlastic);
-//
-//        numPlastic.setVisible(false);
-//        pane.remove(numPlastic);
-//
-//        numTransaction.setVisible(false);
-//        pane.remove(numTransaction);
-//
-//        moneyLeft.setVisible(false);
-//        pane.remove(moneyLeft);
-//
-//        moneyObtained.setVisible(false);
-//        pane.remove(moneyObtained);
-//
-//        label.setVisible(false);
-//        pane.remove(label);
-//
 
-//
-//        image.setVisible(false);
-//        pane.remove(image);
     }
 
 }

@@ -68,7 +68,7 @@ public class AddMachineGUI extends JFrame{
                 if(x < 0 || x > 1500 || y < 0 || y > 1000){
                     throw new Exception();
                 }
-                homeGUI.addMachineToChange(x,800-y-160);
+                homeGUI.addMachineToChange(x,800-y-210);
                 homeGUI.actionPerformed(new ActionEvent(pane,0,""));
                 recyclingMonitoringStationGUI.actionPerformed(new ActionEvent(pane,0,""));
 
