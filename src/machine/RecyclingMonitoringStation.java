@@ -1,9 +1,16 @@
 package machine;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import resources.Constants;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RecyclingMonitoringStation {
     private ArrayList<RecyclingMachine> recyclingMachines;
@@ -146,4 +153,45 @@ public class RecyclingMonitoringStation {
         return sum;
     }
 
+    public void saveData() {
+        JSONArray a = new JSONArray();
+        for (RecyclingMachine rm : recyclingMachines) {
+            a.put(rm.toJSON());
+        }
+        System.out.println("a.toString() = " + a.toString());
+        try {
+            FileWriter file = new FileWriter("src/data.txt");
+            file.write(a.toString());
+
+            file.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void fromJSON(){
+
+        try {
+            String content = new Scanner(new File("src/data.txt")).useDelimiter("\\Z").next();
+            JSONArray a = new JSONArray(content);
+            System.out.println("a.toString() = " + a.toString());
+
+            for(int i =0; i<a.length(); i++){
+                RecyclingMachine rm = new RecyclingMachine();
+                rm.fromJSON(a.getJSONObject(i));
+                recyclingMachines.add(rm);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
+
+

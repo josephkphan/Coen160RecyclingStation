@@ -1,5 +1,6 @@
 package statistics;
 
+import org.json.JSONObject;
 import recyclable.Glass;
 import recyclable.Metal;
 import recyclable.Paper;
@@ -84,5 +85,42 @@ public class Transaction {
 
     public double getMetalLoad() {
         return metalLoad;
+    }
+
+    public JSONObject toJSON(){
+        JSONObject o = new JSONObject();
+        try{
+            o.put("transactionTotal",transactionTotal);
+            o.put("numPlasticItems", numPlasticItems);
+            o.put("numPaperItems", numPaperItems);
+            o.put("numGlassItems", numGlassItems);
+            o.put("numMetalItems", numMetalItems);
+            o.put("plasticLoad", plasticLoad);
+            o.put("paperLoad", paperLoad);
+            o.put("glassLoad", glassLoad);
+            o.put("metalLoad", metalLoad);
+            o.put("payoutInCash", payoutInCash);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return o;
+    }
+
+    public void fromJSON(JSONObject o){
+        try{
+            transactionTotal = (int) o.get("transactionTotal");
+            numPlasticItems = (int) o.get("numPlasticItems");
+            numPaperItems = (int) o.get("numPaperItems");
+            numGlassItems = (int) o.get("numGlassItems");
+            numMetalItems = (int) o.get("numMetalItems");
+            plasticLoad = (double) o.get("plasticLoad");
+            paperLoad = (double) o.get("paperLoad");
+            glassLoad = (double) o.get("glassLoad");
+            metalLoad = (double) o.get("metalLoad");
+            payoutInCash = (boolean) o.get("payoutInCash");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

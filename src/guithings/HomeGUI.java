@@ -50,14 +50,21 @@ public class HomeGUI extends JFrame implements ActionListener{
         createStation();
         createBackground();
 
-        recyclingMonitoringStation.addMachine(40,40);
-        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(0));
-
-
-        recyclingMonitoringStation.addMachine(550,400);
-        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(1));
-
+//        recyclingMonitoringStation.addMachine(40,40);
+//        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(0));
+//
+//
+//        recyclingMonitoringStation.addMachine(550,400);
+//        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(1));
+//
+//        recyclingMonitoringStation.saveData();
+        recyclingMonitoringStation.fromJSON();
+        for(int i=0; i< recyclingMonitoringStation.getNumberOfRecyclingMachines(); i++){
+            addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(i));
+        }
+        System.out.println("recyclingMonitoringStation.getNumberOfRecyclingMachines() = " + recyclingMonitoringStation.getNumberOfRecyclingMachines());
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -72,6 +79,7 @@ public class HomeGUI extends JFrame implements ActionListener{
             removeRecyclingMachine(removeMachine.get(0));
             removeMachine.remove(0);
         }
+        recyclingMonitoringStation.saveData();
     }
     //////////////////////////////// Embedded Part ///////////////////////////////////
 
@@ -132,6 +140,7 @@ public class HomeGUI extends JFrame implements ActionListener{
         removeBackground();
         createBackground();
         pane.revalidate();
+
     }
 
     //todo TEST THIS

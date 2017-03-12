@@ -65,7 +65,7 @@ public class AddMachineGUI extends JFrame{
             try{
                 int x = Integer.parseInt(xString);
                 int y = Integer.parseInt(yString);
-                if(x < 0 || x > 1500 || y < 0 || y > 1000){
+                if(x < 0 || x > 750 || y < 0 || y > 750){
                     throw new Exception();
                 }
                 homeGUI.addMachineToChange(x,800-y-210);

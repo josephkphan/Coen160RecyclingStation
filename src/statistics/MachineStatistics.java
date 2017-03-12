@@ -1,5 +1,8 @@
 package statistics;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MachineStatistics {
@@ -97,6 +100,45 @@ public class MachineStatistics {
             sum += t.getPlasticLoad();
         }
         return sum;
+    }
+
+    public JSONObject tojSON(){
+        JSONObject o = new JSONObject();
+        JSONArray a = new JSONArray();
+        JSONArray a2 = new JSONArray();
+        try{
+            for(Transaction t: transactionHistory)
+                a.put(t.toJSON());
+            for(Long l : emptiedHistory) {
+                JSONObject temp = new JSONObject();
+                temp.put("time",l);
+                a2.put(temp);
+            }
+            o.put("transactionHistory", a);
+            o.put("emptiedHistory",a2);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return o;
+    }
+
+    public void fromJSON(JSONObject o){
+        try {
+            JSONArray a = o.getJSONArray("transactionHistory");
+            JSONArray a2 = o.getJSONArray("emptiedHistory");
+            for(int i = 0; i < a.length(); i++){
+                Transaction t = new Transaction();
+                t.fromJSON(a.getJSONObject(i));
+            }
+
+            for(int i = 0; i < a2.length(); i++){
+                JSONObject obj = a2.getJSONObject(i);
+                emptiedHistory.add( (Long) obj.get("time"));
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

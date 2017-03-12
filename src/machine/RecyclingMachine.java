@@ -1,5 +1,6 @@
 package machine;
 
+import org.json.JSONObject;
 import resources.Constants;
 import recyclable.RecyclableItem;
 import recyclable.Glass;
@@ -49,6 +50,12 @@ public class RecyclingMachine {
         this.maxPlasticLoad = Constants.MAX_PLASTIC_LOAD;
 
         this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0;
+    }
+
+    public RecyclingMachine(){
+        this.inTransaction = false;
+        this.transactionTotal = 0;
+
     }
 
     // Start Transaction
@@ -275,5 +282,58 @@ public class RecyclingMachine {
 
     public MachineStatistics getMachineStatistics() {
         return machineStatistics;
+    }
+
+    public JSONObject toJSON(){
+        JSONObject o = new JSONObject();
+        try{
+            o.put("id", id);
+            o.put("xCoord", xCoord);
+            o.put("yCoord", yCoord);
+            o.put("numPlasticItems", numPlasticItems);
+            o.put("numGlassItems", numGlassItems);
+            o.put("numMetalItems", numMetalItems);
+            o.put("availableMoney", availableMoney);
+            o.put("maxGlassLoad", maxGlassLoad);
+            o.put("currentGlassLoad", currentGlassLoad);
+            o.put("maxMetalLoad", maxMetalLoad);
+            o.put("currentMetalLoad", currentMetalLoad);
+            o.put("maxPaperLoad",maxPaperLoad);
+            o.put("currentPaperLoad", currentPaperLoad);
+            o.put("maxPlasticLoad", maxPlasticLoad);
+            o.put("currentPlasticLoad", currentPlasticLoad);
+            o.put("machineStatistics", machineStatistics.tojSON());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return o;
+    }
+
+    public void fromJSON(JSONObject o){
+
+        try{
+            id = (int) o.get("id");
+            xCoord = (int) o.get("xCoord");
+            yCoord = (int) o.get("yCoord");
+            numPlasticItems = (int) o.get("numPlasticItems");
+            numPlasticItems = (int) o.get("numPlasticItems");
+            numGlassItems = (int) o.get("numGlassItems");
+            numMetalItems = (int) o.get("numMetalItems");
+            availableMoney = (int) o.get("availableMoney");
+            maxGlassLoad = (int) o.get("maxGlassLoad");
+            currentGlassLoad = (int) o.get("currentGlassLoad");
+            maxMetalLoad = (int) o.get("maxMetalLoad");
+            currentMetalLoad = (int) o.get("currentMetalLoad");
+            maxPaperLoad = (int) o.get("maxPaperLoad");
+            currentPaperLoad = (int) o.get("currentPaperLoad");
+            maxPlasticLoad = (int) o.get("maxPlasticLoad");
+            currentPlasticLoad = (int) o.get("currentPlasticLoad");
+            machineStatistics.fromJSON((JSONObject)o.get("machineStatistics"));
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
