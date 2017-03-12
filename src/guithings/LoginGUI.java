@@ -19,7 +19,7 @@ public class LoginGUI extends JFrame{
         frame = new JFrame("Login Window");
 
         pane = frame.getContentPane();
-        //Size and display the window.
+        // Size and display the window.
         Insets frameInsets = frame.getInsets();
         frame.setSize(WINDOW_WIDTH + frameInsets.left + frameInsets.right,
                 WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
