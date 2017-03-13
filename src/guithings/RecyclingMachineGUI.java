@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RecyclingMachineGUI extends JFrame {
-
     private static final int WINDOW_WIDTH = 1000;
     private static final int WINDOW_HEIGHT = 500;
     private Container pane;
@@ -25,6 +24,7 @@ public class RecyclingMachineGUI extends JFrame {
         frame = new JFrame("Recycling Machine Window");
 
         pane = frame.getContentPane();
+
         // Size and display the window.
         Insets frameInsets = frame.getInsets();
         frame.setSize(WINDOW_WIDTH + frameInsets.left + frameInsets.right,
@@ -32,7 +32,7 @@ public class RecyclingMachineGUI extends JFrame {
         frame.setVisible(true);
         pane.setLayout(null);
 
-        // Each iteration of this while
+        // Instantiate the Recycling Machine Transaction
         recyclingMachine.startTransaction();
         createTitle();
         createCurrentLoadDisplay();
@@ -54,6 +54,7 @@ public class RecyclingMachineGUI extends JFrame {
     private void createInsertButton() {
         Runnable r = () -> {
             System.out.println("Clicked Insert");
+            new InsertRecyclableGUI(homeGUI, this, recyclingMachine);
         };
         GeneralJStuff.createJTextButton(pane, "Insert Recyclable", 25, 50, 200, 25, r);
     }
@@ -61,6 +62,7 @@ public class RecyclingMachineGUI extends JFrame {
     private void createCancelButton() {
         Runnable r = () -> {
             System.out.println("Clicked Cancel");
+            recyclingMachine.cancelTransaction();
         };
         GeneralJStuff.createJTextButton(pane, "Cancel Transaction", 250, 50, 200, 25, r);
     }
@@ -71,32 +73,23 @@ public class RecyclingMachineGUI extends JFrame {
             // Display a Coupon for the User
 
             // Clear out the RCM
+            recyclingMachine.endTransaction();
+
             close();
         };
         GeneralJStuff.createJTextButton(pane, "Finished!", 700, 50, 200, 25, r);
     }
 
     private void createItemsInsertedDisplay() {
-//        JPanel middlePanel = new JPanel ();
-//        middlePanel.setBounds(50,50,500,500);
-//
-//        // create the middle panel components
-//        JTextArea display = new JTextArea (5, 58);
-//        display.append("Hello\nHello\nHello\nWorld\nWorld\nWorld\nWorld\nWorld\nWorld\n");
-//        display.setEditable (false);
-//
-//        JScrollPane scroll = new JScrollPane (display);
-//        scroll.setVerticalScrollBarPolicy (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//
-//        //Add Textarea in to middle panel
-//        middlePanel.add ( scroll );
-//
-//        // My code
-//        JFrame frame = new JFrame ();
-//        frame.add ( middlePanel );
-//        frame.pack ();
-//        frame.setLocationRelativeTo ( null );
-//        frame.setVisible ( true );
+        JTextArea display = new JTextArea (5, 58);
+        display.append("Hello\nHello\nHello\nWorld\nWorld\nWorld\nWorld\nWorld\nWorld\n");
+        display.setEditable (false);
+
+        JScrollPane scroll = new JScrollPane (display);
+        scroll.setVerticalScrollBarPolicy (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setBounds(25,100,500,300);
+
+        pane.add(scroll);
     }
 
     private void createCurrentLoadDisplay() {

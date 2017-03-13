@@ -55,7 +55,6 @@ public class RecyclingMachine {
     public RecyclingMachine(){
         this.inTransaction = false;
         this.transactionTotal = 0;
-
     }
 
     // Start Transaction
@@ -98,7 +97,7 @@ public class RecyclingMachine {
     }
 
     // Insert Recyclable Item
-    public boolean addRecyclableItem(RecyclableItem r) throws Exception {
+    public boolean addRecyclableItem(RecyclableItem r) {
         if (inTransaction == false) {
             System.out.println("The machine is currently not in transaction mode.");
             return false;
@@ -137,9 +136,6 @@ public class RecyclingMachine {
             int priceInCents = (int) (r.getWeight() * Constants.PLASTIC_PRICE);
             t.addPlasticItem((Plastic) r, priceInCents);
 
-        } else {
-            System.out.println("You didn't insert a recyclable item. You are a terrible person.");
-            throw new Exception();
         }
 
         return true;
@@ -238,6 +234,10 @@ public class RecyclingMachine {
 
     public void setTransactionTotal(int transactionTotal) {
         this.transactionTotal = transactionTotal;
+    }
+
+    public int getCurrentTransactionTotal() {
+        return t.getTransactionTotal();
     }
 
     public int getNumPlasticItems() {
