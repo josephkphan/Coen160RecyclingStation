@@ -1,6 +1,5 @@
 package guithings;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import machine.RecyclingMachine;
 
 import javax.swing.*;

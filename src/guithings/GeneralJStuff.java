@@ -118,5 +118,20 @@ public class GeneralJStuff {
         pane.add(button);
     }
 
+    static void createJToggleButton(Container pane, JToggleButton toggleButton, int x,int y, int width, int height, Runnable r, boolean b){
+        toggleButton.setBounds(x, y, width, height);
+        toggleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                r.run();
+            }
+        });
+        if(b){
+            toggleButton.setForeground(Color.GREEN);
+        }else{
+            toggleButton.setForeground(Color.RED);
+        }
+        pane.add(toggleButton);
+    }
 
 }

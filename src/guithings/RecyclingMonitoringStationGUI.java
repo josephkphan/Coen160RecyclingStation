@@ -92,7 +92,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
     }
 
     private void createEditMachineButton() {
-        Runnable r = () -> new AddMachineGUI(homeGUI,this);  //todo CHANGE THIS LATER
+        Runnable r = () -> new editMachineGUI(homeGUI);
         GeneralJStuff.createJTextButton(pane, "Edit", 350, 50, 128, 32, r);
     }
 
