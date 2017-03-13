@@ -12,7 +12,7 @@ public class Transaction {
     private double plasticLoad, paperLoad, glassLoad, metalLoad;
     private boolean payoutInCash;
 
-    public Transaction(){
+    public Transaction() {
         transactionTotal = 0;
         numMetalItems = numPlasticItems = numPaperItems = numGlassItems = 0;
         plasticLoad = paperLoad = glassLoad = metalLoad = 0;

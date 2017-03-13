@@ -67,15 +67,15 @@ public class RecyclingMachine {
     public void endTransaction() {
         setTransactionTotal(t.getTransactionTotal());
 
-        setNumGlassItems(t.getNumGlassItems());
-        setNumMetalItems(t.getNumMetalItems());
-        setNumPaperItems(t.getNumPaperItems());
-        setNumPlasticItems(t.getNumPlasticItems());
+        setNumGlassItems(this.numGlassItems + t.getNumGlassItems());
+        setNumMetalItems(this.numMetalItems + t.getNumMetalItems());
+        setNumPaperItems(this.numPaperItems + t.getNumPaperItems());
+        setNumPlasticItems(this.numPlasticItems + t.getNumPlasticItems());
 
-        setCurrentGlassLoad(t.getGlassLoad());
-        setCurrentMetalLoad(t.getMetalLoad());
-        setCurrentPaperLoad(t.getPaperLoad());
-        setCurrentPlasticLoad(t.getPlasticLoad());
+        setCurrentGlassLoad(this.currentGlassLoad + t.getGlassLoad());
+        setCurrentMetalLoad(this.currentMetalLoad + t.getMetalLoad());
+        setCurrentPaperLoad(this.currentPaperLoad + t.getPaperLoad());
+        setCurrentPlasticLoad(this.currentPlasticLoad + t.getPlasticLoad());
 
         // TODO: Still need to fulfill the payout to the customer
         if (availableMoney < t.getTransactionTotal()) {
@@ -156,9 +156,12 @@ public class RecyclingMachine {
         return currentGlassLoad;
     }
 
+    public double getCurrentTransactionGlassLoad() { return this.currentGlassLoad + t.getGlassLoad(); }
+
     public void setCurrentGlassLoad(double currentGlassLoad) {
         this.currentGlassLoad = currentGlassLoad;
     }
+
 
     public double getMaxMetalLoad() {
         return maxMetalLoad;
@@ -168,9 +171,12 @@ public class RecyclingMachine {
         return currentMetalLoad;
     }
 
+    public double getCurrentTransactionMetalLoad() { return this.currentMetalLoad + t.getMetalLoad(); }
+
     public void setCurrentMetalLoad(double currentMetalLoad) {
         this.currentMetalLoad = currentMetalLoad;
     }
+
 
     public double getMaxPaperLoad() {
         return maxPaperLoad;
@@ -180,9 +186,12 @@ public class RecyclingMachine {
         return currentPaperLoad;
     }
 
+    public double getCurrentTransactionPaperLoad() { return this.currentPaperLoad + t.getPaperLoad(); }
+
     public void setCurrentPaperLoad(double currentPaperLoad) {
         this.currentPaperLoad = currentPaperLoad;
     }
+
 
     public double getMaxPlasticLoad() {
         return maxPlasticLoad;
@@ -192,9 +201,12 @@ public class RecyclingMachine {
         return currentPlasticLoad;
     }
 
+    public double getCurrentTransactionPlasticLoad() { return this.currentPlasticLoad + t.getPlasticLoad(); }
+
     public void setCurrentPlasticLoad(double currentPlasticLoad) {
         this.currentPlasticLoad = currentPlasticLoad;
     }
+
 
     public int getId() {
         return id;
@@ -220,6 +232,7 @@ public class RecyclingMachine {
         this.yCoord = yCoord;
     }
 
+
     public boolean isInTransaction() {
         return inTransaction;
     }
@@ -240,6 +253,7 @@ public class RecyclingMachine {
         return t.getTransactionTotal();
     }
 
+
     public int getNumPlasticItems() {
         return numPlasticItems;
     }
@@ -247,6 +261,7 @@ public class RecyclingMachine {
     public void setNumPlasticItems(int numPlasticItems) {
         this.numPlasticItems = numPlasticItems;
     }
+
 
     public int getNumPaperItems() {
         return numPaperItems;
@@ -256,6 +271,7 @@ public class RecyclingMachine {
         this.numPaperItems = numPaperItems;
     }
 
+
     public int getNumGlassItems() {
         return numGlassItems;
     }
@@ -263,6 +279,7 @@ public class RecyclingMachine {
     public void setNumGlassItems(int numGlassItems) {
         this.numGlassItems = numGlassItems;
     }
+
 
     public int getNumMetalItems() {
         return numMetalItems;
@@ -272,6 +289,7 @@ public class RecyclingMachine {
         this.numMetalItems = numMetalItems;
     }
 
+
     public double getAvailableMoney() {
         return availableMoney;
     }
@@ -279,6 +297,7 @@ public class RecyclingMachine {
     public void setAvailableMoney(double availableMoney) {
         this.availableMoney = availableMoney;
     }
+
 
     public MachineStatistics getMachineStatistics() {
         return machineStatistics;

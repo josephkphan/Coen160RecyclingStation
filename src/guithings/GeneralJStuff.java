@@ -25,7 +25,6 @@ public class GeneralJStuff {
         pane.add(label);
     }
 
-
     static void createJTextLabelCentered(Container pane, String string, int WINDOW_WIDTH) {
         JLabel label = new JLabel(string);
         label.setBounds(WINDOW_WIDTH / 2 - label.getPreferredSize().width / 2,

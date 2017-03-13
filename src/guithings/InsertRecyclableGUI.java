@@ -50,7 +50,8 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Glass Bottle");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
             // Add a new Glass Bottle to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new GlassBottle(randomWeight));
@@ -61,6 +62,9 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
         GeneralJStuff.createJTextButton(pane, "Glass Bottle", 25, 50, 200, 25, r);
     }
@@ -70,9 +74,10 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Metal Can");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
-            // Add a new Glass Bottle to the Recycling Machine
+            // Add a new Metal Can to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new MetalCan(randomWeight));
 
             if (success == false) {
@@ -80,6 +85,9 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
         GeneralJStuff.createJTextButton(pane, "Metal Can", 25, 100, 200, 25, r);
     }
@@ -89,9 +97,10 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Metal Foil");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
-            // Add a new Glass Bottle to the Recycling Machine
+            // Add a new Metal Foil to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new MetalFoil(randomWeight));
 
             if (success == false) {
@@ -99,6 +108,9 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
         GeneralJStuff.createJTextButton(pane, "Metal Foil", 25, 150, 200, 25, r);
     }
@@ -108,9 +120,10 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Paper Plate");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
-            // Add a new Glass Bottle to the Recycling Machine
+            // Add a new Paper Plate to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new PaperPlate(randomWeight));
 
             if (success == false) {
@@ -118,6 +131,9 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
         GeneralJStuff.createJTextButton(pane, "Paper Plate", 25, 200, 200, 25, r);
     }
@@ -127,9 +143,10 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Paper Sheet");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
-            // Add a new Glass Bottle to the Recycling Machine
+            // Add a new Paper Sheet to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new PaperSheet(randomWeight));
 
             if (success == false) {
@@ -137,8 +154,11 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
-        GeneralJStuff.createJTextButton(pane, "Paper Plate", 25, 250, 200, 25, r);
+        GeneralJStuff.createJTextButton(pane, "Paper Sheet", 300, 50, 200, 25, r);
     }
 
     private void createPlasticBottleButton() {
@@ -146,9 +166,10 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Plastic Bottle");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
-            // Add a new Glass Bottle to the Recycling Machine
+            // Add a new Plastic Bottle to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new PlasticBottle(randomWeight));
 
             if (success == false) {
@@ -156,8 +177,11 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
-        GeneralJStuff.createJTextButton(pane, "Plastic Bottle", 25, 300, 200, 25, r);
+        GeneralJStuff.createJTextButton(pane, "Plastic Bottle", 300, 100, 200, 25, r);
     }
 
     private void createPlasticUtensilButton() {
@@ -165,9 +189,10 @@ public class InsertRecyclableGUI {
             System.out.println("Clicked Plastic Utensil");
 
             // Randomly generate a weight for the item between 0 -> 10 lbs
-            double randomWeight = Math.random() * 10;
+            double randomWeight = (int) (Math.random() * 1000);
+            randomWeight /= 100;
 
-            // Add a new Glass Bottle to the Recycling Machine
+            // Add a new Plastic Utensil to the Recycling Machine
             boolean success = recyclingMachine.addRecyclableItem(new PlasticUtensil(randomWeight));
 
             if (success == false) {
@@ -175,8 +200,11 @@ public class InsertRecyclableGUI {
             } else {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
+
+            recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+            close();
         };
-        GeneralJStuff.createJTextButton(pane, "Paper Plate", 25, 350, 200, 25, r);
+        GeneralJStuff.createJTextButton(pane, "Plastic Utensil", 300, 150, 200, 25, r);
     }
 
     private void close() {
