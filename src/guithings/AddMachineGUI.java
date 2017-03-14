@@ -21,9 +21,7 @@ public class AddMachineGUI extends JFrame{
 
         pane = frame.getContentPane();
         //Size and display the window.
-        Insets frameInsets = frame.getInsets();
-        frame.setSize(WINDOW_WIDTH + frameInsets.left + frameInsets.right,
-                WINDOW_HEIGHT + frameInsets.top + frameInsets.bottom);
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT );
         frame.setVisible(true);
         pane.setLayout(null);
 

@@ -145,7 +145,6 @@ public class HomeGUI extends JFrame implements ActionListener{
 
     //todo TEST THIS
     public void removeRecyclingMachine(int ID) {
-        System.out.println("11111111111111111");
         System.out.println("recyclingMonitoringStation.getNumberOfRecyclingMachines() = " + recyclingMonitoringStation.getNumberOfRecyclingMachines());
         for (int i = 0; i < recyclingMonitoringStation.getNumberOfRecyclingMachines(); i++) {
             if (recyclingMonitoringStation.getRecyclingMachine(i).getId() == ID) {
