@@ -1,5 +1,6 @@
 package guithings;
 
+import currency.Cash;
 import machine.RecyclingMachine;
 
 import java.awt.*;
@@ -92,7 +93,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
     }
 
     private void createEditMachineButton() {
-        Runnable r = () -> new editMachineGUI(homeGUI);
+        Runnable r = () -> new EditMachineGUI(homeGUI);
         GeneralJStuff.createJTextButton(pane, "Edit", 350, 50, 128, 32, r);
     }
 
@@ -235,10 +236,12 @@ class MachineInfoBar implements ActionListener {
         //Other Stuff
         GeneralJStuff.createJTextLabel(pane,numTransaction, "Total # Transactions: " +
                 Integer.toString(recyclingMachine.getMachineStatistics().getNumberOfTransactions()), x + 550, y + 40);
+        Cash temp = new Cash(0,(int) recyclingMachine.getAvailableMoney());
         GeneralJStuff.createJTextLabel(pane,moneyLeft, "Money Left: " +
-                Integer.toString((int) recyclingMachine.getAvailableMoney()), x + 550, y + 60);
+                temp.toString(), x + 550, y + 60);
+        temp = new Cash(0,(int) recyclingMachine.getMachineStatistics().getTotalMoneyObtained());
         GeneralJStuff.createJTextLabel(pane,moneyObtained, "Total Money Obtained: " +
-                Integer.toString((int) recyclingMachine.getMachineStatistics().getTotalMoneyObtained()), x + 550, y + 80);
+                temp.toString(), x + 550, y + 80);
 
         //todo CHANGE MONEY TO CENTS HERE???
 

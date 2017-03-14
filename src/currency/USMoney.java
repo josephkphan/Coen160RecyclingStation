@@ -60,7 +60,10 @@ public abstract class USMoney {
     }
 
     public String toString(){
-        return "$" + Integer.toString(getDollars()) + "." + Integer.toString(getCents());
+        String s ="$" + Integer.toString(getDollars()) + "." + Integer.toString(getCents());
+        if(getCents()==0)
+            s += "0";
+        return s;
     }
 
 }

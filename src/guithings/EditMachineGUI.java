@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class editMachineGUI extends JFrame implements ActionListener {
+public class EditMachineGUI extends JFrame implements ActionListener {
     private static final int WINDOW_WIDTH = 625;
     private static final int WINDOW_HEIGHT = 450;
     private Container pane;
@@ -22,7 +22,7 @@ public class editMachineGUI extends JFrame implements ActionListener {
     private JLabel metalPricing, glassPricing, plasticPricing, paperPricing;
     private JTextField metalPriceField, glassPriceField, plasticPriceField, paperPriceField;
 
-    public editMachineGUI(HomeGUI homeGUI) {
+    public EditMachineGUI(HomeGUI homeGUI) {
         this.homeGUI = homeGUI;
         frame = new JFrame("Edit Recycling Machine Window");
 
@@ -154,10 +154,10 @@ public class editMachineGUI extends JFrame implements ActionListener {
                     int plasticInt = Integer.parseInt(plasticString);
                     int paperInt = Integer.parseInt(paperString);
 
-                    if (metalInt != 0) Constants.METAL_PRICE = metalInt;
-                    if (glassInt != 0) Constants.GLASS_PRICE = glassInt;
-                    if (plasticInt != 0) Constants.PLASTIC_PRICE = plasticInt;
-                    if (paperInt != 0) Constants.PAPER_PRICE = paperInt;
+                    if (metalInt > 0) Constants.METAL_PRICE = metalInt;
+                    if (glassInt > 0) Constants.GLASS_PRICE = glassInt;
+                    if (plasticInt > 0) Constants.PLASTIC_PRICE = plasticInt;
+                    if (paperInt > 0) Constants.PAPER_PRICE = paperInt;
 
                     homeGUI.getRecyclingMonitoringStation().saveData();
 
