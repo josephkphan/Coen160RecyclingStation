@@ -225,14 +225,14 @@ class MachineInfoBar implements ActionListener {
                 Integer.toString((int) recyclingMachine.getMaxPlasticLoad()), x + 300, y + 100);
 
         // Num Items
-        GeneralJStuff.createJTextLabel(pane,numMetal, "Total # Metal Items: " +
-                Integer.toString(recyclingMachine.getNumMetalItems()), x + 350, y + 40);
         GeneralJStuff.createJTextLabel(pane,numGlass, "Total # Glass Items: " +
-                Integer.toString(recyclingMachine.getNumGlassItems()), x + 350, y + 60);
-        GeneralJStuff.createJTextLabel(pane,numPlastic, "Total # Plastic Items: " +
-                Integer.toString(recyclingMachine.getNumPlasticItems()), x + 350, y + 80);
+                Integer.toString(recyclingMachine.getNumGlassItems()), x + 350, y + 40);
+        GeneralJStuff.createJTextLabel(pane,numMetal, "Total # Metal Items: " +
+                Integer.toString(recyclingMachine.getNumMetalItems()), x + 350, y + 60);
         GeneralJStuff.createJTextLabel(pane,numPaper, "Total # Paper Items: " +
-                Integer.toString(recyclingMachine.getNumPaperItems()), x + 350, y + 100);
+                Integer.toString(recyclingMachine.getNumPaperItems()), x + 350, y + 80);
+        GeneralJStuff.createJTextLabel(pane,numPlastic, "Total # Plastic Items: " +
+                Integer.toString(recyclingMachine.getNumPlasticItems()), x + 350, y + 100);
 
         //Other Stuff
         GeneralJStuff.createJTextLabel(pane,numTransaction, "Total # Transactions: " +

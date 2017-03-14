@@ -2,6 +2,7 @@ package guithings;
 
 import machine.RecyclingMachine;
 import recyclable.*;
+import resources.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,7 +60,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Glass Bottle", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.GLASS_PRICE);
+                recyclingMachineGUI.addTransactionItem("Glass Bottle", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
@@ -86,7 +88,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Metal Can", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.METAL_PRICE);
+                recyclingMachineGUI.addTransactionItem("Metal Can", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
@@ -113,7 +116,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Metal Foil", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.METAL_PRICE);
+                recyclingMachineGUI.addTransactionItem("Metal Foil", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
@@ -140,7 +144,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Paper Plate", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.PAPER_PRICE);
+                recyclingMachineGUI.addTransactionItem("Paper Plate", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
@@ -167,7 +172,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Paper Sheet", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.PAPER_PRICE);
+                recyclingMachineGUI.addTransactionItem("Paper Sheet", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
@@ -194,7 +200,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Plastic Bottle", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.PLASTIC_PRICE);
+                recyclingMachineGUI.addTransactionItem("Plastic Bottle", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
@@ -221,7 +228,8 @@ public class InsertRecyclableGUI extends JFrame {
                 System.out.println("The Recycling Machine is Full!!!");
                 recyclingMachineGUI.displayMachineFullError();
             } else {
-                recyclingMachineGUI.addTransactionItem("Plastic Utensil", randomWeight);
+                int priceInCents = (int) (randomWeight * Constants.PLASTIC_PRICE);
+                recyclingMachineGUI.addTransactionItem("Plastic Utensil", randomWeight, priceInCents);
             }
 
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
