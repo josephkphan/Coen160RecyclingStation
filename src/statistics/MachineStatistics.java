@@ -129,6 +129,7 @@ public class MachineStatistics {
             for(int i = 0; i < a.length(); i++){
                 Transaction t = new Transaction();
                 t.fromJSON(a.getJSONObject(i));
+                transactionHistory.add(t);
             }
 
             for(int i = 0; i < a2.length(); i++){

@@ -94,6 +94,7 @@ public class RecyclingMachine {
         }
 
         setInTransaction(false);
+        machineStatistics.addTransaction(t);
     }
 
     // Insert Recyclable Item

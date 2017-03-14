@@ -11,7 +11,7 @@ public class Payout extends JFrame {
     private Container pane;
     private JFrame frame;
 
-    public Payout(HomeGUI homeGUI, boolean isPayoutInCash, int transactionTotal) {
+    public Payout( boolean isPayoutInCash, int transactionTotal) {
         if (isPayoutInCash) {
             frame = new JFrame("Cash Payout");
             pane = frame.getContentPane();
@@ -45,6 +45,5 @@ public class Payout extends JFrame {
             GeneralJStuff.createJTextLabelCentered(pane, payoutMessage, WINDOW_WIDTH);
             GeneralJStuff.createJImageCentered(pane,WINDOW_WIDTH,125,64,64,"src/assets/money.png");
         }
-        homeGUI.getRecyclingMonitoringStation().saveData();
     }
 }
