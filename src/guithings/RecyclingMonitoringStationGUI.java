@@ -10,7 +10,6 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 
@@ -179,7 +178,10 @@ class MachineInfoBar implements ActionListener {
 
     private void createViewStatsButton() {
         stats = new JButton("");
-        Runnable r = () -> new MachineStatisticGUI(recyclingMachine);
+        Runnable r = () -> {
+            new MachineStatisticGUI();
+        };
+
         GeneralJStuff.createJTextButton(pane,stats, "View Stats", x + 800, y + 100, 128, 32, r);
     }
 
