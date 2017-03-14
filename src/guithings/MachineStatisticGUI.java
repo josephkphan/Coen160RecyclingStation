@@ -112,17 +112,24 @@ class BarChart extends JPanel {
         }
         // paint bars
 
-        int width = (getWidth() / bars.size()) - 2;
+        int width = (getWidth() / bars.size()) - 5;
         int x = 1;
+        int counter = 0;
         for (Color color : bars.keySet()) {
+            g.drawString(Integer.toString(2007 + (counter++)), x+25,790);
             int value = bars.get(color);
             int height = (int) ((getHeight() - 5) * ((double) value / max));
             g.setColor(color);
-            g.fillRect(x, getHeight() - height, width, height);
+            g.fillRect(x+20, getHeight() - height-20, width, height);
             g.setColor(Color.black);
-            g.drawRect(x, getHeight() - height, width, height);
+            g.drawRect(x+20, getHeight() - height-20, width, height);
             x += (width + 2);
         }
+        g.drawLine(10,790,800,790);
+        g.drawString("Year", 300,800);
+        g.drawLine(10,790,10,0);
+        g.drawString("Total Money Given", 20,350);
+        g.drawString("Time Vs. Money Given",300, 50);
     }
 
     @Override
