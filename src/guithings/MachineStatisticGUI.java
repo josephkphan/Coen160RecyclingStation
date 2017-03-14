@@ -14,10 +14,6 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-// This Year: # of Hours Ago
-// Sales: # of Transactions
-
-
 interface DataGetter {
     public void readDataFromFile(String fileName);
 }
@@ -128,8 +124,8 @@ class BarChart extends JPanel {
         g.drawLine(10,790,800,790);
         g.drawString("Year", 300,800);
         g.drawLine(10,790,10,0);
-        g.drawString("Total Money Given", 20,350);
-        g.drawString("Time Vs. Money Given",300, 50);
+        g.drawString("# Transactions", 20,350);
+        g.drawString("Time Vs. Transactions",300, 50);
     }
 
     @Override
