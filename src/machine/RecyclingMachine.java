@@ -240,42 +240,22 @@ public class RecyclingMachine {
         return numPlasticItems;
     }
 
-    public void setNumPlasticItems(int numPlasticItems) {
-        this.numPlasticItems = numPlasticItems;
-    }
-
-
     public int getNumPaperItems() {
         return numPaperItems;
     }
-
-    public void setNumPaperItems(int numPaperItems) {
-        this.numPaperItems = numPaperItems;
-    }
-
 
     public int getNumGlassItems() {
         return numGlassItems;
     }
 
-    public void setNumGlassItems(int numGlassItems) {
-        this.numGlassItems = numGlassItems;
-    }
-
-
     public int getNumMetalItems() {
         return numMetalItems;
-    }
-
-    public void setNumMetalItems(int numMetalItems) {
-        this.numMetalItems = numMetalItems;
     }
 
 
     public double getAvailableMoney() {
         return availableMoney;
     }
-
 
     public boolean getIsPayoutInCash() { return t.isPayoutInCash(); }
 

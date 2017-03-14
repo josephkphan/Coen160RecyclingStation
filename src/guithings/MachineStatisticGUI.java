@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MachineStatisticGUI extends  JFrame {
-
     private static final int WINDOW_WIDTH = 750;
     private static final int WINDOW_HEIGHT = 400;
     private Container pane;
@@ -25,7 +24,6 @@ public class MachineStatisticGUI extends  JFrame {
         pane.setLayout(null);
 
         createTitle();
-
     }
 
     private void close() {
@@ -40,6 +38,4 @@ public class MachineStatisticGUI extends  JFrame {
     private void createCloseButton(){
 
     }
-
-
 }
