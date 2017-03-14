@@ -6,6 +6,7 @@ import machine.RecyclingMachine;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
@@ -206,20 +207,20 @@ class MachineInfoBar implements ActionListener {
         GeneralJStuff.createJTextLabel(pane, yCoord, "Y: " + Integer.toString(800 - recyclingMachine.getyCoord() - 210), x + 250, y + 20);
 
         // Loads
-        GeneralJStuff.createJTextLabel(pane, glassLoad, "Glass Load:    " + Integer.toString((int) recyclingMachine.getCurrentGlassLoad()), x + 150, y + 40);
+        GeneralJStuff.createJTextLabel(pane, glassLoad, "Glass Load:    " + Double.toString(Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentGlassLoad()))), x + 150, y + 40);
         GeneralJStuff.createJTextLabel(pane, maxGlassLoad, "/ " + Integer.toString((int) recyclingMachine.getMaxGlassLoad()), x + 300, y + 40);
 
 
         GeneralJStuff.createJTextLabel(pane,metalLoad, "Metal Load:    " +
-                Integer.toString((int) recyclingMachine.getCurrentMetalLoad()), x + 150, y + 60);
+                Double.toString(Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentMetalLoad()))), x + 150, y + 60);
         GeneralJStuff.createJTextLabel(pane,maxMetalLoad, "/ " +
                 Integer.toString((int) recyclingMachine.getMaxMetalLoad()), x + 300, y + 60);
         GeneralJStuff.createJTextLabel(pane, paperLoad,"Paper Load:   " +
-                Integer.toString((int) recyclingMachine.getCurrentPaperLoad()), x + 150, y + 80);
+                Double.toString(Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentPaperLoad()))), x + 150, y + 80);
         GeneralJStuff.createJTextLabel(pane,maxPaperLoad, "/ " +
                 Integer.toString((int) recyclingMachine.getMaxPaperLoad()), x + 300, y + 80);
         GeneralJStuff.createJTextLabel(pane,plasticLoad, "Plastic Load:  " +
-                Integer.toString((int) recyclingMachine.getCurrentPlasticLoad()), x + 150, y + 100);
+                Double.toString(Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentPlasticLoad()))), x + 150, y + 100);
         GeneralJStuff.createJTextLabel(pane,maxPlasticLoad, "/ " +
                 Integer.toString((int) recyclingMachine.getMaxPlasticLoad()), x + 300, y + 100);
 
@@ -239,9 +240,9 @@ class MachineInfoBar implements ActionListener {
         Cash temp = new Cash(0,(int) recyclingMachine.getAvailableMoney());
         GeneralJStuff.createJTextLabel(pane,moneyLeft, "Money Left: " +
                 temp.toString(), x + 550, y + 60);
-        temp = new Cash(0,(int) recyclingMachine.getMachineStatistics().getTotalMoneyObtained());
-        GeneralJStuff.createJTextLabel(pane,moneyObtained, "Total Money Obtained: " +
-                temp.toString(), x + 550, y + 80);
+//        temp = new Cash(0,(int) recyclingMachine.getMachineStatistics().getTotalMoneyObtained());
+//        GeneralJStuff.createJTextLabel(pane,moneyObtained, "Total Money Obtained: " +
+//                temp.toString(), x + 550, y + 80);
 
         //todo CHANGE MONEY TO CENTS HERE???
 

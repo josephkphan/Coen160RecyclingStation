@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class RecyclingMachineGUI extends JFrame implements ActionListener {
@@ -83,7 +84,7 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
             boolean isPayoutInCash = recyclingMachine.getIsPayoutInCash();
             int transactionTotal = recyclingMachine.getTransactionTotal();
             System.out.print("Transaction Total: " + Integer.toString(transactionTotal));
-            new Payout(isPayoutInCash, transactionTotal);
+            new Payout(homeGUI, isPayoutInCash, transactionTotal);
 
             // Clear out the RCM
             close();
@@ -117,25 +118,25 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
         GeneralJStuff.createJTextLabel(pane, "Recycling Machine Load Information", 600,100);
 
         // Display information on the Machine's Glass Load
-        String glassLoad = "Current Glass Load: " + recyclingMachine.getCurrentTransactionGlassLoad()
+        String glassLoad = "Current Glass Load: " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentGlassLoad()))
                 + " Max Glass Load: " + recyclingMachine.getMaxGlassLoad();
         glass = new JLabel();
         GeneralJStuff.createJTextLabel(pane, glass, glassLoad, 600,125);
 
         // Display information on the Machine's Metal Load
-        String metalLoad = "Current Metal Load: " + recyclingMachine.getCurrentTransactionMetalLoad()
+        String metalLoad = "Current Metal Load: " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentMetalLoad()))
                 + " Max Metal Load: " + recyclingMachine.getMaxMetalLoad();
         metal = new JLabel();
         GeneralJStuff.createJTextLabel(pane, metal, metalLoad, 600,150);
 
         // Display information on the Machine's Paper Load
-        String paperLoad = "Current Paper Load: " + recyclingMachine.getCurrentTransactionPaperLoad()
+        String paperLoad = "Current Paper Load: " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentPaperLoad()))
                 + " Max Paper Load: " + recyclingMachine.getMaxPaperLoad();
         paper = new JLabel();
         GeneralJStuff.createJTextLabel(pane, paper, paperLoad, 600,175);
 
         // Display information on the Machine's Plastic Load
-        String plasticLoad = "Current Plastic Load: " + recyclingMachine.getCurrentTransactionPlasticLoad()
+        String plasticLoad = "Current Plastic Load: " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentPlasticLoad()))
                 + " Max Plastic Load: " + recyclingMachine.getMaxPlasticLoad();
         plastic = new JLabel();
         GeneralJStuff.createJTextLabel(pane, plastic, plasticLoad, 600,200);

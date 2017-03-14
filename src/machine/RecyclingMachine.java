@@ -48,7 +48,7 @@ public class RecyclingMachine {
         this.maxPaperLoad = Constants.MAX_PAPER_LOAD;
         this.maxPlasticLoad = Constants.MAX_PLASTIC_LOAD;
 
-        this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0;
+        this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0.00001;
     }
 
     public RecyclingMachine(){
@@ -302,13 +302,13 @@ public class RecyclingMachine {
             numMetalItems = (int) o.get("numMetalItems");
             availableMoney = (int) o.get("availableMoney");
             maxGlassLoad = (int) o.get("maxGlassLoad");
-            currentGlassLoad = (int) o.get("currentGlassLoad");
+            currentGlassLoad = (double) o.get("currentGlassLoad");
             maxMetalLoad = (int) o.get("maxMetalLoad");
-            currentMetalLoad = (int) o.get("currentMetalLoad");
+            currentMetalLoad = (double) o.get("currentMetalLoad");
             maxPaperLoad = (int) o.get("maxPaperLoad");
-            currentPaperLoad = (int) o.get("currentPaperLoad");
+            currentPaperLoad = (double) o.get("currentPaperLoad");
             maxPlasticLoad = (int) o.get("maxPlasticLoad");
-            currentPlasticLoad = (int) o.get("currentPlasticLoad");
+            currentPlasticLoad = (double) o.get("currentPlasticLoad");
             machineStatistics.fromJSON((JSONObject)o.get("machineStatistics"));
 
 

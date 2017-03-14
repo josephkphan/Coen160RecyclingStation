@@ -15,7 +15,7 @@ public class Transaction {
     public Transaction() {
         transactionTotal = 0;
         numMetalItems = numPlasticItems = numPaperItems = numGlassItems = 0;
-        plasticLoad = paperLoad = glassLoad = metalLoad = 0;
+        plasticLoad = paperLoad = glassLoad = metalLoad = 0.00001;
         payoutInCash = true;
     }
 
