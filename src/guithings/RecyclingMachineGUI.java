@@ -80,8 +80,8 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
 
             // Pay the Customer
             boolean isPayoutInCash = recyclingMachine.getIsPayoutInCash();
-            double transactionTotal = recyclingMachine.getTransactionTotal();
-            System.out.print("Transaction Total: $" + Double.toString(transactionTotal));
+            int transactionTotal = recyclingMachine.getTransactionTotal();
+            System.out.print("Transaction Total: " + Integer.toString(transactionTotal));
             new Payout(isPayoutInCash, transactionTotal);
 
             // Clear out the RCM

@@ -21,11 +21,11 @@ public class RecyclingMachine {
     // Transaction Related Data Members
     private Transaction t;
     private boolean inTransaction;
-    private double transactionTotal;
+    private int transactionTotal;
     private int numPlasticItems, numPaperItems, numGlassItems, numMetalItems;
-    private double availableMoney;
+    private int availableMoney; // In Cents
 
-    // Capacity Related Data Members
+    // Capacity Related Data Members (Pounds)
     private double maxGlassLoad, currentGlassLoad;
     private double maxMetalLoad, currentMetalLoad;
     private double maxPaperLoad, currentPaperLoad;
@@ -41,7 +41,7 @@ public class RecyclingMachine {
         this.transactionTotal = 0;
         this.numGlassItems = this.numMetalItems = this.numPaperItems = this.numPlasticItems = 0;
 
-        this.availableMoney = 100.00;
+        this.availableMoney = 50000;
 
         this.maxGlassLoad = Constants.MAX_GLASS_LOAD;
         this.maxMetalLoad = Constants.MAX_METAL_LOAD;
@@ -62,6 +62,15 @@ public class RecyclingMachine {
        setInTransaction(true);
     }
 
+    // Cancel Transaction
+    public void cancelTransaction() {
+        // Removes reference to the current Transaction
+        startTransaction();
+
+        // We are not currently actually in transaction
+        setInTransaction(false);
+    }
+
     // End Transaction
     public void endTransaction() {
         this.transactionTotal = t.getTransactionTotal();
@@ -76,25 +85,14 @@ public class RecyclingMachine {
         this.currentPaperLoad += t.getPaperLoad();
         this.currentPlasticLoad += t.getPlasticLoad();
 
-        // Conversion from Cents to Dollars
-        this.transactionTotal /= 100D;
-
         if (this.availableMoney < this.transactionTotal) {
             t.setPayoutToCoupon();
+            System.out.println("Available Money: " + Integer.toString(this.availableMoney));
         } else {
             this.availableMoney -= this.transactionTotal;
-            System.out.println("Available Money: $" + Double.toString(this.availableMoney));
+            System.out.println("Available Money: " + Integer.toString(this.availableMoney));
         }
 
-        setInTransaction(false);
-    }
-
-    // Cancel Transaction
-    public void cancelTransaction() {
-        // Removes reference to the current Transaction
-        startTransaction();
-
-        // We are not currently actually in transaction
         setInTransaction(false);
     }
 
@@ -149,7 +147,7 @@ public class RecyclingMachine {
     }
 
     // Reload the money in the machine
-    public void reload() { this.availableMoney = 100.00; }
+    public void reload() { this.availableMoney = 50000; }
 
     // Setters and Getters
     public double getMaxGlassLoad() {
@@ -229,7 +227,7 @@ public class RecyclingMachine {
         this.inTransaction = inTransaction;
     }
 
-    public double getTransactionTotal() {
+    public int getTransactionTotal() {
         return transactionTotal;
     }
 

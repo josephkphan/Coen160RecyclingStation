@@ -1,5 +1,7 @@
 package guithings;
 
+import currency.Cash;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +11,7 @@ public class Payout extends JFrame {
     private Container pane;
     private JFrame frame;
 
-    public Payout(boolean isPayoutInCash, double transactionTotal) {
+    public Payout(boolean isPayoutInCash, int transactionTotal) {
         if (isPayoutInCash) {
             frame = new JFrame("Cash Payout");
             pane = frame.getContentPane();
@@ -21,7 +23,9 @@ public class Payout extends JFrame {
             frame.setVisible(true);
             pane.setLayout(null);
 
-            String payoutMessage = "Amount of cash you received: $" + Double.toString(transactionTotal);
+            Cash transactionTotalInDollars = new Cash(0, transactionTotal);
+
+            String payoutMessage = ("Amount of cash you received: " + transactionTotalInDollars);
             GeneralJStuff.createJTextLabelCentered(pane, payoutMessage, WINDOW_WIDTH);
         }
         else {
