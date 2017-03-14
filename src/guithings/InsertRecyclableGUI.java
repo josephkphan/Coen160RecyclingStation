@@ -56,11 +56,12 @@ public class InsertRecyclableGUI extends JFrame {
             boolean success = recyclingMachine.addRecyclableItem(new GlassBottle(randomWeight));
 
             if (success == false) {
-                // TODO: Display Error Message to User
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Glass Bottle", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Glass Bottle", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -83,9 +84,11 @@ public class InsertRecyclableGUI extends JFrame {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Metal Can", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Metal Can", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -108,9 +111,11 @@ public class InsertRecyclableGUI extends JFrame {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Metal Foil", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Metal Foil", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -133,9 +138,11 @@ public class InsertRecyclableGUI extends JFrame {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Paper Plate", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Paper Plate", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -158,9 +165,11 @@ public class InsertRecyclableGUI extends JFrame {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Paper Sheet", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Paper Sheet", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -183,9 +192,11 @@ public class InsertRecyclableGUI extends JFrame {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Plastic Bottle", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Plastic Bottle", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -208,9 +219,11 @@ public class InsertRecyclableGUI extends JFrame {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
+                recyclingMachineGUI.displayMachineFullError();
+            } else {
+                recyclingMachineGUI.addTransactionItem("Plastic Utensil", randomWeight);
             }
 
-            recyclingMachineGUI.addTransactionItem("Plastic Utensil", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };

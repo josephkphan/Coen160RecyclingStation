@@ -105,7 +105,7 @@ public class RecyclingMachine {
 
         // Check whether the item will fit inside the load
         if (r instanceof Glass) {
-            if (r.getWeight() + getCurrentGlassLoad() > getMaxGlassLoad()) {
+            if (r.getWeight() + this.currentGlassLoad + t.getGlassLoad() > this.maxGlassLoad) {
                 return false;
             }
 
@@ -113,7 +113,7 @@ public class RecyclingMachine {
             t.addGlassItem((Glass) r, priceInCents);
 
         } else if (r instanceof Metal) {
-            if (r.getWeight() + getCurrentMetalLoad() > getMaxMetalLoad()) {
+            if (r.getWeight() + this.currentMetalLoad + t.getMetalLoad() > this.maxMetalLoad) {
                 return false;
             }
 
@@ -121,7 +121,7 @@ public class RecyclingMachine {
             t.addMetalItem((Metal) r, priceInCents);
 
         } else if (r instanceof Paper) {
-            if (r.getWeight() + getCurrentPaperLoad() > getMaxPaperLoad()) {
+            if (r.getWeight() + this.currentPaperLoad + t.getPaperLoad() > this.maxPaperLoad) {
                 return false;
             }
 
@@ -129,7 +129,7 @@ public class RecyclingMachine {
             t.addPaperItem((Paper) r, priceInCents);
 
         } else if (r instanceof Plastic) {
-            if (r.getWeight() + getCurrentPlasticLoad() > getMaxPlasticLoad()) {
+            if (r.getWeight() + this.currentPlasticLoad + t.getPlasticLoad() > this.maxPlasticLoad) {
                 return false;
             }
 

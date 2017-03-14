@@ -13,6 +13,7 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
     private static final int WINDOW_HEIGHT = 500;
     private ArrayList<String> transactionItems;
     private ArrayList<Double> transactionItemsWeights;
+    private boolean displayMachineFullError = false;
 
     private Container pane;
     private JFrame frame;
@@ -99,6 +100,10 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
             display.append("\n");
         }
 
+        if (this.displayMachineFullError == true) {
+            display.append("Could not add recyclable item. Machine is full!!");
+        }
+
         display.setEditable (false);
 
         scroll = new JScrollPane (display);
@@ -156,6 +161,7 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
         createItemsInsertedDisplay();
         createCurrentLoadDisplay();
         revalidate();
+        this.displayMachineFullError = false;
     }
 
     // Setters
@@ -163,4 +169,10 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
         transactionItems.add(type);
         transactionItemsWeights.add(weight);
     }
+
+    public void displayMachineFullError() {
+        this.displayMachineFullError = true;
+    }
+
+
 }
