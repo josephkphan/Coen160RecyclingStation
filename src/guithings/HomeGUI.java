@@ -49,7 +49,7 @@ public class HomeGUI extends JFrame implements ActionListener{
         createTitle();
         createStation();
         createBackground();
-
+//
 //        recyclingMonitoringStation.addMachine(40,40);
 //        addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(0));
 //

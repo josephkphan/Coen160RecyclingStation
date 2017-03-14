@@ -37,6 +37,15 @@ public class editMachineGUI extends JFrame implements ActionListener {
         createTitle();
         createInstructions();
         buttonBool = new boolean[7];
+
+        buttonBool[0] = homeGUI.getRecyclingMonitoringStation().isGlassBottleEnabled();
+        buttonBool[1] = homeGUI.getRecyclingMonitoringStation().isMetalCanEnabled();
+        buttonBool[2] = homeGUI.getRecyclingMonitoringStation().isMetalFoilEnabled();
+        buttonBool[3] = homeGUI.getRecyclingMonitoringStation().isPaperPlateEnabled();
+        buttonBool[4] = homeGUI.getRecyclingMonitoringStation().isPaperSheetEnabled();
+        buttonBool[5] = homeGUI.getRecyclingMonitoringStation().isPlasticBottleEnabled();
+        buttonBool[6] = homeGUI.getRecyclingMonitoringStation().isPlasticUtensilEnabled();
+
         toggleButtons = new JToggleButton[7];
 
         createButton(0, 10, 50);
@@ -78,12 +87,34 @@ public class editMachineGUI extends JFrame implements ActionListener {
                 if (buttonBool[index]) {
                     // Item enabled
                     toggleButtons[index].setForeground(Color.GREEN);
-                    //todo Add implementation here
                 } else {
                     //Item enabled
                     toggleButtons[index].setForeground(Color.RED);
-                    //todo add implementation here
                 }
+                switch(index){
+                    case 0:
+                        homeGUI.getRecyclingMonitoringStation().setGlassBottleEnabled(buttonBool[index]);
+                        break;
+                    case 1:
+                        homeGUI.getRecyclingMonitoringStation().setMetalCanEnabled(buttonBool[index]);
+                        break;
+                    case 2:
+                        homeGUI.getRecyclingMonitoringStation().setMetalFoilEnabled(buttonBool[index]);
+                        break;
+                    case 3:
+                        homeGUI.getRecyclingMonitoringStation().setPaperPlateEnabled(buttonBool[index]);
+                        break;
+                    case 4:
+                        homeGUI.getRecyclingMonitoringStation().setPaperSheetEnabled(buttonBool[index]);
+                        break;
+                    case 5:
+                        homeGUI.getRecyclingMonitoringStation().setPlasticBottleEnabled(buttonBool[index]);
+                        break;
+                    case 6:
+                        homeGUI.getRecyclingMonitoringStation().setPlasticUtensilEnabled(buttonBool[index]);
+                        break;
+                }
+                homeGUI.getRecyclingMonitoringStation().saveData();
 
             }
         };
@@ -127,6 +158,8 @@ public class editMachineGUI extends JFrame implements ActionListener {
                     if (glassInt != 0) Constants.GLASS_PRICE = glassInt;
                     if (plasticInt != 0) Constants.PLASTIC_PRICE = plasticInt;
                     if (paperInt != 0) Constants.PAPER_PRICE = paperInt;
+
+                    homeGUI.getRecyclingMonitoringStation().saveData();
 
                     actionPerformed(new ActionEvent(pane, 0, ""));
 
