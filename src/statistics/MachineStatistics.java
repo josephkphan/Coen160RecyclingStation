@@ -3,15 +3,18 @@ package statistics;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MachineStatistics {
     ArrayList<Transaction> transactionHistory;
-    ArrayList<Long> emptiedHistory;
+    ArrayList<String> emptiedHistory;
 
     public MachineStatistics(){
         transactionHistory = new ArrayList<Transaction>();
-        emptiedHistory = new ArrayList<Long>();
+        emptiedHistory = new ArrayList<String>();
     }
 
     public void addTransaction(Transaction transaction){
@@ -19,10 +22,13 @@ public class MachineStatistics {
     }
 
     public void justEmptied(){
-        this.emptiedHistory.add(System.currentTimeMillis()*1000);  // adds current time in seconds
+        DateFormat df = new SimpleDateFormat("MM/dd/yy");
+        Date dateobj = new Date();
+        System.out.println(df.format(dateobj));
+        this.emptiedHistory.add(df.format(dateobj));  // adds current time in seconds
     }
 
-    public ArrayList<Long> getEmptiedHistory() {
+    public ArrayList<String> getEmptiedHistory() {
         return emptiedHistory;
     }
 
@@ -109,7 +115,7 @@ public class MachineStatistics {
         try{
             for(Transaction t: transactionHistory)
                 a.put(t.toJSON());
-            for(Long l : emptiedHistory) {
+            for(String l : emptiedHistory) {
                 JSONObject temp = new JSONObject();
                 temp.put("time",l);
                 a2.put(temp);
@@ -134,7 +140,7 @@ public class MachineStatistics {
 
             for(int i = 0; i < a2.length(); i++){
                 JSONObject obj = a2.getJSONObject(i);
-                emptiedHistory.add( (Long) obj.get("time"));
+                emptiedHistory.add( (String) obj.get("time"));
             }
 
         }catch(Exception e){

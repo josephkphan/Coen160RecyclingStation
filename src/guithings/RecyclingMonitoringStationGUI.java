@@ -6,7 +6,9 @@ import machine.RecyclingMachine;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
@@ -63,7 +65,7 @@ public class RecyclingMonitoringStationGUI extends JFrame implements ActionListe
     private void createMachines() {
         System.out.println("# = " + homeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines());
         for (int i = 0; i < homeGUI.getRecyclingMonitoringStation().getNumberOfRecyclingMachines(); i++) {
-            machineInfoBars.add(new MachineInfoBar(homeGUI.getRecyclingMonitoringStation().getRecyclingMachine(i),
+            machineInfoBars.add(new MachineInfoBar(homeGUI, homeGUI.getRecyclingMonitoringStation().getRecyclingMachine(i),
                     pane, 50, 100 + 150 * i));
             machineInfoBars.get(i).actionPerformed(new ActionEvent(pane,0,""));
 
@@ -116,12 +118,14 @@ class MachineInfoBar implements ActionListener {
     private JButton empty, reload, stats;
     private JLabel label;
     private ArrayList<JLabel> labels;
+    private HomeGUI homeGUI;
 
-    public MachineInfoBar(RecyclingMachine recyclingMachine, Container pane, int x, int y) {
+    public MachineInfoBar(HomeGUI homeGUI, RecyclingMachine recyclingMachine, Container pane, int x, int y) {
         this.pane = pane;
         this.x = x;
         this.y = y;
         this.recyclingMachine = recyclingMachine;
+        this.homeGUI = homeGUI;
 
         labels = new ArrayList<JLabel>();
         createEmptyButton();
@@ -139,19 +143,43 @@ class MachineInfoBar implements ActionListener {
 
     private void createEmptyButton() {
         empty = new JButton("");
-        Runnable r = () -> recyclingMachine.empty();
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                recyclingMachine.empty();
+                homeGUI.getRecyclingMonitoringStation().saveData();
+                remove();
+                createEmptyButton();
+                createReloadMoneyButton();
+                createViewStatsButton();
+                createMachineLabels();
+                pane.revalidate();
+            }
+        };
         GeneralJStuff.createJTextButton(pane,empty, "Empty", x + 800, y + 20, 128, 32, r);
     }
 
     private void createReloadMoneyButton() {
         reload = new JButton("");
-        Runnable r = () -> recyclingMachine.reload();
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                recyclingMachine.reload();
+                homeGUI.getRecyclingMonitoringStation().saveData();
+                remove();
+                createEmptyButton();
+                createReloadMoneyButton();
+                createViewStatsButton();
+                createMachineLabels();
+                pane.revalidate();
+            }
+        };
         GeneralJStuff.createJTextButton(pane,reload, "Reload $", x + 800, y + 60, 128, 32, r);
     }
 
     private void createViewStatsButton() {
         stats = new JButton("");
-        Runnable r = () -> new MachineStatisticGUI(recyclingMachine); //todo change this
+        Runnable r = () -> new MachineStatisticGUI(recyclingMachine);
         GeneralJStuff.createJTextButton(pane,stats, "View Stats", x + 800, y + 100, 128, 32, r);
     }
 
@@ -243,6 +271,15 @@ class MachineInfoBar implements ActionListener {
 //        temp = new Cash(0,(int) recyclingMachine.getMachineStatistics().getTotalMoneyObtained());
 //        GeneralJStuff.createJTextLabel(pane,moneyObtained, "Total Money Obtained: " +
 //                temp.toString(), x + 550, y + 80);
+        DateFormat df = new SimpleDateFormat("MM/dd/yy");
+        if(recyclingMachine.getMachineStatistics().getEmptiedHistory().size()>0) {
+            GeneralJStuff.createJTextLabel(pane, moneyObtained, "Last Emptied: " +
+                   recyclingMachine.getMachineStatistics().getEmptiedHistory().get(0), x + 550, y + 80);
+        }else{
+            GeneralJStuff.createJTextLabel(pane,moneyObtained, "Last Emptied: " +
+                    "Never Emptied", x + 550, y + 80);
+        }
+
 
         //todo CHANGE MONEY TO CENTS HERE???
 

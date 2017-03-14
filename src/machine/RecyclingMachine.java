@@ -48,7 +48,7 @@ public class RecyclingMachine {
         this.maxPaperLoad = Constants.MAX_PAPER_LOAD;
         this.maxPlasticLoad = Constants.MAX_PLASTIC_LOAD;
 
-        this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0.00001;
+        this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0.001;
     }
 
     public RecyclingMachine(){
@@ -145,6 +145,7 @@ public class RecyclingMachine {
     // Empty out the recycling machine
     public void empty(){
         currentGlassLoad = currentMetalLoad = currentPaperLoad = currentPlasticLoad = 0;
+        machineStatistics.justEmptied();
     }
 
     // Reload the money in the machine
