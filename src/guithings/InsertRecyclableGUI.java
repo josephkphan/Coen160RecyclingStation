@@ -15,6 +15,8 @@ public class InsertRecyclableGUI {
     private HomeGUI homeGUI;
     private RecyclingMachineGUI recyclingMachineGUI;
     private RecyclingMachine recyclingMachine;
+    private JButton glassBottleButton, metalCanButton, metalFoilButton, paperPlateButton, paperSheetButton,
+            plasticBottleButton, plasticUtensilButton;
 
     public InsertRecyclableGUI(HomeGUI homeGUI, RecyclingMachineGUI recyclingMachineGUI, RecyclingMachine recyclingMachine) {
         this.homeGUI = homeGUI;
@@ -67,7 +69,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/glassBottle.png");
-        GeneralJStuff.createJTextButton(pane, "Glass Bottle", x, y, 150, 25, r);
+        glassBottleButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isGlassBottleEnabled()){
+            glassBottleButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane, glassBottleButton, "Glass Bottle", x, y, 150, 25, r);
     }
 
     private void createMetalCanButton(int x, int y) {
@@ -91,7 +97,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/metalCan.png");
-        GeneralJStuff.createJTextButton(pane, "Metal Can", x, y, 150, 25, r);
+        metalCanButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isMetalCanEnabled()){
+            metalCanButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane,metalCanButton, "Metal Can", x, y, 150, 25, r);
     }
 
     private void createMetalFoilButton(int x, int y) {
@@ -115,7 +125,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/metalFoil.png");
-        GeneralJStuff.createJTextButton(pane, "Metal Foil", x, y, 150, 25, r);
+        metalFoilButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isMetalFoilEnabled()){
+            metalFoilButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane,metalFoilButton, "Metal Foil", x, y, 150, 25, r);
     }
 
     private void createPaperPlateButton(int x, int y) {
@@ -139,7 +153,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/paperPlate.png");
-        GeneralJStuff.createJTextButton(pane, "Paper Plate", x, y, 150, 25, r);
+        paperPlateButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isPaperPlateEnabled()){
+            paperPlateButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane,paperPlateButton, "Paper Plate", x, y, 150, 25, r);
     }
 
     private void createPaperSheetButton(int x, int y) {
@@ -163,7 +181,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/paperSheet.png");
-        GeneralJStuff.createJTextButton(pane, "Paper Sheet", x, y, 150, 25, r);
+        paperSheetButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isPlasticBottleEnabled()){
+            paperSheetButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane,paperSheetButton, "Paper Sheet", x, y, 150, 25, r);
     }
 
     private void createPlasticBottleButton(int x, int y) {
@@ -187,7 +209,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/plasticBottle.png");
-        GeneralJStuff.createJTextButton(pane, "Plastic Bottle", x, y, 150, 25, r);
+        plasticBottleButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isPlasticBottleEnabled()){
+            plasticBottleButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane, plasticBottleButton,"Plastic Bottle", x, y, 150, 25, r);
     }
 
     private void createPlasticUtensilButton(int x, int y) {
@@ -211,7 +237,11 @@ public class InsertRecyclableGUI {
             close();
         };
         GeneralJStuff.createJImage(pane, x + 42, y - 75, 64, 64, "src/assets/plasticUtensils.png");
-        GeneralJStuff.createJTextButton(pane, "Plastic Utensil", x, y, 150, 25, r);
+        plasticUtensilButton = new JButton();
+        if(!homeGUI.getRecyclingMonitoringStation().isPlasticUtensilEnabled()){
+            plasticUtensilButton.setEnabled(false);
+        }
+        GeneralJStuff.createJTextButton(pane, plasticUtensilButton, "Plastic Utensil", x, y, 150, 25, r);
     }
 
     private void close() {
