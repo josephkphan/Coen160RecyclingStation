@@ -27,6 +27,7 @@ public class Payout extends JFrame {
 
             String payoutMessage = ("Amount of cash you received: " + transactionTotalInDollars);
             GeneralJStuff.createJTextLabelCentered(pane, payoutMessage, WINDOW_WIDTH);
+            GeneralJStuff.createJImageCentered(pane,WINDOW_WIDTH,30,128,128,"src/assets/money.png");
         }
         else {
             // Coupon
@@ -42,6 +43,7 @@ public class Payout extends JFrame {
 
             String payoutMessage = "Amount of money in your coupon: $" + Double.toString(transactionTotal);
             GeneralJStuff.createJTextLabelCentered(pane, payoutMessage, WINDOW_WIDTH);
+            GeneralJStuff.createJImageCentered(pane,WINDOW_WIDTH,125,64,64,"src/assets/money.png");
         }
     }
 }
