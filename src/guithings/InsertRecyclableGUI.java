@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class InsertRecyclableGUI {
+public class InsertRecyclableGUI extends JFrame {
     private static final int WINDOW_WIDTH = 600;
     private static final int WINDOW_HEIGHT = 400;
     private Container pane;
@@ -58,8 +58,6 @@ public class InsertRecyclableGUI {
             if (success == false) {
                 // TODO: Display Error Message to User
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Glass Bottle", randomWeight);
@@ -85,8 +83,6 @@ public class InsertRecyclableGUI {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Metal Can", randomWeight);
@@ -112,8 +108,6 @@ public class InsertRecyclableGUI {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Metal Foil", randomWeight);
@@ -139,8 +133,6 @@ public class InsertRecyclableGUI {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Paper Plate", randomWeight);
@@ -166,8 +158,6 @@ public class InsertRecyclableGUI {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Paper Sheet", randomWeight);
@@ -193,8 +183,6 @@ public class InsertRecyclableGUI {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Plastic Bottle", randomWeight);
@@ -220,8 +208,6 @@ public class InsertRecyclableGUI {
 
             if (success == false) {
                 System.out.println("The Recycling Machine is Full!!!");
-            } else {
-                System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
             recyclingMachineGUI.addTransactionItem("Plastic Utensil", randomWeight);

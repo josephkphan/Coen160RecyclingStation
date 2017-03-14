@@ -10,7 +10,6 @@ import recyclable.Plastic;
 import statistics.Transaction;
 import statistics.MachineStatistics;
 
-
 public class RecyclingMachine {
     // Containment of the MachineStatistics Class
     private MachineStatistics machineStatistics = new MachineStatistics();
@@ -22,7 +21,7 @@ public class RecyclingMachine {
     // Transaction Related Data Members
     private Transaction t;
     private boolean inTransaction;
-    private int transactionTotal;
+    private double transactionTotal;
     private int numPlasticItems, numPaperItems, numGlassItems, numMetalItems;
     private double availableMoney;
 
@@ -42,7 +41,7 @@ public class RecyclingMachine {
         this.transactionTotal = 0;
         this.numGlassItems = this.numMetalItems = this.numPaperItems = this.numPlasticItems = 0;
 
-        this.availableMoney = 100; // TODO: Set these values to the constant file
+        this.availableMoney = 100.00; // TODO: Set these values to the constant file
 
         this.maxGlassLoad = Constants.MAX_GLASS_LOAD;
         this.maxMetalLoad = Constants.MAX_METAL_LOAD;
@@ -65,23 +64,26 @@ public class RecyclingMachine {
 
     // End Transaction
     public void endTransaction() {
-        setTransactionTotal(t.getTransactionTotal());
+        this.transactionTotal = t.getTransactionTotal();
 
-        setNumGlassItems(this.numGlassItems + t.getNumGlassItems());
-        setNumMetalItems(this.numMetalItems + t.getNumMetalItems());
-        setNumPaperItems(this.numPaperItems + t.getNumPaperItems());
-        setNumPlasticItems(this.numPlasticItems + t.getNumPlasticItems());
+        this.numGlassItems += t.getNumGlassItems();
+        this.numMetalItems += t.getNumMetalItems();
+        this.numPaperItems += t.getNumPaperItems();
+        this.numPlasticItems += t.getNumPlasticItems();
 
-        setCurrentGlassLoad(this.currentGlassLoad + t.getGlassLoad());
-        setCurrentMetalLoad(this.currentMetalLoad + t.getMetalLoad());
-        setCurrentPaperLoad(this.currentPaperLoad + t.getPaperLoad());
-        setCurrentPlasticLoad(this.currentPlasticLoad + t.getPlasticLoad());
+        this.currentGlassLoad += t.getGlassLoad();
+        this.currentMetalLoad += t.getMetalLoad();
+        this.currentPaperLoad += t.getPaperLoad();
+        this.currentPlasticLoad += t.getPlasticLoad();
 
-        // TODO: Still need to fulfill the payout to the customer
-        if (availableMoney < t.getTransactionTotal()) {
+        // Conversion from Cents to Dollars
+        this.transactionTotal /= 100D;
+
+        if (this.availableMoney < this.transactionTotal) {
             t.setPayoutToCoupon();
         } else {
-            t.isPayoutInCash();
+            this.availableMoney -= this.transactionTotal;
+            System.out.println("Available Money: $" + Double.toString(this.availableMoney));
         }
 
         setInTransaction(false);
@@ -158,10 +160,6 @@ public class RecyclingMachine {
 
     public double getCurrentTransactionGlassLoad() { return this.currentGlassLoad + t.getGlassLoad(); }
 
-    public void setCurrentGlassLoad(double currentGlassLoad) {
-        this.currentGlassLoad = currentGlassLoad;
-    }
-
 
     public double getMaxMetalLoad() {
         return maxMetalLoad;
@@ -172,10 +170,6 @@ public class RecyclingMachine {
     }
 
     public double getCurrentTransactionMetalLoad() { return this.currentMetalLoad + t.getMetalLoad(); }
-
-    public void setCurrentMetalLoad(double currentMetalLoad) {
-        this.currentMetalLoad = currentMetalLoad;
-    }
 
 
     public double getMaxPaperLoad() {
@@ -188,10 +182,6 @@ public class RecyclingMachine {
 
     public double getCurrentTransactionPaperLoad() { return this.currentPaperLoad + t.getPaperLoad(); }
 
-    public void setCurrentPaperLoad(double currentPaperLoad) {
-        this.currentPaperLoad = currentPaperLoad;
-    }
-
 
     public double getMaxPlasticLoad() {
         return maxPlasticLoad;
@@ -202,10 +192,6 @@ public class RecyclingMachine {
     }
 
     public double getCurrentTransactionPlasticLoad() { return this.currentPlasticLoad + t.getPlasticLoad(); }
-
-    public void setCurrentPlasticLoad(double currentPlasticLoad) {
-        this.currentPlasticLoad = currentPlasticLoad;
-    }
 
 
     public int getId() {
@@ -241,12 +227,8 @@ public class RecyclingMachine {
         this.inTransaction = inTransaction;
     }
 
-    public int getTransactionTotal() {
+    public double getTransactionTotal() {
         return transactionTotal;
-    }
-
-    public void setTransactionTotal(int transactionTotal) {
-        this.transactionTotal = transactionTotal;
     }
 
     public int getCurrentTransactionTotal() {
@@ -294,9 +276,8 @@ public class RecyclingMachine {
         return availableMoney;
     }
 
-    public void setAvailableMoney(double availableMoney) {
-        this.availableMoney = availableMoney;
-    }
+
+    public boolean getIsPayoutInCash() { return t.isPayoutInCash(); }
 
 
     public MachineStatistics getMachineStatistics() {

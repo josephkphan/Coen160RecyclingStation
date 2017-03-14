@@ -76,11 +76,15 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
 
     private void createFinishButton() {
         Runnable r = () -> {
-            // Display a Coupon for the User
-
-            // Clear out the RCM
             recyclingMachine.endTransaction();
 
+            // Pay the Customer
+            boolean isPayoutInCash = recyclingMachine.getIsPayoutInCash();
+            double transactionTotal = recyclingMachine.getTransactionTotal();
+            System.out.print("Transaction Total: $" + Double.toString(transactionTotal));
+            new Payout(isPayoutInCash, transactionTotal);
+
+            // Clear out the RCM
             close();
         };
         GeneralJStuff.createJTextButton(pane, "Finished!", 700, 50, 200, 25, r);
@@ -159,6 +163,4 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
         transactionItems.add(type);
         transactionItemsWeights.add(weight);
     }
-
-
 }

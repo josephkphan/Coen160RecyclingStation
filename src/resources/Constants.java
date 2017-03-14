@@ -4,10 +4,10 @@ import currency.Cash;
 import currency.USMoney;
 
 public class Constants {
-    public static int GLASS_PRICE = 300;
-    public static int METAL_PRICE = 400;
-    public static int PAPER_PRICE = 100;
-    public static int PLASTIC_PRICE = 200;
+    public static int GLASS_PRICE = 150;
+    public static int METAL_PRICE = 200;
+    public static int PAPER_PRICE = 50;
+    public static int PLASTIC_PRICE = 100;
 
     public static double MAX_GLASS_LOAD = 100;
     public static double MAX_METAL_LOAD = 100;
