@@ -112,7 +112,7 @@ class BarChart extends JPanel {
         int x = 1;
         int counter = 0;
         for (Color color : bars.keySet()) {
-            g.drawString(Integer.toString(2007 + (counter++)), x+25,790);
+            g.drawString(Integer.toString(2007 + (counter++)), x+25,440);
             int value = bars.get(color);
             int height = (int) ((getHeight() - 5) * ((double) value / max));
             g.setColor(color);
@@ -121,11 +121,11 @@ class BarChart extends JPanel {
             g.drawRect(x+20, getHeight() - height-20, width, height);
             x += (width + 2);
         }
-        g.drawLine(10,790,800,790);
-        g.drawString("Year", 300,800);
-        g.drawLine(10,790,10,0);
-        g.drawString("# Transactions", 20,350);
-        g.drawString("Time Vs. Transactions",300, 50);
+        g.drawLine(10,440,600,440);
+        g.drawString("Year", 300,450);
+        g.drawLine(10,440,10,0);
+        g.drawString("# Transactions", 20,200);
+        g.drawString("Time Vs. Transactions",275, 20);
     }
 
     @Override
@@ -162,9 +162,9 @@ public class MachineStatisticGUI {
         datamanager.readDataFromFile(".//src//guithings//sales.txt");
 
         BarChart chart = new BarChart(datamanager.getData());
-        chart.setSize(500, 700);
+        chart.setSize(500, 400);
 
-        frame.setSize(600, 800);
+        frame.setSize(600, 450);
         frame.getContentPane().add(chart);
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
