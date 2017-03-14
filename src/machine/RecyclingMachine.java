@@ -41,7 +41,7 @@ public class RecyclingMachine {
         this.transactionTotal = 0;
         this.numGlassItems = this.numMetalItems = this.numPaperItems = this.numPlasticItems = 0;
 
-        this.availableMoney = 100.00; // TODO: Set these values to the constant file
+        this.availableMoney = 100.00;
 
         this.maxGlassLoad = Constants.MAX_GLASS_LOAD;
         this.maxMetalLoad = Constants.MAX_METAL_LOAD;
@@ -143,11 +143,13 @@ public class RecyclingMachine {
         return true;
     }
 
-    //todo CHECK THIS???
+    // Empty out the recycling machine
     public void empty(){
         currentGlassLoad = currentMetalLoad = currentPaperLoad = currentPlasticLoad = 0;
     }
 
+    // Reload the money in the machine
+    public void reload() { this.availableMoney = 100.00; }
 
     // Setters and Getters
     public double getMaxGlassLoad() {

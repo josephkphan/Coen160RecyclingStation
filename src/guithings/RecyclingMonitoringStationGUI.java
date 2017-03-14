@@ -143,7 +143,7 @@ class MachineInfoBar implements ActionListener {
 
     private void createReloadMoneyButton() {
         reload = new JButton("");
-        Runnable r = () -> recyclingMachine.empty(); //todo change this
+        Runnable r = () -> recyclingMachine.reload();
         GeneralJStuff.createJTextButton(pane,reload, "Reload $", x + 800, y + 60, 128, 32, r);
     }
 
