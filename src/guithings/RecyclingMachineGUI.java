@@ -6,22 +6,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class RecyclingMachineGUI extends JFrame implements ActionListener {
     private static final int WINDOW_WIDTH = 1000;
     private static final int WINDOW_HEIGHT = 500;
+    private ArrayList<String> transactionItems;
+    private ArrayList<Double> transactionItemsWeights;
+
     private Container pane;
     private JFrame frame;
     private JLabel glass, metal, paper, plastic;
     private JTextArea display;
     private JScrollPane scroll;
-    private HomeGUI homeGUI;
 
+    private HomeGUI homeGUI;
     private RecyclingMachine recyclingMachine;
 
     public RecyclingMachineGUI(HomeGUI homeGUI, RecyclingMachine recyclingMachine) {
         this.homeGUI = homeGUI;
         this.recyclingMachine = recyclingMachine;
+        transactionItems = new ArrayList<>();
+        transactionItemsWeights = new ArrayList<>();
 
         frame = new JFrame("Recycling Machine Window");
 
@@ -55,7 +61,6 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
 
     private void createInsertButton() {
         Runnable r = () -> {
-            System.out.println("Clicked Insert");
             new InsertRecyclableGUI(homeGUI, this, recyclingMachine);
         };
         GeneralJStuff.createJTextButton(pane, "Insert Recyclable", 25, 50, 200, 25, r);
@@ -63,7 +68,6 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
 
     private void createCancelButton() {
         Runnable r = () -> {
-            System.out.println("Clicked Cancel");
             recyclingMachine.cancelTransaction();
             close();
         };
@@ -72,7 +76,6 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
 
     private void createFinishButton() {
         Runnable r = () -> {
-            System.out.println("Clicked Finish");
             // Display a Coupon for the User
 
             // Clear out the RCM
@@ -85,7 +88,13 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
 
     private void createItemsInsertedDisplay() {
         display = new JTextArea (5, 58);
-        display.append("Hello\nHello\nHello\nWorld\nWorld\nWorld\nWorld\nWorld\nWorld\n");
+
+        for (int i = 0; i < transactionItems.size(); i++) {
+            display.append(transactionItems.get(i) + "     Weight: ");
+            display.append(Double.toString(transactionItemsWeights.get(i)));
+            display.append("\n");
+        }
+
         display.setEditable (false);
 
         scroll = new JScrollPane (display);
@@ -134,17 +143,22 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
     }
 
     private void refresh() {
-        System.out.println("HERE DAWG");
+        display.setVisible(false);
+        scroll.setVisible(false);
         glass.setVisible(false);
         metal.setVisible(false);
         paper.setVisible(false);
         plastic.setVisible(false);
         createItemsInsertedDisplay();
         createCurrentLoadDisplay();
+        revalidate();
     }
 
-    // Display items accepted by the machine & price paid for each item & total weight of machine & capacity
+    // Setters
+    public void addTransactionItem(String type, double weight) {
+        transactionItems.add(type);
+        transactionItemsWeights.add(weight);
+    }
 
-    // Insert Glass, Metal, Paper, Plastic
 
 }

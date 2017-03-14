@@ -48,8 +48,6 @@ public class InsertRecyclableGUI {
 
     private void createGlassBottleButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Glass Bottle");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -64,6 +62,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Glass Bottle", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -77,8 +76,6 @@ public class InsertRecyclableGUI {
 
     private void createMetalCanButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Metal Can");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -92,6 +89,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Metal Can", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -105,8 +103,6 @@ public class InsertRecyclableGUI {
 
     private void createMetalFoilButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Metal Foil");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -120,6 +116,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Metal Foil", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -133,8 +130,6 @@ public class InsertRecyclableGUI {
 
     private void createPaperPlateButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Paper Plate");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -148,6 +143,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Paper Plate", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -161,8 +157,6 @@ public class InsertRecyclableGUI {
 
     private void createPaperSheetButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Paper Sheet");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -176,6 +170,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Paper Sheet", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -189,8 +184,6 @@ public class InsertRecyclableGUI {
 
     private void createPlasticBottleButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Plastic Bottle");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -204,6 +197,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Plastic Bottle", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
@@ -217,8 +211,6 @@ public class InsertRecyclableGUI {
 
     private void createPlasticUtensilButton(int x, int y) {
         Runnable r = () -> {
-            System.out.println("Clicked Plastic Utensil");
-
             // Randomly generate a weight for the item between 0 -> 10 lbs
             double randomWeight = (int) (Math.random() * 1000);
             randomWeight /= 100;
@@ -232,6 +224,7 @@ public class InsertRecyclableGUI {
                 System.out.println(recyclingMachine.getCurrentTransactionTotal());
             }
 
+            recyclingMachineGUI.addTransactionItem("Plastic Utensil", randomWeight);
             recyclingMachineGUI.actionPerformed(new ActionEvent(pane, 0, ""));
             close();
         };
