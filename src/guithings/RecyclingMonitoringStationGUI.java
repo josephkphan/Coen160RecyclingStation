@@ -179,7 +179,7 @@ class MachineInfoBar implements ActionListener {
     private void createViewStatsButton() {
         stats = new JButton("");
         Runnable r = () -> {
-            new MachineStatisticGUI();
+            new MachineStatisticGUI(recyclingMachine);
         };
 
         GeneralJStuff.createJTextButton(pane,stats, "View Stats", x + 800, y + 100, 128, 32, r);

@@ -184,6 +184,4 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
     public void displayMachineFullError() {
         this.displayMachineFullError = true;
     }
-
-
 }

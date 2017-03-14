@@ -1,20 +1,22 @@
 package guithings;
+import machine.RecyclingMachine;
 import statistics.MachineStatistics;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+// This Year: # of Hours Ago
+// Sales: # of Transactions
+
 
 interface DataGetter {
     public void readDataFromFile(String fileName);
@@ -40,9 +42,6 @@ class DataManager implements DataGetter {
     private Random randomGenerator = new Random();
     private Color[] salesColors;
 
-    /**
-     * ToDo: CommentMe CommentMe CommentMe CommentMe CommentMe CommentMe
-     */
     public void readDataFromFile(String fileName) {
         Sales saleByQ;
 
@@ -86,10 +85,6 @@ class DataManager implements DataGetter {
         }
     }
 
-    /**
-     * ToDo: CommentMe CommentMe CommentMe CommentMe CommentMe CommentMe
-     * @return
-     */
     public Map<Color, Sales> getData() {
         return sales;
     }
@@ -98,10 +93,6 @@ class DataManager implements DataGetter {
 class BarChart extends JPanel {
     private Map<Color, Integer> bars = new LinkedHashMap<Color, Integer>();
 
-    /**
-     *
-     * @param data
-     */
     public BarChart(Map<Color, Sales> data) {
         for (Color keyColor : data.keySet()) {
             Sales sale = data.get(keyColor);
@@ -109,9 +100,6 @@ class BarChart extends JPanel {
         }
     }
 
-    /**
-     * ToDo: CommentMe CommentMe CommentMe CommentMe CommentMe CommentMe
-     */
     @Override
     protected void paintComponent(Graphics gp) {
         super.paintComponent(gp);
@@ -137,9 +125,6 @@ class BarChart extends JPanel {
         }
     }
 
-    /**
-     * ToDo: CommentMe CommentMe CommentMe CommentMe CommentMe CommentMe
-     */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(bars.size() * 10 + 2, 50);
@@ -147,8 +132,29 @@ class BarChart extends JPanel {
 }
 
 public class MachineStatisticGUI {
-    public MachineStatisticGUI() {
-        JFrame frame = new JFrame("Bar Chart");
+    public MachineStatisticGUI(RecyclingMachine recyclingMachine) {
+        // Write to the `sales.txt` file for dynamic data
+        try {
+            File myFoo = new File(".//src/guithings//sales.txt");
+            FileWriter fooWriter = new FileWriter(myFoo, false); // true to append
+            fooWriter.write("10:7\n");
+            fooWriter.write("9:18\n");
+            fooWriter.write("8:12\n");
+            fooWriter.write("7:20\n");
+            fooWriter.write("6:16\n");
+            fooWriter.write("5:5\n");
+            fooWriter.write("4:9\n");
+            fooWriter.write("3:14\n");
+            fooWriter.write("2:9\n");
+            fooWriter.write("1:6\n");
+            fooWriter.write("0:" + Integer.toString(recyclingMachine.getMachineStatistics().getNumberOfTransactions()));
+            fooWriter.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        // Set up the Bar Chart
+        JFrame frame = new JFrame("Machine Statistics");
         DataManager datamanager = new DataManager();
         datamanager.readDataFromFile(".//src//guithings//sales.txt");
 
@@ -157,14 +163,8 @@ public class MachineStatisticGUI {
 
         frame.setSize(600, 800);
         frame.getContentPane().add(chart);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
-
-
-//// RCM Model
-//1) Create an Map with the key as the RecycleItem and the value as the counter for how many times that item was recycled.
-//2) In the recycle method of the RCM, iterate through the map and compare if the type of the item of the key is equal
-//to the type of the item passed into the method, then you increment the counter for that item in the map.
