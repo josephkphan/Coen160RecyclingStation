@@ -1,16 +1,16 @@
-# Coen160RecyclingStation
+## Coen160RecyclingStation
 
-#Creators:
+## Creators:
   - Joseph Phan
   - Thomas Nguyen
 
-#About the System
+## About the System
 - Data is Persistent
 - RMOS, RCM, and transaction data Objects are saved in json. Objects are recreated on program start-up. 
   - This means when you restart the program, it will be just as you left it (data wise)
   - Different windows dynamically update one another
 
-#Features
+## Features
 - Editing acceptable recyclable items
 - Changing metal pricing
 - Adding multiple items per transaction
