@@ -1,5 +1,8 @@
 package currency;
 
+/**
+ * Used to differentiate between coupons and cash
+ */
 public class Coupon extends USMoney {
 
     public Coupon() {
@@ -9,7 +12,7 @@ public class Coupon extends USMoney {
         super(dollars, cents);
     }
 
-    public Coupon(USMoney money){
-        super(money.getDollars(),money.getCents());
+    public Coupon(USMoney money) {
+        super(money.getDollars(), money.getCents());
     }
 }

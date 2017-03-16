@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * ￼RCM:
+ * The RCM allows users to input any amount of recyclable items. If the load for a specific type is full,
+ * users will not be able to input that type anymore. Users can see their items as they put it in and see the
+ * current state of the machine.
+ */
 public class RecyclingMachineGUI extends JFrame implements ActionListener {
     private static final int WINDOW_WIDTH = 1000;
     private static final int WINDOW_HEIGHT = 500;
@@ -97,13 +103,13 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
     }
 
     private void createItemsInsertedDisplay() {
-        display = new JTextArea (5, 58);
+        display = new JTextArea(5, 58);
 
         for (int i = 0; i < transactionItems.size(); i++) {
             display.append(transactionItems.get(i) + "     Weight: ");
             display.append(Double.toString(transactionItemsWeights.get(i)));
 
-            double priceInDollars = transactionItemsPrices.get(i)/100D;
+            double priceInDollars = transactionItemsPrices.get(i) / 100D;
             display.append(" lbs     Price: $" + Double.toString(priceInDollars));
 
             display.append("\n");
@@ -113,42 +119,42 @@ public class RecyclingMachineGUI extends JFrame implements ActionListener {
             display.append("Could not add recyclable item. Machine is full!!");
         }
 
-        display.setEditable (false);
+        display.setEditable(false);
 
-        scroll = new JScrollPane (display);
-        scroll.setVerticalScrollBarPolicy (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scroll.setBounds(25,100,500,300);
+        scroll = new JScrollPane(display);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setBounds(25, 100, 500, 300);
 
         pane.add(scroll);
     }
 
     private void createCurrentLoadDisplay() {
-        GeneralJStuff.createJTextLabel(pane, "Recycling Machine Load Information", 600,100);
+        GeneralJStuff.createJTextLabel(pane, "Recycling Machine Load Information", 600, 100);
 
         // Display information on the Machine's Glass Load
         String glassLoad = "Glass Load (lbs): "
                 + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentGlassLoad() + recyclingMachine.getCurrentTransactionGlassLoad()))
                 + "  Max Glass Load (lbs): " + recyclingMachine.getMaxGlassLoad();
         glass = new JLabel();
-        GeneralJStuff.createJTextLabel(pane, glass, glassLoad, 600,125);
+        GeneralJStuff.createJTextLabel(pane, glass, glassLoad, 600, 125);
 
         // Display information on the Machine's Metal Load
         String metalLoad = "Metal Load (lbs): " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentMetalLoad() + recyclingMachine.getCurrentTransactionMetalLoad()))
                 + "  Max Metal Load (lbs): " + recyclingMachine.getMaxMetalLoad();
         metal = new JLabel();
-        GeneralJStuff.createJTextLabel(pane, metal, metalLoad, 600,150);
+        GeneralJStuff.createJTextLabel(pane, metal, metalLoad, 600, 150);
 
         // Display information on the Machine's Paper Load
         String paperLoad = "Paper Load (lbs): " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentPaperLoad() + recyclingMachine.getCurrentTransactionPaperLoad()))
                 + "  Max Paper Load (lbs): " + recyclingMachine.getMaxPaperLoad();
         paper = new JLabel();
-        GeneralJStuff.createJTextLabel(pane, paper, paperLoad, 600,175);
+        GeneralJStuff.createJTextLabel(pane, paper, paperLoad, 600, 175);
 
         // Display information on the Machine's Plastic Load
         String plasticLoad = "Plastic Load (lbs): " + Double.parseDouble(new DecimalFormat("##.##").format(recyclingMachine.getCurrentPlasticLoad() + recyclingMachine.getCurrentTransactionPlasticLoad()))
                 + "  Max Plastic Load (lbs): " + recyclingMachine.getMaxPlasticLoad();
         plastic = new JLabel();
-        GeneralJStuff.createJTextLabel(pane, plastic, plasticLoad, 600,200);
+        GeneralJStuff.createJTextLabel(pane, plastic, plasticLoad, 600, 200);
     }
 
     private void close() {

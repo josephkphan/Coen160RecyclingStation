@@ -7,7 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class RemoveMachineGUI extends JFrame{
+/**
+ * GUI to remove a Machine User inputs Machine ID. System will whether input is valid or not
+ * if it is: system will remove the machine and all its info and close this screen
+ * if it isn't : screen will give user an error message
+ */
+public class RemoveMachineGUI extends JFrame {
     private static final int WINDOW_WIDTH = 300;
     private static final int WINDOW_HEIGHT = 200;
     private Container pane;
@@ -16,6 +21,7 @@ public class RemoveMachineGUI extends JFrame{
     private JLabel checkLogin;
     private HomeGUI homeGUI;
     private RecyclingMonitoringStationGUI recyclingMonitoringStationGUI;
+
     public RemoveMachineGUI(HomeGUI homeGUI, RecyclingMonitoringStationGUI recyclingMonitoringStationGUI) {
         this.homeGUI = homeGUI;
         this.recyclingMonitoringStationGUI = recyclingMonitoringStationGUI;
@@ -37,43 +43,44 @@ public class RemoveMachineGUI extends JFrame{
     }
 
     private void createTitle() {
-        GeneralJStuff.createJTextLabelCentered(pane,"Remove Recycling Machine", WINDOW_WIDTH);
+        GeneralJStuff.createJTextLabelCentered(pane, "Remove Recycling Machine", WINDOW_WIDTH);
     }
 
-    private void createXLabel(){
+    private void createXLabel() {
         xField = new JTextField(10);
-        GeneralJStuff.createJTextLabel(pane,"ID: ",50,  + 50);
-        GeneralJStuff.createJTextField(pane, xField,150,  50);
+        GeneralJStuff.createJTextLabel(pane, "ID: ", 50, +50);
+        GeneralJStuff.createJTextField(pane, xField, 150, 50);
     }
 
-    private void checkText(){
+    private void checkText() {
         checkLogin = new JLabel("");
-        checkLogin.setBounds(125, 100,200, 25);
+        checkLogin.setBounds(125, 100, 200, 25);
         pane.add(checkLogin);
     }
 
     private void createAddButton() {
         Runnable r = () -> {
             String xString = xField.getText();
-            try{
+            try {
                 int x = Integer.parseInt(xString);
-                if(x < 0){
+                if (x < 0) {
                     throw new Exception();
                 }
                 homeGUI.addMachineToRemove(x);
-                homeGUI.actionPerformed(new ActionEvent(pane,0,""));
-                recyclingMonitoringStationGUI.actionPerformed(new ActionEvent(pane,0,""));
+                homeGUI.actionPerformed(new ActionEvent(pane, 0, ""));
+                recyclingMonitoringStationGUI.actionPerformed(new ActionEvent(pane, 0, ""));
                 close();
-            }catch(Exception e){
+            } catch (Exception e) {
                 checkLogin.setForeground(Color.red);
                 checkLogin.setText("Invalid Input, Try Again");
             }
 
         };
 
-        GeneralJStuff.createJTextButton(pane,"Remove",150, 125,
-                100,32,r);
+        GeneralJStuff.createJTextButton(pane, "Remove", 150, 125,
+                100, 32, r);
     }
+
     private void createCancelButton() {
         Runnable r = new Runnable() {
             @Override
@@ -81,8 +88,8 @@ public class RemoveMachineGUI extends JFrame{
                 close();
             }
         };
-        GeneralJStuff.createJTextButton(pane,"Cancel",25, 125,
-                100,32,r);
+        GeneralJStuff.createJTextButton(pane, "Cancel", 25, 125,
+                100, 32, r);
     }
 
 
@@ -90,7 +97,6 @@ public class RemoveMachineGUI extends JFrame{
         frame.setVisible(false); //you can't see me!
         frame.dispose(); //Destroy the JFrame object
     }
-
 
 
 }

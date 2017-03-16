@@ -6,6 +6,9 @@ import recyclable.Metal;
 import recyclable.Paper;
 import recyclable.Plastic;
 
+/**
+ * Create a Data Structure to contain the information needed for a transaction
+ */
 public class Transaction {
     private int transactionTotal;
     private int numPlasticItems, numPaperItems, numGlassItems, numMetalItems;
@@ -19,31 +22,31 @@ public class Transaction {
         payoutInCash = true;
     }
 
-    public void addGlassItem(Glass item, int cents){
+    public void addGlassItem(Glass item, int cents) {
         numGlassItems++;
         glassLoad += item.getWeight();
         transactionTotal += cents;
     }
 
-    public void addMetalItem(Metal item, int cents){
+    public void addMetalItem(Metal item, int cents) {
         numMetalItems++;
         metalLoad += item.getWeight();
         transactionTotal += cents;
     }
 
-    public void addPaperItem(Paper item, int cents){
+    public void addPaperItem(Paper item, int cents) {
         numPaperItems++;
         paperLoad += item.getWeight();
         transactionTotal += cents;
     }
 
-    public void addPlasticItem(Plastic item, int cents){
+    public void addPlasticItem(Plastic item, int cents) {
         numPlasticItems++;
         plasticLoad += item.getWeight();
         transactionTotal += cents;
     }
 
-    public void setPayoutToCoupon(){
+    public void setPayoutToCoupon() {
         payoutInCash = false;
     }
 
@@ -87,10 +90,10 @@ public class Transaction {
         return metalLoad;
     }
 
-    public JSONObject toJSON(){
+    public JSONObject toJSON() {
         JSONObject o = new JSONObject();
-        try{
-            o.put("transactionTotal",transactionTotal);
+        try {
+            o.put("transactionTotal", transactionTotal);
             o.put("numPlasticItems", numPlasticItems);
             o.put("numPaperItems", numPaperItems);
             o.put("numGlassItems", numGlassItems);
@@ -100,14 +103,14 @@ public class Transaction {
             o.put("glassLoad", glassLoad);
             o.put("metalLoad", metalLoad);
             o.put("payoutInCash", payoutInCash);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return o;
     }
 
-    public void fromJSON(JSONObject o){
-        try{
+    public void fromJSON(JSONObject o) {
+        try {
             transactionTotal = (int) o.get("transactionTotal");
             numPlasticItems = (int) o.get("numPlasticItems");
             numPaperItems = (int) o.get("numPaperItems");
@@ -119,7 +122,7 @@ public class Transaction {
             metalLoad = (double) o.get("metalLoad");
             payoutInCash = (boolean) o.get("payoutInCash");
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -1,5 +1,8 @@
 package recyclable;
 
+/**
+ * Recyclable items will have its "type" or class to differentiate them along with this data member weight
+ */
 public abstract class RecyclableItem {
     private double weight;
 

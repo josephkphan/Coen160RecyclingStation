@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A nice Wrapper Class to easily user JFrame. This is recommended to use with JFrame's absolute Layout
+ */
 public class GeneralJStuff {
     static void createJTextLabel(Container pane, String string, int x, int y) {
         JLabel label = new JLabel(string);
@@ -106,7 +109,7 @@ public class GeneralJStuff {
     }
 
     //todo UNTESTED
-    static void createJButtonImage(Container pane, int x, int y, int width, int height, String filePath, Runnable r){
+    static void createJButtonImage(Container pane, int x, int y, int width, int height, String filePath, Runnable r) {
         JButton button = new JButton("");
         button.setBounds(x, y, width, height);
         button.addActionListener(new ActionListener() {
@@ -118,7 +121,7 @@ public class GeneralJStuff {
         pane.add(button);
     }
 
-    static void createJToggleButton(Container pane, JToggleButton toggleButton, int x,int y, int width, int height, Runnable r, boolean b){
+    static void createJToggleButton(Container pane, JToggleButton toggleButton, int x, int y, int width, int height, Runnable r, boolean b) {
         toggleButton.setBounds(x, y, width, height);
         toggleButton.addActionListener(new ActionListener() {
             @Override
@@ -126,9 +129,9 @@ public class GeneralJStuff {
                 r.run();
             }
         });
-        if(b){
+        if (b) {
             toggleButton.setForeground(Color.GREEN);
-        }else{
+        } else {
             toggleButton.setForeground(Color.RED);
         }
         pane.add(toggleButton);

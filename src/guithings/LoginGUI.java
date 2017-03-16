@@ -4,7 +4,12 @@ package guithings;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginGUI extends JFrame{
+/**
+ * Login Window:
+ * Allows Admins to login to the RMOS view. It checks for a correct account info
+ * (username: user , password: pass)
+ */
+public class LoginGUI extends JFrame {
     private static final int WINDOW_WIDTH = 300;
     private static final int WINDOW_HEIGHT = 200;
     private Container pane;
@@ -34,25 +39,25 @@ public class LoginGUI extends JFrame{
     }
 
     private void createTitle() {
-        GeneralJStuff.createJTextLabelCentered(pane,"Admin Login", WINDOW_WIDTH);
+        GeneralJStuff.createJTextLabelCentered(pane, "Admin Login", WINDOW_WIDTH);
     }
 
-    private void createUsername(){
+    private void createUsername() {
         usernameField = new JTextField(10);
-        GeneralJStuff.createJTextLabel(pane,"Username: ",50, 50);
-        GeneralJStuff.createJTextField(pane,usernameField,150, 50);
+        GeneralJStuff.createJTextLabel(pane, "Username: ", 50, 50);
+        GeneralJStuff.createJTextField(pane, usernameField, 150, 50);
     }
 
-    private void createPassword(){
-        GeneralJStuff.createJTextLabel(pane,"Password: ",50, 75);
+    private void createPassword() {
+        GeneralJStuff.createJTextLabel(pane, "Password: ", 50, 75);
         passwordField = new JTextField(10);
-        GeneralJStuff.createJTextField(pane,passwordField,150, 75);
+        GeneralJStuff.createJTextField(pane, passwordField, 150, 75);
 
     }
 
-    private void checkText(){
+    private void checkText() {
         checkLogin = new JLabel("");
-        checkLogin.setBounds(150, 100,200, 25);
+        checkLogin.setBounds(150, 100, 200, 25);
         pane.add(checkLogin);
     }
 
@@ -60,24 +65,23 @@ public class LoginGUI extends JFrame{
         Runnable r = () -> {
             String user = usernameField.getText();
             String pass = passwordField.getText();
-            if(bypass || (user.equals("user") && pass.equals("pass"))){
+            if (bypass || (user.equals("user") && pass.equals("pass"))) {
                 new RecyclingMonitoringStationGUI(homeGUI);
                 close();
-            }else{
+            } else {
                 checkLogin.setForeground(Color.red);
                 checkLogin.setText("Wrong!");
             }
         };
 
-        GeneralJStuff.createJTextButton(pane,"Submit",100, 125,
-                100,32,r);
+        GeneralJStuff.createJTextButton(pane, "Submit", 100, 125,
+                100, 32, r);
     }
 
     private void close() {
         frame.setVisible(false); //you can't see me!
         frame.dispose(); //Destroy the JFrame object
     }
-
 
 
 }

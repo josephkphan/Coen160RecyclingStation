@@ -10,7 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class HomeGUI extends JFrame implements ActionListener{
+/**
+ * Provides a nice visual for users. Regular users can use the RCMs while admins can view the
+ * RMOS window after first logging in.
+ */
+
+public class HomeGUI extends JFrame implements ActionListener {
 
     private static final int WINDOW_WIDTH = 750;
     private static final int WINDOW_HEIGHT = 750;
@@ -18,19 +23,19 @@ public class HomeGUI extends JFrame implements ActionListener{
     private static final int IMAGE_HEIGHT = 128;
     private static Container pane;
 
-    private  ArrayList<JButton> recyclingMachineButton;
-    private  ArrayList<JLabel> recyclingMachineImage;
-    private  RecyclingMonitoringStation recyclingMonitoringStation;
-    private  JLabel background;
-    private  ArrayList<Pair<Integer,Integer>> addMachine;
-    private  ArrayList<Integer> removeMachine;
+    private ArrayList<JButton> recyclingMachineButton;
+    private ArrayList<JLabel> recyclingMachineImage;
+    private RecyclingMonitoringStation recyclingMonitoringStation;
+    private JLabel background;
+    private ArrayList<Pair<Integer, Integer>> addMachine;
+    private ArrayList<Integer> removeMachine;
 
     public HomeGUI() {
         // Embedded Stuff
         recyclingMonitoringStation = new RecyclingMonitoringStation();
         recyclingMachineButton = new ArrayList<JButton>();
         recyclingMachineImage = new ArrayList<JLabel>();
-        addMachine = new ArrayList<Pair<Integer,Integer>>();
+        addMachine = new ArrayList<Pair<Integer, Integer>>();
         removeMachine = new ArrayList<Integer>();
 
         //Gui Stuff
@@ -59,7 +64,7 @@ public class HomeGUI extends JFrame implements ActionListener{
 //
 //        recyclingMonitoringStation.saveData();
         recyclingMonitoringStation.fromJSON();
-        for(int i=0; i< recyclingMonitoringStation.getNumberOfRecyclingMachines(); i++){
+        for (int i = 0; i < recyclingMonitoringStation.getNumberOfRecyclingMachines(); i++) {
             addRecyclingMachine(recyclingMonitoringStation.getRecyclingMachine(i));
         }
         System.out.println("recyclingMonitoringStation.getNumberOfRecyclingMachines() = " + recyclingMonitoringStation.getNumberOfRecyclingMachines());
@@ -68,13 +73,13 @@ public class HomeGUI extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        while(addMachine.size() > 0) {
+        while (addMachine.size() > 0) {
             Pair temp = addMachine.get(0);
             recyclingMonitoringStation.addMachine((Integer) temp.getKey(), (Integer) temp.getValue());
             addRecyclingMachine(getLastRecyclingMachine());
             addMachine.remove(0);
         }
-        while (removeMachine.size() > 0){
+        while (removeMachine.size() > 0) {
             System.out.println("HEREEEEEE");
             removeRecyclingMachine(removeMachine.get(0));
             removeMachine.remove(0);
@@ -86,14 +91,16 @@ public class HomeGUI extends JFrame implements ActionListener{
     public RecyclingMonitoringStation getRecyclingMonitoringStation() {
         return recyclingMonitoringStation;
     }
-    public RecyclingMachine getLastRecyclingMachine(){
-        return recyclingMonitoringStation.getRecyclingMachine(recyclingMonitoringStation.getNumberOfRecyclingMachines()-1);
-    }
-    public void addMachineToChange(int x, int y){
-        addMachine.add(new Pair<>(x,y));
+
+    public RecyclingMachine getLastRecyclingMachine() {
+        return recyclingMonitoringStation.getRecyclingMachine(recyclingMonitoringStation.getNumberOfRecyclingMachines() - 1);
     }
 
-    public void addMachineToRemove(int id){
+    public void addMachineToChange(int x, int y) {
+        addMachine.add(new Pair<>(x, y));
+    }
+
+    public void addMachineToRemove(int id) {
         removeMachine.add(id);
     }
 
@@ -106,7 +113,7 @@ public class HomeGUI extends JFrame implements ActionListener{
 
     public void createBackground() {
         background = new JLabel("");
-        GeneralJStuff.createJImage(pane, background, 0,0,
+        GeneralJStuff.createJImage(pane, background, 0, 0,
                 WINDOW_WIDTH, WINDOW_HEIGHT, "src/assets/background.png");
     }
 

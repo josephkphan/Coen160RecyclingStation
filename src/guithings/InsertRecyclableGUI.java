@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Recycle Machine Options:
+     This provides a nice visual options for users to indicate what type of item they are recycling.
+     Notice how some are disabled. This is controlled in the “Edit RCM window” located in the RMOS
+ */
 public class InsertRecyclableGUI extends JFrame {
     private static final int WINDOW_WIDTH = 600;
     private static final int WINDOW_HEIGHT = 400;

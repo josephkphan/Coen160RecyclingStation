@@ -10,6 +10,10 @@ import recyclable.Plastic;
 import statistics.Transaction;
 import statistics.MachineStatistics;
 
+/**
+ * Contains RCM Functionality such ass starting transactions, to keeping track of all previous transactions and
+ * the number of items inserted. It also contains information regarding money, and current weight load
+ */
 public class RecyclingMachine {
     // Containment of the MachineStatistics Class
     private MachineStatistics machineStatistics = new MachineStatistics();
@@ -51,15 +55,15 @@ public class RecyclingMachine {
         this.currentGlassLoad = this.currentMetalLoad = this.currentPaperLoad = this.currentPlasticLoad = 0.001;
     }
 
-    public RecyclingMachine(){
+    public RecyclingMachine() {
         this.inTransaction = false;
         this.transactionTotal = 0;
     }
 
     // Start Transaction
     public void startTransaction() {
-       t = new Transaction();
-       setInTransaction(true);
+        t = new Transaction();
+        setInTransaction(true);
     }
 
     // Cancel Transaction
@@ -143,13 +147,15 @@ public class RecyclingMachine {
     }
 
     // Empty out the recycling machine
-    public void empty(){
+    public void empty() {
         currentGlassLoad = currentMetalLoad = currentPaperLoad = currentPlasticLoad = 0;
         machineStatistics.justEmptied();
     }
 
     // Reload the money in the machine
-    public void reload() { this.availableMoney = 50000; }
+    public void reload() {
+        this.availableMoney = 50000;
+    }
 
     // Setters and Getters
     public double getMaxGlassLoad() {
@@ -160,7 +166,9 @@ public class RecyclingMachine {
         return currentGlassLoad;
     }
 
-    public double getCurrentTransactionGlassLoad() { return this.currentGlassLoad + t.getGlassLoad(); }
+    public double getCurrentTransactionGlassLoad() {
+        return this.currentGlassLoad + t.getGlassLoad();
+    }
 
 
     public double getMaxMetalLoad() {
@@ -171,7 +179,9 @@ public class RecyclingMachine {
         return currentMetalLoad;
     }
 
-    public double getCurrentTransactionMetalLoad() { return this.currentMetalLoad + t.getMetalLoad(); }
+    public double getCurrentTransactionMetalLoad() {
+        return this.currentMetalLoad + t.getMetalLoad();
+    }
 
 
     public double getMaxPaperLoad() {
@@ -182,7 +192,9 @@ public class RecyclingMachine {
         return currentPaperLoad;
     }
 
-    public double getCurrentTransactionPaperLoad() { return this.currentPaperLoad + t.getPaperLoad(); }
+    public double getCurrentTransactionPaperLoad() {
+        return this.currentPaperLoad + t.getPaperLoad();
+    }
 
 
     public double getMaxPlasticLoad() {
@@ -193,7 +205,9 @@ public class RecyclingMachine {
         return currentPlasticLoad;
     }
 
-    public double getCurrentTransactionPlasticLoad() { return this.currentPlasticLoad + t.getPlasticLoad(); }
+    public double getCurrentTransactionPlasticLoad() {
+        return this.currentPlasticLoad + t.getPlasticLoad();
+    }
 
 
     public int getId() {
@@ -259,16 +273,18 @@ public class RecyclingMachine {
         return availableMoney;
     }
 
-    public boolean getIsPayoutInCash() { return t.isPayoutInCash(); }
+    public boolean getIsPayoutInCash() {
+        return t.isPayoutInCash();
+    }
 
 
     public MachineStatistics getMachineStatistics() {
         return machineStatistics;
     }
 
-    public JSONObject toJSON(){
+    public JSONObject toJSON() {
         JSONObject o = new JSONObject();
-        try{
+        try {
             o.put("id", id);
             o.put("xCoord", xCoord);
             o.put("yCoord", yCoord);
@@ -280,21 +296,21 @@ public class RecyclingMachine {
             o.put("currentGlassLoad", currentGlassLoad);
             o.put("maxMetalLoad", maxMetalLoad);
             o.put("currentMetalLoad", currentMetalLoad);
-            o.put("maxPaperLoad",maxPaperLoad);
+            o.put("maxPaperLoad", maxPaperLoad);
             o.put("currentPaperLoad", currentPaperLoad);
             o.put("maxPlasticLoad", maxPlasticLoad);
             o.put("currentPlasticLoad", currentPlasticLoad);
             o.put("machineStatistics", machineStatistics.tojSON());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return o;
     }
 
-    public void fromJSON(JSONObject o){
+    public void fromJSON(JSONObject o) {
 
-        try{
+        try {
             id = (int) o.get("id");
             xCoord = (int) o.get("xCoord");
             yCoord = (int) o.get("yCoord");
@@ -311,10 +327,10 @@ public class RecyclingMachine {
             currentPaperLoad = (double) o.get("currentPaperLoad");
             maxPlasticLoad = (int) o.get("maxPlasticLoad");
             currentPlasticLoad = (double) o.get("currentPlasticLoad");
-            machineStatistics.fromJSON((JSONObject)o.get("machineStatistics"));
+            machineStatistics.fromJSON((JSONObject) o.get("machineStatistics"));
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

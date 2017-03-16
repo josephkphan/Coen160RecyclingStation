@@ -12,7 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.*;
 
-
+/**
+ * Creates RMOS View. Users can view the statistics visual data text, or through visuals ( a graph). They can
+ * edit, add, and remove RCMs.
+ */
 @SuppressWarnings("serial")
 public class RecyclingMonitoringStationGUI extends JFrame implements ActionListener {
 
@@ -270,9 +273,7 @@ class MachineInfoBar implements ActionListener {
         Cash temp = new Cash(0,(int) recyclingMachine.getAvailableMoney());
         GeneralJStuff.createJTextLabel(pane,moneyLeft, "Money Left: " +
                 temp.toString(), x + 550, y + 60);
-//        temp = new Cash(0,(int) recyclingMachine.getMachineStatistics().getTotalMoneyObtained());
-//        GeneralJStuff.createJTextLabel(pane,moneyObtained, "Total Money Obtained: " +
-//                temp.toString(), x + 550, y + 80);
+
         DateFormat df = new SimpleDateFormat("MM/dd/yy");
         if(recyclingMachine.getMachineStatistics().getEmptiedHistory().size()>0) {
             GeneralJStuff.createJTextLabel(pane, moneyObtained, "Last Emptied: " +
@@ -281,9 +282,6 @@ class MachineInfoBar implements ActionListener {
             GeneralJStuff.createJTextLabel(pane,moneyObtained, "Last Emptied: " +
                     "Never Emptied", x + 550, y + 80);
         }
-
-
-        //todo CHANGE MONEY TO CENTS HERE???
 
         if (recyclingMachine.getCurrentGlassLoad() >= 75 ||
                 recyclingMachine.getCurrentPlasticLoad() >= 75 ||

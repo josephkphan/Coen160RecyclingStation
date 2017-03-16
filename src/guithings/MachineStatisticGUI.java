@@ -1,6 +1,6 @@
 package guithings;
+
 import machine.RecyclingMachine;
-import statistics.MachineStatistics;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,9 +10,14 @@ import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+/**
+ * Machine Statistics:
+ * Machine statistics will display to the user the number of transactions per year.
+ * It is persistent will  update per transaction needs to re-click “Show Stats” Button in RMOS
+ */
 
 interface DataGetter {
     public void readDataFromFile(String fileName);
@@ -112,20 +117,20 @@ class BarChart extends JPanel {
         int x = 1;
         int counter = 0;
         for (Color color : bars.keySet()) {
-            g.drawString(Integer.toString(2007 + (counter++)), x+25,440);
+            g.drawString(Integer.toString(2007 + (counter++)), x + 25, 440);
             int value = bars.get(color);
             int height = (int) ((getHeight() - 5) * ((double) value / max));
             g.setColor(color);
-            g.fillRect(x+20, getHeight() - height-20, width, height);
+            g.fillRect(x + 20, getHeight() - height - 20, width, height);
             g.setColor(Color.black);
-            g.drawRect(x+20, getHeight() - height-20, width, height);
+            g.drawRect(x + 20, getHeight() - height - 20, width, height);
             x += (width + 2);
         }
-        g.drawLine(10,440,600,440);
-        g.drawString("Year", 300,450);
-        g.drawLine(10,440,10,0);
-        g.drawString("# Transactions", 20,200);
-        g.drawString("Time Vs. Transactions",275, 20);
+        g.drawLine(10, 440, 600, 440);
+        g.drawString("Year", 300, 450);
+        g.drawLine(10, 440, 10, 0);
+        g.drawString("# Transactions", 20, 200);
+        g.drawString("Time Vs. Transactions", 275, 20);
     }
 
     @Override

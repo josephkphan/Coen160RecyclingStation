@@ -1,6 +1,5 @@
 package guithings;
 
-
 import resources.Constants;
 
 import javax.swing.*;
@@ -8,6 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Edit RCMs(in RMOS)
+ * This controls the pricing of the RCMs and also the acceptable recyclables for all RCMs.
+ */
 public class EditMachineGUI extends JFrame implements ActionListener {
     private static final int WINDOW_WIDTH = 625;
     private static final int WINDOW_HEIGHT = 450;
@@ -91,7 +94,7 @@ public class EditMachineGUI extends JFrame implements ActionListener {
                     //Item enabled
                     toggleButtons[index].setForeground(Color.RED);
                 }
-                switch(index){
+                switch (index) {
                     case 0:
                         homeGUI.getRecyclingMonitoringStation().setGlassBottleEnabled(buttonBool[index]);
                         break;

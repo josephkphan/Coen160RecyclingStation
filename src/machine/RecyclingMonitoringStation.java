@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ *  Functionaltiy of the RMOS. This contains all RCMS and can edit and get data
+ */
 public class RecyclingMonitoringStation {
     private ArrayList<RecyclingMachine> recyclingMachines;
     private boolean glassBottleEnabled, metalCanEnabled, metalFoilEnabled, paperPlateEnabled, paperSheetEnabled,
             plasticBottleEnabled, plasticUtensilEnabled;
-
-
-    //TODO ADD IN DAILTY, MONTHlY DATA
 
     public RecyclingMonitoringStation() {
         recyclingMachines = new ArrayList<RecyclingMachine>();
@@ -83,10 +83,6 @@ public class RecyclingMonitoringStation {
         }
         return id;
     }
-
-    //todo enabling other recycable items
-
-    //todo view by day/week/month
 
     public ArrayList<RecyclingMachine> getAllMachineStatistics() {
         return recyclingMachines;

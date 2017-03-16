@@ -1,5 +1,8 @@
 package currency;
 
+/**
+ * Used to illustrate US Currency to user
+ */
 public abstract class USMoney {
     private int dollars;
     private int cents;

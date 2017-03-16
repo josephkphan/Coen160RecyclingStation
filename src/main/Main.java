@@ -2,10 +2,10 @@ package main;
 
 import guithings.HomeGUI;
 import javax.swing.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+/**
+ * Main method used to Test Code
+ */
 public class  Main {
     public static void main(String[] args) {
 
