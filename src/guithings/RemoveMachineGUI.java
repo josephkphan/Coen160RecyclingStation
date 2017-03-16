@@ -19,7 +19,7 @@ public class RemoveMachineGUI extends JFrame{
     public RemoveMachineGUI(HomeGUI homeGUI, RecyclingMonitoringStationGUI recyclingMonitoringStationGUI) {
         this.homeGUI = homeGUI;
         this.recyclingMonitoringStationGUI = recyclingMonitoringStationGUI;
-        frame = new JFrame("Add Recycling Machine Window");
+        frame = new JFrame("Remove Recycling Machine Window");
 
         pane = frame.getContentPane();
         //Size and display the window.
@@ -37,7 +37,7 @@ public class RemoveMachineGUI extends JFrame{
     }
 
     private void createTitle() {
-        GeneralJStuff.createJTextLabelCentered(pane,"Add Recycling Machine", WINDOW_WIDTH);
+        GeneralJStuff.createJTextLabelCentered(pane,"Remove Recycling Machine", WINDOW_WIDTH);
     }
 
     private void createXLabel(){
