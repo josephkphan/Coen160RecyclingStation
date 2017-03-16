@@ -21,3 +21,6 @@
 - RMOS can empty, reload, and display RCM data
 - Display Graph about the transactions
 
+## Screenshot
+
+![alt tag](https://goo.gl/photos/z9hT4fHC89kUrpRU6)
