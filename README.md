@@ -23,4 +23,4 @@
 
 ## Screenshot
 
-![alt tag](https://goo.gl/photos/z9hT4fHC89kUrpRU6)
+![Screenshot 1](https://goo.gl/photos/z9hT4fHC89kUrpRU6)
